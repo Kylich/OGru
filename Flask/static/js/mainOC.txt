@@ -1,0 +1,515 @@
+self.INTQt.valueChanged.connect(self.NumRollChange)
+self.MERITQt.valueChanged.connect(self.NumRollChange)
+self.TERPQt.stateChanged.connect(self.NumRollChange)
+
+self.TYQt.valueChanged.connect(self.NZChange)
+self.RQt.valueChanged.connect(self.NZChange)
+
+self.TYQt.valueChanged.connect(self.PChange)
+self.PChQt.valueChanged.connect(self.PChange)
+
+self.RQt.valueChanged.connect(self.KolTYChange)
+self.TYQt.valueChanged.connect(self.KTYCChange)
+
+self.OMMQt.valueChanged.connect(self.OMMChange)
+self.OMRQt.valueChanged.connect(self.OMMChange)
+self.OMMChQt.valueChanged.connect(self.OMMChange)
+self.NZQt.valueChanged.connect(self.OMminmax)
+self.OMQt.valueChanged.connect(self.OMMRMminmax)
+self.OMQt.valueChanged.connect(self.OMChange)
+self.NAQt.stateChanged.connect(self.OMChange)
+self.NAQt.stateChanged.connect(self.OMMChange)
+
+self.TYQt.valueChanged.connect(self.TChange)
+self.STRQt.valueChanged.connect(self.TChange)
+self.TChQt.valueChanged.connect(self.TChange)
+
+self.PROFQt.stateChanged.connect(self.PROFallChange)
+self.CRnameQt.currentTextChanged.connect(self.PROFallChange)
+
+self.TYQt.valueChanged.connect(self.MERITChange)
+self.CRFTQt.valueChanged.connect(self.MERITChange)
+self.SINCQt.valueChanged.connect(self.MERITChange)
+self.COMPQt.valueChanged.connect(self.MERITChange)
+self.PSINCQt.stateChanged.connect(self.MERITChange)
+self.PCRFTQt.stateChanged.connect(self.MERITChange)
+self.PCOMPQt.stateChanged.connect(self.MERITChange)
+
+self.PChQt.valueChanged.connect(self.OYChange)
+self.TChQt.valueChanged.connect(self.OYChange)
+self.OMQt.valueChanged.connect(self.OYChange)
+self.NQt.valueChanged.connect(self.OYChange)
+self.OSQt.valueChanged.connect(self.OYChange)
+self.OMMChQt.valueChanged.connect(self.OYChange)
+self.QQt.currentTextChanged.connect(self.OYChange)
+self.DMQt.valueChanged.connect(self.OYChange)
+
+self.NZQt.valueChanged.connect(self.Qminmax)
+self.NZQt.valueChanged.connect(self.DMminmax)
+
+self.WPQt.valueChanged.connect(self.WPChoose)
+self.RRchQt.stateChanged.connect(self.WPChoose)
+
+self.NumRollQt.valueChanged.connect(self.NRmax)
+
+self.MQt.valueChanged.connect(self.DicePullChange)
+self.KTYCQt.stateChanged.connect(self.DicePullChange)
+self.NQt.valueChanged.connect(self.DicePullChange)
+self.OtherQt.valueChanged.connect(self.DicePullChange)
+self.MERITQt.valueChanged.connect(self.DicePullChange)
+self.TYQt.valueChanged.connect(self.DicePullChange)
+self.INTQt.valueChanged.connect(self.DicePullChange)
+self.NumRollQt.valueChanged.connect(self.DicePullChange)
+self.RRQt.toggled.connect(self.DicePullChange)
+
+self.CRsaveBTNQt.clicked.connect(self.SavingCR)
+self.BPsaveBTNQt.clicked.connect(self.SavingBP)
+
+self.PSINCQt.stateChanged.connect(self.PROFChange)
+self.PCRFTQt.stateChanged.connect(self.PROFChange)
+self.PCOMPQt.stateChanged.connect(self.PROFChange)
+self.MERITQt.valueChanged.connect(self.PROFChange)
+
+self.ASSchQt.stateChanged.connect(self.ASSch)
+self.ASScQt.valueChanged.connect(self.ASScCh)
+
+self.PQt.valueChanged.connect(self.SChange)
+self.RQt.valueChanged.connect(self.SChange)
+
+self.OYQt.valueChanged.connect(self.KChange)
+self.DicePullQt.valueChanged.connect(self.KChange)
+self.NumRollQt.valueChanged.connect(self.KChange)
+self.CRnameQt.currentTextChanged.connect(self.KChange)
+self.OMMQt.valueChanged.connect(self.KChange)
+self.OMRQt.valueChanged.connect(self.KChange)
+self.OMQt.valueChanged.connect(self.KChange)
+
+
+
+self.NAQt.stateChanged.connect(self.NAch)
+
+    def NAch(self):
+        if self.NAQt.isChecked():
+            self.OMMQt.setEnabled(True)
+            self.OMRQt.setEnabled(True)
+        else:
+            self.OMMQt.setEnabled(False)
+            self.OMRQt.setEnabled(False)
+            self.OMRQt.setValue(0)
+            self.OMMQt.setValue(0)
+            self.OMMChQt.setEnabled(False)
+            self.OMMChQt.setValue(0)
+            self.DebaffMRQt.hide()
+            
+
+    def OMChange(self):
+        if self.OMQt.value() == 0:
+            self.NAQt.setChecked(False)
+            self.NAQt.setEnabled(False)
+        else:
+            self.NAQt.setEnabled(True)
+
+    def KChange(self):
+        if (self.OYQt.value() == 0 or
+            self.CRnameQt.currentText() == 'Select...' or
+            self.BPnameQt.currentText() == 'Select...' or
+            self.DicePullQt.value() == 0 or
+            self.NumRollQt.value() == 0 or 
+            (self.OMQt.value() * 2 != self.OMMQt.value() + self.OMRQt.value() and self.NAQt.isChecked())):
+                self.RunQt.setEnabled(False)
+                self.KQt.setEnabled(False)
+        else:
+            self.KQt.setEnabled(True)
+            self.RunQt.setEnabled(True)
+
+    def SChange(self):
+        self.SQt.setValue(self.RQt.value()+self.PQt.value())
+
+    def PROFChange(self):
+        PROFall = []
+        if self.PCRFTQt.isChecked():
+            PROFall.append('CRFT')
+        if self.PSINCQt.isChecked():
+            PROFall.append('SINC')
+        if self.PCOMPQt.isChecked():
+            PROFall.append('COMP')
+        self.BuffPROFQt.show() if self.MERITchQt.text() in PROFall else self.BuffPROFQt.hide()
+        
+    def KTYCChange(self):
+        if self.TYQt.value() == 7:
+            self.KTYCQt.setEnabled(False)
+            self.KTYCQt.setChecked(False)
+        else:
+            self.KTYCQt.setEnabled(True)
+
+    def DicePullChange(self):
+        M    = self.MQt.value()
+        N    = self.NQt.value()
+        MERIT= self.MERITQt.value()
+        TY   = self.TYQt.value()
+        INT  = self.INTQt.value()
+        CRFT = self.CRFTQt.value()
+        Other= self.OtherQt.value()
+
+        if M < TY:
+            self.DebaffMQt.show()
+        else:
+            self.DebaffMQt.hide()
+
+        if CRFT < TY:
+            self.DebaffCRFTQt.show()
+        else:
+            self.DebaffCRFTQt.hide()
+
+        KTYC = 1 if self.KTYCQt.isChecked() else 0
+
+        if N==1: N = 0
+        else: N -= 1
+
+        if MERIT == 0: MERIT = -3
+
+        DicePull = M - N + MERIT + INT + Other + KTYC - TY
+        
+        self.DicePullQt.setValue(DicePull)
+
+
+    def NRmax(self):
+        self.WPQt.setMaximum(self.NumRollQt.value())
+        self.WPQt.setValue(self.NumRollQt.value())
+        if self.ASSchQt.isChecked():
+            if self.ASSnameQt.currentText() not in ListDirCR:
+                self.ASScQt.setMaximum(self.NumRollQt.value())
+                self.ASScQt.setValue(self.NumRollQt.value())
+            else:
+                CurrentASS = self.ASSnameQt.currentText()
+                TY   = self.TYQt.value()
+                INT  = CRall[CurrentASS]['INT']
+                CRFT = CRall[CurrentASS]['CRFT']
+                SINC = CRall[CurrentASS]['SINC']
+                COMP = CRall[CurrentASS]['COMP']
+                TERP = CRall[CurrentASS]['TERP']
+                
+                z = 0
+                TERP = 2 if TERP else 0
+                
+                if TY <= 3:
+                    self.ASScQt.setValue(INT+CRFT+TERP)
+                elif TY == 4:
+                    while True:
+                        if CRFT == z: break
+                        elif SINC == z: break
+                        else: z += 1
+                    self.ASScQt.setValue(z + INT + TERP)
+                else:
+                    while True:
+                        if CRFT == z: break
+                        elif SINC == z: break
+                        elif COMP == z: break
+                        else: z += 1
+                    self.ASScQt.setValue(z + INT + TERP)
+        else:
+            self.ASScQt.setMaximum(0)
+        if self.ASSchQt.isChecked():
+            self.DebaffASSQt.show() if self.NumRollQt.value()>self.ASScQt.value() else self.DebaffASSQt.hide()
+
+    def WPChoose(self):
+        if self.WPQt.value()>0:  
+            if self.RRchQt.isChecked():
+                self.WP3Qt.setEnabled(True)
+                self.RRQt.setEnabled(True)
+                self.RRQt.setChecked(True)
+            else:
+                self.WP3Qt.setEnabled(True)
+                self.WP3Qt.setChecked(True)
+                self.RRQt.setEnabled(False)
+        else:
+            self.WP3Qt.setEnabled(False)
+            self.RRQt.setEnabled(False)
+        self.DebaffWPQt.show() if self.WPQt.value()<self.NumRollQt.value() else self.DebaffWPQt.hide()
+
+
+    def Qminmax(self):
+        # Q def
+        Q0 = '0: (10)'
+        Q1 = '+1: (9, 10)'
+        Q2 = '+2: (8, 9, 10)'
+        Q_1 = '-1: (-)'
+        Q_2 = '-2: (-1)'
+        NZ = self.NZQt.value()
+        if NZ < 2:
+            self.QQt.clear()
+            self.QQt.addItem(Q0)
+        elif 4 > NZ >= 2:
+            self.QQt.clear()
+            self.QQt.addItem(Q1)
+            self.QQt.addItem(Q0)
+            self.QQt.addItem(Q_1)
+            self.QQt.setCurrentIndex(1)
+        else:
+            self.QQt.clear()
+            self.QQt.addItem(Q2)
+            self.QQt.addItem(Q1)
+            self.QQt.addItem(Q0)
+            self.QQt.addItem(Q_1)
+            self.QQt.addItem(Q_2)
+            self.QQt.setCurrentIndex(2)
+
+    def OYChange(self):
+        # TCh + PCh + OM+1  + N + OS + Q*2 + OMMCh = OY
+        TCh = self.TChQt.value()
+        PCh = self.PChQt.value()
+        OM  = self.OMQt.value()
+        N   = self.NQt.value()
+        OS  = self.OSQt.value()
+        TY  = self.TYQt.value()
+        DM  = self.DMQt.value()
+        OMMch = self.OMMChQt.value()
+        try: Q  = int(self.QQt.currentText()[0:self.QQt.currentText().find(':')])
+        except: Q = 0
+
+        OY = TCh + PCh + OS + Q * 2 + DM
+        
+        if OM > 0: OY += OM + 1
+        elif OM < 0: OY += OM - 1
+    	
+        if OMMch != 0: OY += OMMch
+        
+        if N > TY: OY += N - TY
+
+        self.OYQt.setValue(OY)
+        self.DebaffOYQt.show() if OY < 1 else self.DebaffOYQt.hide()
+        
+
+    def MERITChange(self):
+        z = 0
+        q = False
+        MeritList, PROFall = [], []
+        TY   = self.TYQt.value()
+        CRFT = self.CRFTQt.value()
+        SINC = self.SINCQt.value()
+        COMP = self.COMPQt.value()
+        if self.PCRFTQt.isChecked():
+            PROFall.append('CRFT')
+        if self.PSINCQt.isChecked():
+            PROFall.append('SINC')
+        if self.PCOMPQt.isChecked():
+            PROFall.append('COMP')
+        self.MERITchQt.clear()
+
+        if TY <= 3:
+            self.MERITchQt.setText('CRFT')
+            self.MERITQt.setValue(CRFT)
+        elif TY == 4:
+            while True:
+                if CRFT == z:
+                    MeritList.append('CRFT')
+                    q = True
+                if SINC == z:
+                    MeritList.append('SINC')
+                    q = True 
+                if q: break
+                z += 1
+            q2 = False
+            while True:
+                if q2: break
+                for i in MeritList:
+                    if i in PROFall:
+                        self.MERITchQt.setText(i)
+                        if i == 'CRFT':
+                            self.MERITQt.setValue(CRFT)
+                        else:
+                            self.MERITQt.setValue(SINC)
+                        q2 = True
+                if self.MERITchQt.text()=='':
+                    self.MERITchQt.setText(MeritList[0])
+                if self.MERITchQt.text() == 'CRFT':
+                    self.MERITQt.setValue(CRFT)
+                else:
+                    self.MERITQt.setValue(SINC)
+                q2 = True
+        else:
+            while True:
+                if CRFT == z:
+                    MeritList.append('CRFT')
+                    q = True
+                if SINC == z:
+                    MeritList.append('SINC')
+                    q = True
+                if COMP == z:
+                    MeritList.append('COMP')
+                    q = True
+                if q: break
+                z += 1
+            q2 = False
+            while True:
+                if q2: break
+                for x in MeritList:
+                    if x in PROFall:
+                        self.MERITchQt.setText(x)
+                        if x == 'CRFT':
+                            self.MERITQt.setValue(CRFT)
+                        elif x == 'SINC':
+                            self.MERITQt.setValue(SINC)
+                        else:
+                            self.MERITQt.setValue(COMP)
+                        q2 = True
+                if self.MERITchQt.text() == '':
+                    self.MERITchQt.setText(MeritList[0])
+                if self.MERITchQt.text() == 'CRFT':
+                    self.MERITQt.setValue(CRFT)
+                elif self.MERITchQt.text() == 'COMP':
+                    self.MERITQt.setValue(COMP)
+                else:
+                    self.MERITQt.setValue(SINC)
+                q2 = True
+        self.BuffPROFQt.show() if self.MERITchQt.text() in PROFall else self.BuffPROFQt.hide()
+
+    def PROFallChange(self):
+        if self.PROFQt.isChecked() and self.CRnameQt.currentText() == "New...":
+            self.PCRFTQt.setEnabled(True)
+            self.PSINCQt.setEnabled(True)
+            self.PCOMPQt.setEnabled(True)
+        
+        elif not self.PROFQt.isChecked():
+            self.PCRFTQt.setEnabled(False)
+            self.PSINCQt.setEnabled(False)
+            self.PCOMPQt.setEnabled(False)
+            self.PCRFTQt.setChecked(False)
+            self.PSINCQt.setChecked(False)
+            self.PCOMPQt.setChecked(False)
+        
+        else:
+            self.PCRFTQt.setEnabled(False)
+            self.PSINCQt.setEnabled(False)
+            self.PCOMPQt.setEnabled(False)
+            CurName=self.CRnameQt.currentText()
+            if CurName in ListDirCR and CurName!='New...':
+                ProfTaked=CRall[CurName]['PROFall']
+                self.PCRFTQt.setChecked(True) if 'CRFT' in ProfTaked else self.PCRFTQt.setChecked(False)
+                self.PSINCQt.setChecked(True) if 'SINC' in ProfTaked else self.PSINCQt.setChecked(False)
+                self.PCOMPQt.setChecked(True) if 'COMP' in ProfTaked else self.PCOMPQt.setChecked(False)
+
+    def TChange(self):
+        TY  = self.TYQt.value()
+        STR = self.STRQt.value()
+        TCh = self.TChQt.value()
+
+        if STR > TY:
+            self.TChQt.setEnabled(True)
+            self.TChQt.setMinimum(TY-STR)
+            self.TChQt.setMaximum(0)
+            self.TQt.setValue(TY-TCh)
+        
+        elif STR == TY:
+            self.TChQt.setEnabled(False)
+            self.TChQt.setValue(0)
+            self.TQt.setValue(TY)
+            self.TChQt.setEnabled(False)
+
+        elif STR < TY:
+            self.TChQt.setEnabled(True)
+            self.TChQt.setMinimum(0)
+            self.TChQt.setMaximum(TY-STR)
+            self.TQt.setValue(TY-TCh)
+        
+        self.DebaffSTRQt.show() if STR<self.TQt.value() else self.DebaffSTRQt.hide()
+
+    def OMMRMminmax(self):
+        OMall = self.OMQt.value() * 2
+        NA = self.NAQt.isChecked()
+        if OMall == 0:
+            self.OMMQt.setEnabled(False)
+            self.OMRQt.setEnabled(False)
+            self.OMMQt.setValue(0)
+            self.OMRQt.setValue(0)
+            self.OMMChQt.setEnabled(False)
+            self.OMMChQt.setValue(0)
+        elif NA:
+            self.OMMQt.setEnabled(True)
+            self.OMRQt.setEnabled(True)
+            self.OMMChQt.setEnabled(True) if OMall>0 and self.OMMChQt.value()>0 else self.OMMChQt.setEnabled(False)  
+            if self.OMQt.value() > 0:
+                self.OMRQt.setMinimum(0)
+                self.OMRQt.setMaximum(OMall)
+                self.OMMQt.setMinimum(0)
+                self.OMMQt.setMaximum(OMall)
+            elif self.OMQt.value() < 0:
+                self.OMRQt.setMinimum(OMall)
+                self.OMRQt.setMaximum(0)
+                self.OMMQt.setMinimum(OMall)
+                self.OMMQt.setMaximum(0)
+            else:
+                self.OMRQt.setMinimum(0)
+                self.OMRQt.setMaximum(0)
+                self.OMMQt.setMinimum(0)
+                self.OMMQt.setMaximum(0)
+
+        if self.OMMQt.value() + self.OMRQt.value() == self.OMQt.value()*2 and not NA:
+            self.DebaffMRQt.hide()
+        else:
+            self.DebaffMRQt.show()
+
+    def OMminmax(self):
+        NZ = self.NZQt.value()
+        
+        self.OSQt.setMinimum(0)
+        self.OSQt.setMaximum(NZ**2)
+
+        self.OMQt.setMinimum(1-NZ)
+        self.OMQt.setMaximum(NZ-1)
+
+    def DMminmax(self):
+        self.DMQt.setMinimum(-self.NZQt.value())
+        self.DMQt.setMaximum(self.NZQt.value())
+
+    def OMMChange(self):
+        OMM = self.OMMQt.value()
+        OMR = self.OMRQt.value()
+        OM2 = self.OMQt.value() * 2
+        NA = self.NAQt.isChecked()
+
+        if OMM > 0:
+            self.OMMChQt.setMaximum(OMM)
+            self.OMMChQt.setEnabled(True)
+        else:
+            self.OMMChQt.setEnabled(False)
+            self.OMMChQt.setValue(0)
+       
+        if OMM - self.OMMChQt.value() <= 0:
+            self.DebaffOMMQt.hide()
+        else:
+            self.DebaffOMMQt.show()
+        
+        if OMM + OMR == OM2 and NA:
+            self.DebaffMRQt.hide()
+        else:
+            self.DebaffMRQt.show()
+
+    def KolTYChange(self):
+        self.KolTYQt.setValue(self.RQt.value()**2)
+
+    def PChange(self):
+        PCh = self.PChQt.value()
+        TY = self.TYQt.value()
+        P = self.PQt.value()
+
+        self.PChQt.setMinimum(1 - TY//2)
+        
+        if (TY//2 + PCh) <= 0:
+            self.PChQt.setMinimum(P * (-1))
+        
+        self.PQt.setValue(TY//2 + PCh)
+
+    def NZChange(self):
+        R = self.RQt.value()
+        TY = self.TYQt.value()
+        if TY < R:
+            self.NZQt.setValue(TY)
+        else:
+            self.NZQt.setValue(R)
+ 
+
+    def NumRollChange(self):
+        if self.TYQt.value != 0:
+            Terp = 2 if self.TERPQt.isChecked() else 0
+            self.NumRollQt.setValue(self.INTQt.value() + self.MERITQt.value() + Terp)

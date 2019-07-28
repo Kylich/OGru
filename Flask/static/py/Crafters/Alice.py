@@ -1,0 +1,11 @@
+CRname = 'Alice'
+INT = 3
+CRFT = 3
+SINC = 0
+COMP = 0
+RR = 0
+PROF = 0
+PROFall = []
+TM = 1
+TERP = 1
+OTHER = 0

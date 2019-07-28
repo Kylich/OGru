@@ -1,0 +1,11 @@
+CRname = 'Mitya'
+INT = 2
+CRFT = 3
+SINC = 2
+COMP = 2
+RR = 1
+PROF = 0
+PROFall = []
+TM = 0
+TERP = 0
+OTHER = 0

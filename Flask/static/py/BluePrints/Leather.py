@@ -1,0 +1,15 @@
+BPname = 'Leather'
+TY = 3
+R = 4
+OM = 2
+OMM = 1
+OMR = 3
+OMMch = 1
+Q = 1
+STR = 4
+TCh = -1
+N = 1
+PCh = 1
+OS = 3
+DM = 0
+NA = 1

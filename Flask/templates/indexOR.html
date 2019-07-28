@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OpenRoller - OpenGamer</title>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <script type=text/javascript src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div class="block-left" style="width:33%;height:800px;overflow:auto;float:left">
+    <!--<script type="text/javascript">
+       window.setInterval(function(){
+          $("#ctime").load("/ctime");
+       }, 1000)
+    </script>-->
+    
+    <script>
+        function RollDice() {
+            $.ajax({
+                type: "POST",
+                url: "/RollDice",
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#Resultat').html(json.JoinText)
+                    $('#finalpush').html(json.finalpush)
+                    
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+    
+    <script>
+        function LuckDice() {
+            $.ajax({
+                type: "POST",
+                url: "/LuckDice",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#Resultat').html(json.JoinText)
+                    $('#finalpush').html('')
+
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+    
+    <script>
+    var fmCheck = 0
+        function FullMod() {
+            $.ajax({
+                type: "POST",
+                url: "/FullMod?fmCheck="+fmCheck,
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#fmTextPerk').html(json.fmTextPerk)
+                    $('#fmTextPush').html(json.fmTextPush)
+                    $('#fmTextOM').html(json.fmTextOM)
+                    console.log(response);
+                    tutCheck++;
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+    var tutCheck = 0
+        function tutorial() {
+            $.ajax({
+                type: "POST",
+                url: "/tutorial?tutCheck="+tutCheck,
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#tutorial').html(json.tutText)
+                    console.log(response);
+                    tutCheck++;
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+
+    <div id="divLogo">
+        <a href="http://open-gamer.ru/openroller/">
+           <img align='right' width="30%" src="/static/images/iconOR.png" alt="OpenRoller"/></a>
+    </div>
+    
+    
+    <div id="formRD">
+        <form action="/RollDice" method="post" name="form">
+            <table>
+                <tr>
+                   <td><p><b>Кол-во Кубов:</b></p></td>
+                   <td><input type="number" min='1' max='50' value=5 id="TEXT_Dices" name="TEXT_Dices"></td>
+                </tr>
+
+                <tr>
+                   <td><p><b>Кол-во Бросков:</b></td>
+                   <td><input type="number" min='1' max='50' value=1 id="TEXT_Rolls" name="TEXT_Rolls"></td>
+                </tr>
+
+                <tr>
+                <td><p><b>Переброс:</b></td>
+                <td>
+                    <p><select size="5" id="TEXT_Quality" name="TEXT_Quality">
+                    <option type="number" value="2">2: переброс 8, 9, 0</option>
+                    <option type="number" value="1">1: переброс 9 и 0</option>
+                    <option type="number" selected value="0">0: переброс 0</option>
+                    <option type="number" value="-1">-1: без переброса</option>
+                    <option type="number" value="-2">-2: -успех из броска</option>
+                    </select></p>
+                </td>
+                </tr>
+
+                <tr>
+                   <td><b>ПСВ:</b></td>
+                   <td><input type="checkbox" id="TEXT_WillPower" name="TEXT_WillPower"></td>
+                </tr>                
+                
+                
+                <tr id='fmTextPerk'></tr>
+                <tr id='fmTextPush'></tr>
+                <tr id='fmTextOM'></tr>
+                
+                <tr>
+                    <td><b>Текст отчета:</b></td>
+                    <td><textarea id="TEXT_EText" name="TEXT_EText"></textarea></td>
+                </tr>
+                <tr><td colspan="2"><div align="right"><sup>(персонаж, мастер и/или заявка)</sup></div></td></tr>
+
+                <tr><td colspan="2">
+                    <input type="button" value="Бросай" onclick="RollDice();" style="width:100%;height:150%">
+                </td></tr>
+
+            </table>
+        </form>
+    </div><br>
+
+    
+    <div id="LuckDiceSubmit">
+        <form action="/LuckDice" method="POST">
+            <input type="button" value="Куб Удачи" onclick="LuckDice()">
+        </form>
+    </div>
+    <br>    
+    <br>
+
+    <div id="FullModSubmit">
+        <form action="/FullMod" method="POST">
+            <input type="button" value="Полный Формат" onclick="FullMod()">
+        </form>
+    </div>
+
+    <div id="TutorialSubmit">
+        <form action="/tutorial" method="POST">
+            <input type="button" value="Инструкции" onclick="tutorial()">
+        </form>
+    </div>
+
+
+    <div id="contacts">
+        <a href="http://open-gamer.ru/">Начальная страница</a><br>
+        Проект: <a href="https://vk.com/opengamerspb">OpenGamer</a><br>
+        Создал: <a href="https://vk.com/kylikov_nikita">Kylich</a><br>
+        Идея: <a href="http://www.roll-dice-online.com/">RollDice Online</a>
+     </div>
+</div>
+
+<div class="block-right" style="width:66%;height:800px;overflow:auto;">
+    
+    <div id="Resultat"></div>
+    <div id="finalpush"></div>
+    <div id="tutorial"></div>
+    <!--<div id="ctime"></div>-->
+    
+</div>
+
+</body>
+</html>

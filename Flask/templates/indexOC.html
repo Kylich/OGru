@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>OpenCrafter - OpenGamer</title>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <script type=text/javascript src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type=text/javascript src="/static/js/OC.js"></script>
+
+    <style>
+        td {padding: 5px;}
+        .razR {-moz-appearance: textfield;}
+        .razR::-webkit-inner-spin-button {display: none;}
+        .raz {
+            all: unset;
+            -moz-appearance: textfield;
+            width: 2em;
+            text-align: center;
+        }
+        .raz::-webkit-inner-spin-button {display: none;}
+    </style>
+    <style>
+        .quitz-card-question {
+            border: 1px solid #FFD700;
+            background: #FFFACD;
+            background-image: url("/static/images/quitz-question.png");
+            background-repeat: no-repeat;
+            background-position: 99% 10px;
+        }
+        
+        .quitz-card-ready {
+            border: 1px solid green;
+            background: #e1e3b8;
+            background-image: url("/static/images/quitz-ready.png");
+            background-repeat: no-repeat;
+            background-position: 99% 10px;
+        }
+        
+        .quitz-card-disable {
+            border: 1px solid red;
+            background: #FFDA89;
+            background-image: url("/static/images/quitz-disable.png");
+            background-repeat: no-repeat;
+            background-position: 99% 10px;
+        }
+    </style>
+    
+    <style>
+        legend {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            color: brown;
+        }
+    </style>
+</head>
+
+<body>
+<div class="block-left" style="width:66%;overflow:auto;float:left">
+
+    <div id="formMaster">
+        <form action="/Master" method="post" name="form">
+        <fieldset id="MasterFS" class="quitz-card-question">
+        <legend><h2>Master</h2></legend>
+        
+			<select size="1" class="cfMaster" id="fMaster" name="fMaster">
+			    <option selected disabled>Выбери Мастера</option>
+                <option value="Alice">Alice</option>
+                <option value="Gela">Gela</option>
+                <option value="Mitya">Mitya</option>
+                <option value="Noob">Noob</option>
+			    <option value="Uber">Uber</option>
+			    <option value="Ulrih">Ulrih</option>
+            </select>
+            
+            <table>
+                <tr>
+                    <td>
+                        <label for="fINT">INT:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='1' max='5' value=1 id="fINT" name="fINT">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fTM">TM</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="cMaster" id="fTM" name="fTM">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fCraft">Craft:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='0' max='5' value=0 id="fCraft" name="fCraft">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fTerp">Terp</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="cMaster" id="fTerp" name="fTerp">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fSince">Since:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='0' max='5' value=0 id="fSince" name="fSince">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fRR">RR</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="cMaster" id="fRR" name="fRR">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fComp">Comp:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='0' max='5' value=0 id="fComp" name="fComp">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fProf">Prof:</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="cMaster" id="fProf" name="fProf">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fOther">Other:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='0' max='5' value=0 id="fOther" name="fOther">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
+                    </td>
+                          <td colspan="2">
+                        <label for="fProfCraft">Craft:</label>
+                        <input type="checkbox" disabled class="cMaster" id="fProfCraft" name="fProfCraft">
+                        <label for="fProfSince">Since:</label>
+                        <input type="checkbox" disabled class="cMaster" id="fProfSince" name="fProfSince">
+                        <label for="fProfComp">Comp:</label>
+                        <input type="checkbox" disabled class="cMaster" id="fProfComp" name="fProfComp">
+                    </td>
+                    
+                    
+                </tr>
+
+                <tr><td colspan="2">
+                    <input type="button" value="Master" onclick="Master();" style="width:100%;height:150%">
+                </td></tr>
+
+            </table>
+        </fieldset>
+        </form>
+    </div><br>
+
+    <div id="formBluePrint">
+        <form action="/BluePrint" method="post" name="form">
+        <fieldset id="BluePrintFS" class="quitz-card-question">
+        <legend><h2>BluePrint</h2></legend>
+            
+            <select size="1" class="cfBluePrint" id="fBluePrint" name="fBluePrint">
+			    <option selected disabled>Выбери Чертеж</option>
+                <option type="number" value="Skin">Skin</option>
+                <option type="number" value="Leather">Leather</option>
+                <option type="number" value="Diamond">Diamond</option>
+            </select>
+            
+            <table>
+                <tr>
+                    <td>
+                        <label for="fTY">TY:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">-</button>
+                        <input type="number" class="raz" style="width:2em" min='1' max='7' value=1 id="fTY" name="fTY">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fNZ">NZ</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fNZ" name="fNZ">
+                    </td>
+                    <td>
+                        <label for="fS">S</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fS" name="fS">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fR">R:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='1' max='50' value=1 id="fR" name="fR">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fTch">Tch</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); Tch ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='-5' max='5' value=0 id="fTch" name="fTch">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); Tch ()">+</button>
+
+                    </td>
+                    <td>
+                        <label for="fT">T</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fT" name="fT" min='1'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fAtt">Att</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='1' max='5' value=1 id="fAtt" name="fAtt">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fPch">Pch</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); Pch ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='-5' max='5' value=0 id="fPch" name="fPch">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); Pch ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fP">P</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fP" name="fP">
+                    </td>
+                </tr>
+
+                <tr><td><br></td></tr>
+                <tr>
+                    <td>
+                        <label for="fOM">OM</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='0' max='5' id="fOM" value=0 name="fOM">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fNA">NA</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="cBluePrint" value='on' id="fNA" name="fNA">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fOMM">OMM:</label>
+                    </td>
+                    <td>
+                        <button type="button" id='OMMd' disabled onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" disabled class="raz" readonly style="width:2em" min='0' max='5' value=0 id="fOMM" name="fOMM">
+                        <button type="button" id='OMMu' disabled onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fOMR">OMR:</label>
+                    </td>
+                    <td>
+                        <button type="button" id='OMRd' disabled onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" disabled class="raz" readonly style="width:2em" min='0' max='5' value=0 id="fOMR" name="fOMR">
+                        <button type="button" id='OMRu' disabled onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fOMMT">OMMT:</label>
+                    </td>
+                    <td>
+                        <button type="button" id='OMMTd' disabled onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" disabled class="raz" readonly style="width:2em" min='0' max='5' value=0 id="fOMMT" name="fOMMT">
+                        <button type="button" id='OMMTu' disabled onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                </tr>
+                <tr><td><br></td></tr>
+                <tr>
+                    <td>
+                        <label for="fOS">OS:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='0' max='20' value=0 id="fOS" name="fOS">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fN">N:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='1' max='5' value=1 id="fN" name="fN">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fDM">DM:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='-5' max='5' value=0 id="fDM" name="fDM">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <label for="fQ">Q:</label>
+                    </td>
+                    <td>
+                        <p><select size="5" class="cBluePrint" id="fQ" name="fQ">
+                        <option type="number" value="2">2: переброс 8, 9, 0</option>
+                        <option type="number" value="1">1: переброс 9 и 0</option>
+                        <option type="number" selected value="0">0: переброс 0</option>
+                        <option type="number" value="-1">-1: без переброса</option>
+                        <option type="number" value="-2">-2: -успех из броска</option>
+                        </select></p>
+                    </td>
+                    <td>
+                        <label for="fKolTY">KolTY:</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fKolTY" name="fKolTY">
+                    </td>
+                    <td>
+                        <label for="fKTYC">KTYC:</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="cBluePrint" id="fKTYC" name="fKTYC">
+                    </td>
+                </tr>
+                
+                <tr><td colspan="2">
+                    <input type="button" value="BluePrint" onclick="BluePrint();" style="width:100%;height:100%">
+                </td></tr>
+
+            </table>
+        </fieldset>
+        </form>
+    </div><br>
+
+
+    <div id="formOther">
+        <form action="/Other" method="post" name="form">
+        <fieldset id="OtherFS" class="quitz-card-disable">
+        <legend><h2>Other</h2></legend>
+            <table>
+                <tr>
+                    <td>
+                        <label for="fWP">WP</label>
+                        <input type="checkbox" class="cOther" id="fWP" name="fWP">                        
+                    </td>
+                    <td>
+                        <label for="fWP3">WP3</label>
+                        <input type="radio" disabled checked class="cOther" id="fWP3" name="fWPch">
+                        <label for="fWPRR">WPRR</label>
+                        <input type="radio" disabled class="cOther" id="fWPRR" name="fWPch">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fM">M:</label>
+                    </td>
+                    <td>
+
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); OtherFS_Q ()">-</button>
+                        <input style="width:2em" class="raz" readonly type="number" min='1' max='5' value=1 id="fM" name="fM">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); OtherFS_Q ()">+</button>
+                    </td>
+                    <!--
+                    <td>
+                        <label for="fDicePull">DicePull</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fDicePull" name="fDicePull">
+                    </td>
+                    <td>
+                        <label for="fNumRoll">NumRoll</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fNumRoll" name="fNumRoll">
+                    </td>
+                    -->
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Other" onclick="Other();" style="width:100%">
+                    </td>
+                </tr>
+
+            </table>
+        </fieldset>
+        </form>
+    </div><br>
+
+    <script>
+        $( "#fProf" ).change(function() {
+            if ($('#fProf').is(':checked')){
+                $('#fProfCraft').attr('disabled', false);
+                $('#fProfSince').attr('disabled', false);
+                $('#fProfComp').attr('disabled', false);
+                $('fieldset#OtherFS').attr('class', 'quitz-card-disable');
+            } else {
+                $('#fProfCraft').attr('disabled', true);
+                $('#fProfSince').attr('disabled', true);
+                $('#fProfComp').attr('disabled', true);
+                $('#fProfCraft').prop('checked', false);
+                $('#fProfSince').attr('checked', false);
+                $('#fProfComp').attr('checked', false);
+                $('fieldset#OtherFS').attr('class', 'quitz-card-disable');
+            }
+        });
+        
+        $( "#fNA" ).change(function() {
+            if ( $('#fNA').is(':checked') )
+            {
+                $('#OMMu').attr('disabled', false);
+                $('#OMMd').attr('disabled', false);
+                $('#OMM').attr('disabled', false);
+                
+                $('#OMRu').attr('disabled', false);
+                $('#OMRd').attr('disabled', false);
+                $('#OMR').attr('disabled', false);
+                
+                $('#OMMTu').attr('disabled', false);
+                $('#OMMTd').attr('disabled', false);
+                $('#OMMT').attr('disabled', false);
+            } else {
+                $('#OMMu').attr('disabled', true);
+                $('#OMMd').attr('disabled', true);
+                $('#OMM').attr('disabled', true);
+                
+                $('#OMRu').attr('disabled', true);
+                $('#OMRd').attr('disabled', true);
+                $('#OMR').attr('disabled', true);
+                
+                $('#OMMTu').attr('disabled', true);
+                $('#OMMTd').attr('disabled', true);
+                $('#OMMT').attr('disabled', true);
+            }
+        });
+        
+        $( "#fWP" ).change(function() {
+            if ( $('#fWP').is(':checked') )
+            {
+                $('#fWP3').attr('disabled', false);
+                if ($('#fRR').is(':checked')){
+                    $('#fWPRR').attr('disabled', false);
+                    $('#fWP3').prop('checked', true);
+                    
+                } else {
+                    $('#fWPRR').attr('disabled', true);
+                }
+            } else {
+                $('#fWP3').attr('disabled', true);
+                $('#fWPRR').attr('disabled', true);
+            }
+        });
+        
+        $( "#fRR" ).change(function() {
+            if ($('#fRR').is(':checked')
+                &&
+                $('#fWP').is(':checked')
+            )
+            {
+                $('#fWPRR').attr('disabled', false);
+            } else {
+                $('#fWPRR').attr('disabled', true);
+                $('#fWP3').prop('checked', true);
+            }
+        });
+
+        $( ".cMaster" ).change(function() {
+            $('fieldset#OtherFS').attr('class', 'quitz-card-disable');
+            $('fieldset#MasterFS').attr('class', 'quitz-card-question');
+        });
+
+        $( ".cBluePrint" ).change(function() {
+            $('fieldset#OtherFS').attr('class', 'quitz-card-disable');
+            $('fieldset#BluePrintFS').attr('class', 'quitz-card-question');
+        });
+
+        $( ".cOther" ).change(function() {
+            if (
+                $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'
+                &&
+                $('fieldset#BluePrintFS').attr('class') == 'quitz-card-ready'
+            )
+            {$('fieldset#OtherFS').attr('class', 'quitz-card-question')}
+        });
+        
+        $( "#fBluePrint" ).change(function() {
+            $('fieldset#BluePrintFS').attr('class', 'quitz-card-ready');
+            
+            if (
+                $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'
+            &&
+                $('fieldset#BluePrintFS').attr('class') == 'quitz-card-ready'
+            )
+                {$('fieldset#OtherFS').attr('class', 'quitz-card-question')}
+            else
+                {$('fieldset#OtherFS').attr('class', 'quitz-card-disable')}
+        });
+
+        $( "#fMaster" ).change(function() {
+            $('fieldset#MasterFS').attr('class', 'quitz-card-ready');
+            
+            if (
+                $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'
+            &&
+                $('fieldset#BluePrintFS').attr('class') == 'quitz-card-ready'
+            )
+                {$('fieldset#OtherFS').attr('class', 'quitz-card-question')}
+            else
+                {$('fieldset#OtherFS').attr('class', 'quitz-card-disable')}
+        });
+
+    </script>
+
+    <div id="contacts">
+        <a href="http://open-gamer.ru/">Начальная страница</a><br>
+        Проект: <a href="https://vk.com/opengamerspb">OpenGamer</a><br>
+        Создал: <a href="https://vk.com/kylikov_nikita">Kylich</a><br>
+     </div>
+</div>
+
+<div class="block-right">
+    <div id="divLogo">
+        <a href="http://open-gamer.ru/opencrafter/">
+           <img width="25%" src="/static/images/iconCR.png" alt="OpenCrafter"/>
+        </a>
+    </div>
+    
+    <div id="Resultat"></div>
+    <div id="tutorial"></div>
+</div>
+
+</body>
+</html>

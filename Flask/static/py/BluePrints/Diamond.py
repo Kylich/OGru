@@ -1,0 +1,15 @@
+BPname = 'Diamond'
+TY = 5
+R = 4
+OM = 2
+OMM = 1
+OMR = 3
+OMMch = 1
+Q = 2
+STR = 4
+TCh = 1
+N = 2
+PCh = 0
+OS = 3
+DM = 0
+NA = 1

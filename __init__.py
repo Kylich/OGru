@@ -5,7 +5,7 @@ import sys, os, random #, time
 
 #sys.path.append(PYpath)
 
-#app = Flask(__name__)
+app = Flask(__name__)
 #f = open('//home//f//f950220q//open-gamer.ru//tmp//restart.txt', 'w')
 #f.close()
 # /home/f/f950220q/open-gamer.ru

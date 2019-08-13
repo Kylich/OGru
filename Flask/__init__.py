@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request, json
 import sys, os, random #, time
 
+PYpath = '//home//f//f950220q//open-gamer.ru//Flask//static//py'
+
+sys.path.append(PYpath)
+
 app = Flask(__name__)
-f = open('//tmp//restart.txt', 'w')
+f = open('//home//f//f950220q//open-gamer.ru//tmp//restart.txt', 'w')
 f.close()
 # /home/f/f950220q/open-gamer.ru
 

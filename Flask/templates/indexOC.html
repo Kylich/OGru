@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <script type=text/javascript src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script type=text/javascript src="/static/js/OC.js"></script>
+    <script type=text/javascript src="/static/js/OCother.js"></script>
 
     <style>
         td {padding: 5px;}
@@ -61,8 +62,8 @@
     <div id="formMaster">
         <form action="/Master" method="post" name="form">
         <fieldset id="MasterFS" class="quitz-card-question">
-        <legend><h2>Master</h2></legend>
-        
+        <legend><h2>Мастер</h2></legend>
+        <!--
 			<select size="1" class="cfMaster" id="fMaster" name="fMaster">
 			    <option selected disabled>Выбери Мастера</option>
                 <option value="Alice">Alice</option>
@@ -72,11 +73,11 @@
 			    <option value="Uber">Uber</option>
 			    <option value="Ulrih">Ulrih</option>
             </select>
-            
+        -->    
             <table>
                 <tr>
                     <td>
-                        <label for="fINT">INT:</label>
+                        <label for="fINT">ИНТ:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
@@ -84,7 +85,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fTM">TM</label>
+                        <label for="fTM">Тайм Мен-нт:</label>
                     </td>
                     <td>
                         <input type="checkbox" class="cMaster" id="fTM" name="fTM">
@@ -92,7 +93,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="fCraft">Craft:</label>
+                        <label for="fCraft">Ремесло:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
@@ -100,7 +101,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fTerp">Terp</label>
+                        <label for="fTerp">Терпение:</label>
                     </td>
                     <td>
                         <input type="checkbox" class="cMaster" id="fTerp" name="fTerp">
@@ -108,7 +109,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="fSince">Since:</label>
+                        <label for="fSince">Точн. Науки:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
@@ -116,7 +117,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fRR">RR</label>
+                        <label for="fRR">Переброс:</label>
                     </td>
                     <td>
                         <input type="checkbox" class="cMaster" id="fRR" name="fRR">
@@ -124,7 +125,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="fComp">Comp:</label>
+                        <label for="fComp">Компьютеры:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
@@ -132,15 +133,16 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fProf">Prof:</label>
+                        <label for="fProf">Профессия:</label>
                     </td>
                     <td>
                         <input type="checkbox" class="cMaster" id="fProf" name="fProf">
                     </td>
                 </tr>
+                </table><table>
                 <tr>
                     <td>
-                        <label for="fOther">Other:</label>
+                        <label for="fOther">Разные +кубы<br>(спецы, клятвы,<br>присяги и т.д.):</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); MasterFS_Q ()">-</button>
@@ -148,19 +150,18 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); MasterFS_Q ()">+</button>
                     </td>
                           <td colspan="2">
-                        <label for="fProfCraft">Craft:</label>
+                        <label for="fProfCraft">Ремесло:</label>
                         <input type="checkbox" disabled class="cMaster" id="fProfCraft" name="fProfCraft">
-                        <label for="fProfSince">Since:</label>
+                        <label for="fProfSince">Точн. Науки:</label>
                         <input type="checkbox" disabled class="cMaster" id="fProfSince" name="fProfSince">
-                        <label for="fProfComp">Comp:</label>
+                        <label for="fProfComp">Компьютеры:</label>
                         <input type="checkbox" disabled class="cMaster" id="fProfComp" name="fProfComp">
                     </td>
-                    
-                    
                 </tr>
+                <!--tr><td>(спецы, клятвы, присяги и т.д.)</td></tr-->
 
                 <tr><td colspan="2">
-                    <input type="button" value="Master" onclick="Master();" style="width:100%;height:150%">
+                    <input type="button" value="Мастер" onclick="Master();" style="width:100%;height:150%">
                 </td></tr>
 
             </table>
@@ -171,19 +172,19 @@
     <div id="formBluePrint">
         <form action="/BluePrint" method="post" name="form">
         <fieldset id="BluePrintFS" class="quitz-card-question">
-        <legend><h2>BluePrint</h2></legend>
-            
+        <legend><h2>Чертеж</h2></legend>
+            <!--
             <select size="1" class="cfBluePrint" id="fBluePrint" name="fBluePrint">
 			    <option selected disabled>Выбери Чертеж</option>
                 <option type="number" value="Skin">Skin</option>
                 <option type="number" value="Leather">Leather</option>
                 <option type="number" value="Diamond">Diamond</option>
             </select>
-            
+            -->
             <table>
                 <tr>
                     <td>
-                        <label for="fTY">TY:</label>
+                        <label for="fTY">Тех. Уровень:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">-</button>
@@ -191,13 +192,13 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">+</button>
                     </td>
                     <td>
-                        <label for="fNZ">NZ</label>
+                        <label for="fNZ">Наим. Знач.</label>
                     </td>
                     <td>
                         <input type="number" style="width:2em" class="razR" readonly id="fNZ" name="fNZ">
                     </td>
                     <td>
-                        <label for="fS">S</label>
+                        <label for="fS">Структура</label>
                     </td>
                     <td>
                         <input type="number" style="width:2em" class="razR" readonly id="fS" name="fS">
@@ -205,7 +206,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="fR">R:</label>
+                        <label for="fR">Размер:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">-</button>
@@ -213,7 +214,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">+</button>
                     </td>
                     <td>
-                        <label for="fTch">Tch</label>
+                        <label for="fTch">Требования изм.</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); Tch ()">-</button>
@@ -222,7 +223,7 @@
 
                     </td>
                     <td>
-                        <label for="fT">T</label>
+                        <label for="fT">Требования</label>
                     </td>
                     <td>
                         <input type="number" style="width:2em" class="razR" readonly id="fT" name="fT" min='1'>
@@ -230,7 +231,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="fAtt">Att</label>
+                        <label for="fAtt">Атрибут</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -238,7 +239,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fPch">Pch</label>
+                        <label for="fPch">Прочность изм.</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); Pch ()">-</button>
@@ -246,17 +247,16 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); Pch ()">+</button>
                     </td>
                     <td>
-                        <label for="fP">P</label>
+                        <label for="fP">Прочность</label>
                     </td>
                     <td>
                         <input type="number" style="width:2em" class="razR" readonly id="fP" name="fP">
                     </td>
                 </tr>
-
-                <tr><td><br></td></tr>
+                </table><br><table>
                 <tr>
                     <td>
-                        <label for="fOM">OM</label>
+                        <label for="fOM">Основной Модификатор</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -264,7 +264,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fNA">NA</label>
+                        <label for="fNA">Назначение Броня:</label>
                     </td>
                     <td>
                         <input type="checkbox" class="cBluePrint" value='on' id="fNA" name="fNA">
@@ -272,7 +272,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="fOMM">OMM:</label>
+                        <label for="fOMM">ОМ Ближнего Боя:</label>
                     </td>
                     <td>
                         <button type="button" id='OMMd' disabled onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -280,7 +280,7 @@
                         <button type="button" id='OMMu' disabled onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fOMR">OMR:</label>
+                        <label for="fOMR">ОМ Дальнего Боя:</label>
                     </td>
                     <td>
                         <button type="button" id='OMRd' disabled onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -288,7 +288,7 @@
                         <button type="button" id='OMRu' disabled onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fOMMT">OMMT:</label>
+                        <label for="fOMMT">Штраф от ОМ ББ:</label>
                     </td>
                     <td>
                         <button type="button" id='OMMTd' disabled onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -299,7 +299,7 @@
                 <tr><td><br></td></tr>
                 <tr>
                     <td>
-                        <label for="fOS">OS:</label>
+                        <label for="fOS">Особые Св-ва:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -307,7 +307,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fN">N:</label>
+                        <label for="fN">Назначения:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -315,7 +315,7 @@
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
                     </td>
                     <td>
-                        <label for="fDM">DM:</label>
+                        <label for="fDM">Доп Модификатор:</label>
                     </td>
                     <td>
                         <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
@@ -327,7 +327,7 @@
             <table>
                 <tr>
                     <td>
-                        <label for="fQ">Q:</label>
+                        <label for="fQ">Качество:</label>
                     </td>
                     <td>
                         <p><select size="5" class="cBluePrint" id="fQ" name="fQ">
@@ -338,14 +338,14 @@
                         <option type="number" value="-2">-2: -успех из броска</option>
                         </select></p>
                     </td>
-                    <td>
-                        <label for="fKolTY">KolTY:</label>
+                    <!--td>
+                        <label for="fKolTY">Кол-во Деталей:</label>
                     </td>
                     <td>
                         <input type="number" style="width:2em" class="razR" readonly id="fKolTY" name="fKolTY">
-                    </td>
+                    </td-->
                     <td>
-                        <label for="fKTYC">KTYC:</label>
+                        <label for="fKTYC">Наличие Деталей высшего ТУ:</label>
                     </td>
                     <td>
                         <input type="checkbox" class="cBluePrint" id="fKTYC" name="fKTYC">
@@ -353,7 +353,7 @@
                 </tr>
                 
                 <tr><td colspan="2">
-                    <input type="button" value="BluePrint" onclick="BluePrint();" style="width:100%;height:100%">
+                    <input type="button" value="Чертеж" onclick="BluePrint();" style="width:100%;height:100%">
                 </td></tr>
 
             </table>
@@ -365,23 +365,23 @@
     <div id="formOther">
         <form action="/Other" method="post" name="form">
         <fieldset id="OtherFS" class="quitz-card-disable">
-        <legend><h2>Other</h2></legend>
+        <legend><h2>Разное</h2></legend>
             <table>
                 <tr>
                     <td>
-                        <label for="fWP">WP</label>
+                        <label for="fWP">ПСВ</label>
                         <input type="checkbox" class="cOther" id="fWP" name="fWP">                        
                     </td>
                     <td>
-                        <label for="fWP3">WP3</label>
+                        <label for="fWP3">ПСВ на +3 куба</label>
                         <input type="radio" disabled checked class="cOther" id="fWP3" name="fWPch">
-                        <label for="fWPRR">WPRR</label>
+                        <label for="fWPRR">ПСВ на Переброс</label>
                         <input type="radio" disabled class="cOther" id="fWPRR" name="fWPch">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="fM">M:</label>
+                        <label for="fM">Мастерская:</label>
                     </td>
                     <td>
 
@@ -406,7 +406,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="button" value="Other" onclick="Other();" style="width:100%">
+                        <input type="button" value="Разное" onclick="Other();" style="width:100%">
                     </td>
                 </tr>
 

@@ -1,4 +1,4 @@
-def sending(EText):
+def sending(EText, JT):
     # import necessary packages
     
     from email.mime.multipart import MIMEMultipart
@@ -7,13 +7,13 @@ def sending(EText):
     # create message object instance
     msg = MIMEMultipart()
     
-    message = EText
+    message = '%s' % '\n '.join(JT)
     
     # setup the parameters of the message
     password = "Gorod4Narodov"
     msg['From'] = "opengamerroller@gmail.com"
-    msg['To'] = "kylikovnikita@gmail.com"
-    msg['Subject'] = 'bot'
+    msg['To'] = "opengamerreport@gmail.com"
+    msg['Subject'] = EText
     
     # add in the message body
     msg.attach(MIMEText(message, 'plain'))

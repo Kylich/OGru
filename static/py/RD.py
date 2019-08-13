@@ -4,8 +4,8 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
         import sys
         import random
 
-        import static.py.Choosing
-        import static.py.ChoosingQ
+        import Choosing
+        import ChoosingQ
         
         LuckR, LuckRR, LuckDel = ChoosingQ.select(Q)
         Luck = LuckRR + LuckR

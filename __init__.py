@@ -1,8 +1,8 @@
 ﻿from flask import Flask, render_template, request, json
 import sys, os, random #, time
 
-#PYpath = '//home//f//f950220q//open-gamer.ru//Flask//static//py'
-
+Path = str(os.getcwd())
+sys.path.insert(0, Path + '/static/py')
 #sys.path.append(PYpath)
 
 app = Flask(__name__)
@@ -99,7 +99,7 @@ def indexFull():
 
 @app.route('/LuckDice', methods=['GET', 'POST'])
 def LuckDice():
-    import static.py.LD
+    import LD
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     

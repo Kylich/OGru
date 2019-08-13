@@ -99,7 +99,7 @@ def indexFull():
 
 @app.route('/LuckDice', methods=['GET', 'POST'])
 def LuckDice():
-    import LD
+    import static.py.LD
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
@@ -175,13 +175,13 @@ def RollDice():
         TEXT_EText = str(TEXT_EText)
     except: TEXT_EText = ''
     
-    import RD
+    import static.py.RD
     JoinText, DetalText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM, TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText)
 
     #send report
     if TEXT_EText and not TEXT_EText.isspace():
         if TEXT_EText.isdigit() == False:
-            import report
+            import static.py.report
             report.sending(TEXT_EText, JoinText)
     
     if TEXT_PUSH:

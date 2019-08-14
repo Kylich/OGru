@@ -3,12 +3,8 @@ import sys, os, random #, time
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
-#sys.path.append(PYpath)
 
 app = Flask(__name__)
-#f = open('//home//f//f950220q//open-gamer.ru//tmp//restart.txt', 'w')
-#f.close()
-# /home/f/f950220q/open-gamer.ru
 
 @app.route('/')
 def indexMain():

@@ -80,10 +80,10 @@ def tutorial():
     
     tutCheck = int(request.args.get('tutCheck'))
     
-    import tutorial
+    #import tutorial
 
     if tutCheck % 2 == 0:
-        tutText = tutorial.tutorialText
+        tutText = "tutorial.tutorialText"
             #"""
             #<h1><b>Информация по использованию:</b></h1>
             #<p><b>Кол-во Кубов</b> - то, сколько кубов на броске - атрибуты, навыки, модификаторы, ДМ, и т.д. НО (!) без учета ПСВ</p>

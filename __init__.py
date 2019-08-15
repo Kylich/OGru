@@ -23,28 +23,27 @@ def indexOC():
 
 @app.route('/step', methods=['GET', 'POST'])
 def step():
-        pass
-#    fmCheck = int(request.args.get('fmCheck'))
-#    
-#    if fmCheck % 2 == 0:
-#        fmTextPerk = """
-#                    <td><b>Перк:</b></td>
-#                    <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>
-#                """
-#        fmTextPush = """
-#                    <td><b><FONT color=green>Кнопка только для Пушистой, никому больше не нажимать!</font></b></td>
-#                    <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>
-#                """
-#        fmTextOM = """
-#                    <td><h4><b>Автоуспех:</b></h4></td>
-#                    <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>
-#                """
-#    else:
-#        fmTextPerk=''
-#        fmTextPush=''
-#        fmTextOM=''
-#        
-#    return json.dumps({'fmTextPerk': fmTextPerk, 'fmTextPush': fmTextPush, 'fmTextOM': fmTextOM})
+    Check = int(request.args.get('fmCheck'))
+    
+    if Check % 2 == 0:
+        StepRoll = """
+                    <td><b>StepRoll:</b></td>
+                    <td><input type="button" name="StepRoll" id="StepRoll"/></td>
+                """
+        StepWP = """
+                    <td><b>StepWP</b></td>
+                    <td><input type="button" name="StepWP" id="StepWP"/></td>
+                """
+        StepRR = """
+                    <td><b>StepRR:</b></td>
+                    <td><input type="button" id="StepRR" name="StepRR"></td>
+                """
+    else:
+        StepRoll = ''
+        StepWP = ''
+        StepRR = ''
+        
+    return json.dumps({'StepRoll': StepRoll, 'StepWP': StepWP, 'StepRR': StepRR})
 
 
 @app.route('/FullMod', methods=['GET', 'POST'])

@@ -24,28 +24,6 @@ def indexOC():
 @app.route('/step', methods=['GET', 'POST'])
 def step():
         pass
-#    fmCheck = int(request.args.get('fmCheck'))
-#    
-#    if fmCheck % 2 == 0:
-#        fmTextPerk = """
-#                    <td><b>Перк:</b></td>
-#                    <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>
-#                """
-#        fmTextPush = """
-#                    <td><b><FONT color=green>Кнопка только для Пушистой, никому больше не нажимать!</font></b></td>
-#                    <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>
-#                """
-#        fmTextOM = """
-#                    <td><h4><b>Автоуспех:</b></h4></td>
-#                    <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>
-#                """
-#    else:
-#        fmTextPerk=''
-#        fmTextPush=''
-#        fmTextOM=''
-#        
-#    return json.dumps({'fmTextPerk': fmTextPerk, 'fmTextPush': fmTextPush, 'fmTextOM': fmTextOM})
-
 
 @app.route('/FullMod', methods=['GET', 'POST'])
 def indexFull():

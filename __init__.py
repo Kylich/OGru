@@ -4,7 +4,7 @@ import sys, os, random #, time
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
 
-import tutorialpy, LD, RD, report
+import LD, RD, report
 from tutorialpy import tutorialText
 
 app = Flask(__name__)

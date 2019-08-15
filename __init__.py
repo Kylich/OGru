@@ -5,6 +5,7 @@ Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
 
 import tutorialpy, LD, RD, report
+from tutorialpy import tutorialText
 
 app = Flask(__name__)
 
@@ -20,9 +21,8 @@ def indexOR():
 def indexOC():
     return render_template("indexOC.html")
 
-
 @app.route('/step', methods=['GET', 'POST'])
-def indexStep():
+def step():
         pass
 #    fmCheck = int(request.args.get('fmCheck'))
 #    
@@ -65,27 +65,24 @@ def indexFull():
                     <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>
                 """
     else:
-        fmTextPerk=''
-        fmTextPush=''
-        fmTextOM=''
+        fmTextPerk = ''
+        fmTextPush = ''
+        fmTextOM   = ''
         
     return json.dumps({'fmTextPerk': fmTextPerk, 'fmTextPush': fmTextPush, 'fmTextOM': fmTextOM})
 
 @app.route('/LuckDice', methods=['GET', 'POST'])
 def LuckDice():
-
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
 @app.route('/tutorial', methods=['GET', 'POST'])
 def tutorial():
-    
     tutCheck = int(request.args.get('tutCheck'))
     if tutCheck % 2 == 0:
-        tutText = tutorialpy.tutorialText
+        tutText = tutorialText
     else:
         tutText = ''
-    
     return json.dumps({'tutText': tutText})
 
 @app.route('/RollDice', methods=['GET', 'POST'])
@@ -116,17 +113,16 @@ def RollDice():
     try:
         TEXT_EText = request.form['TEXT_EText']
         TEXT_EText = str(TEXT_EText)
-    except: TEXT_EText = ''
-    
+    except:
+        TEXT_EText = ''
 
-    JoinText, DetalText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM, TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText)
+    JoinText, DetalText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
+                                    TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText)
 
-    #send report
     if TEXT_EText and not TEXT_EText.isspace():
         if TEXT_EText.isdigit() == False:
-
             report.sending(TEXT_EText, JoinText)
-    
+            
     if TEXT_PUSH:
         rc = ['s', 'd']
         dicepush = []
@@ -151,27 +147,15 @@ def RollDice():
                         rc = random.choice(['s', 'd'])
                         dicepush.append(j+rc)
         
-        finalpush=[]
+        finalpush = []
         for dice in dicepush:
             finalpush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
         
-    else: finalpush=''
+    else: finalpush = ''
     
-    JoinText = "<br>".join(JoinText)
-    JoinText ="<h2>" + JoinText + "</h2>"
-    
-    
+    JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
     return json.dumps({'JoinText': JoinText, 'finalpush': finalpush})
-    #return render_template("indexOR.html", result=JoinText, dicepush=dicepush,
-    #    PUSH=TEXT_PUSH, TEXT_Dices=TEXT_Dices, TEXT_RR=TEXT_RR, fullmod = fullmod,
-    #    TEXT_Rolls=TEXT_Rolls, TEXT_Q=TEXT_Q, TEXT_WP=TEXT_WP, TEXT_OM=TEXT_OM)
-    
-    #@app.route("/ctime")
-    #def ctime():
-    #    ctime=str("<h2>Time is: " + time.ctime(time.time())+"</h2>")
-    #    return ctime
         
 if __name__ == '__main__':
-    #app.run(debug=True)
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)

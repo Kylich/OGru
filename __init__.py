@@ -1,10 +1,10 @@
 ﻿from flask import Flask, render_template, request, json
-import sys, os, random #, time
+import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
 
-import tutorialpy, LD, RD, report
+import LD, RD, report
 from tutorialpy import tutorialText
 
 app = Flask(__name__)
@@ -23,9 +23,9 @@ def indexOC():
 
 @app.route('/step', methods=['GET', 'POST'])
 def step():
-    Check = int(request.args.get('fmCheck'))
+    sCheck = int(request.args.get('sCheck'))
     
-    if Check % 2 == 0:
+    if sCheck % 2 == 0:
         StepRoll = """
                     <td><b>StepRoll:</b></td>
                     <td><input type="button" name="StepRoll" id="StepRoll"/></td>
@@ -75,7 +75,7 @@ def LuckDice():
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
-@app.route('/tutorial', methods=['GET', 'POST'])
+@app.route('/Tutorial', methods=['GET', 'POST'])
 def tutorial():
     tutCheck = int(request.args.get('tutCheck'))
     if tutCheck % 2 == 0:

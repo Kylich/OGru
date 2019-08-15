@@ -56,7 +56,7 @@
                     $('#fmTextPush').html(json.fmTextPush)
                     $('#fmTextOM').html(json.fmTextOM)
                     console.log(response);
-                    tutCheck++;
+                    fmCheck++;
                 },
                 error: function(error) {console.log(error);}
             });
@@ -65,10 +65,10 @@
 
     <script>
     var tutCheck = 0
-        function tutorial() {
+        function Tutorial() {
             $.ajax({
                 type: "POST",
-                url: "/tutorial?tutCheck="+tutCheck,
+                url: "/Tutorial?tutCheck="+tutCheck,
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
@@ -80,6 +80,27 @@
             });
         }
     </script>
+
+    <script>
+    var sCheck = 0
+        function Step() {
+            $.ajax({
+                type: "POST",
+                url: "/Step?sCheck="+sCheck,
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#StepRoll').html(json.StepRoll)
+                    $('#StepWP').html(json.StepWP)
+                    $('#StepRR').html(json.StepRR)
+                    console.log(response);
+                    sCheck++;
+                },
+                error: function(error) {console.log(error);}
+            });
+        }
+    </script>
+
 
     <div id="divLogo">
         <a href="http://www.open-gamer.ru/openroller/">
@@ -152,6 +173,12 @@
 
     <br><br>
 
+    <div id="StepSubmit">
+        <form action="/step" method="POST">
+            <input type="button" value="Пошаговый Формат" onclick="step()">
+        </form>
+    </div>
+
     <div id="FullModSubmit">
         <form action="/FullMod" method="POST">
             <input type="button" value="Полный Формат" onclick="FullMod()">
@@ -159,8 +186,8 @@
     </div>
 
     <div id="TutorialSubmit">
-        <form action="/tutorial" method="POST">
-            <input type="button" value="Инструкции" onclick="tutorial()">
+        <form action="/Tutorial" method="POST">
+            <input type="button" value="Инструкции" onclick="Tutorial()">
         </form>
     </div>
 

@@ -82,19 +82,18 @@
     </script>
 
     <script>
-    var sCheck = 0
         function Step() {
             $.ajax({
                 type: "POST",
-                url: "/Step?sCheck="+sCheck,
+                url: "/Step",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#StepRoll').html(json.StepRoll)
                     $('#StepWP').html(json.StepWP)
                     $('#StepRR').html(json.StepRR)
+                    $('#StepSubmit').html(json.StepSubmit)
                     console.log(response);
-                    sCheck++;
                 },
                 error: function(error) {console.log(error);}
             });
@@ -174,8 +173,8 @@
     <br><br>
 
     <div id="StepSubmit">
-        <form action="/step" method="POST">
-            <input type="button" value="Пошаговый Формат" onclick="step()">
+        <form action="/Step" method="POST">
+            <input type="button" value="Пошаговый Формат" onclick="Step()">
         </form>
     </div>
 

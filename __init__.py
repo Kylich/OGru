@@ -80,7 +80,7 @@ def tutorial():
     
     tutCheck = int(request.args.get('tutCheck'))
     
-    #import tutorial
+    import tutorial
 
     if tutCheck % 2 == 0:
         tutText = tutorial.tutorialText

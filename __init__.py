@@ -4,7 +4,7 @@ import sys, os, random #, time
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
 
-import tutorial, LD, RD, report
+import tutorialtxt, LD, RD, report
 
 app = Flask(__name__)
 
@@ -82,7 +82,7 @@ def tutorial():
     
     tutCheck = int(request.args.get('tutCheck'))
     if tutCheck % 2 == 0:
-        tutText = tutorial.tutorialText
+        tutText = tutorialtxt.tutorialText
     else:
         tutText = ''
     

@@ -84,18 +84,18 @@
 
     <script>
         var stepCheck = 0
-        function step() {
+        function stepMod() {
             $.ajax({
                 type: "POST",
-                url: "/step?stepCheck="+stepCheck,
+                url: "/stepmod?stepCheck="+stepCheck,
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
-                    $('#StepRoll').html(json.StepRoll)
-                    $('#StepWP').html(json.StepWP)
-                    $('#StepRR').html(json.StepRR)
-                    $('#StepSubmit').html(json.StepSubmit)
+                    $('#stepRoll').html(json.stepRoll)
+                    $('#stepWP').html(json.stepWP)
+                    $('#stepRR').html(json.stepRR)
                     console.log(response);
+                    stepCheck++;
                 },
                 error: function(error) {console.log(error);}
             });
@@ -196,9 +196,9 @@
 
     <br><br>
 
-    <div id="StepSubmit">
-        <form action="/step" method="POST">
-            <input type="button" value="Пошаговый Формат" onclick="step()">
+    <div id="StepModSubmit">
+        <form action="/stepmod" method="POST">
+            <input type="button" value="Пошаговый Формат" onclick="stepMod()">
         </form>
     </div>
 

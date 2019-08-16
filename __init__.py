@@ -22,8 +22,8 @@ def indexOC():
     return render_template("indexOC.html")
 
 
-@app.route('/Step', methods=['GET', 'POST'])
-def Step():
+@app.route('/step', methods=['GET', 'POST'])
+def step():
 
     StepRoll = """
                 <td><b>StepRoll:</b></td>
@@ -70,7 +70,7 @@ def luckDice():
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
-@app.route('/Tutorial', methods=['GET', 'POST'])
+@app.route('/tutorial', methods=['GET', 'POST'])
 def tutorial():
     tutCheck = int(request.args.get('tutCheck'))
     if tutCheck % 2 == 0:

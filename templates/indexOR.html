@@ -9,7 +9,7 @@
 <body>
 <div class="block-left" style="width:33%;height:800px;overflow:auto;float:left">
     <script>
-        function rolldice() {
+        function rollDice() {
             $.ajax({
                 type: "POST",
                 url: "/rolldice",
@@ -27,7 +27,7 @@
     </script>
     
     <script>
-        function luckdice() {
+        function luckDice() {
             $.ajax({
                 type: "POST",
                 url: "/luckdice",
@@ -65,10 +65,10 @@
 
     <script>
     var tutCheck = 0
-        function Tutorial() {
+        function tutorial() {
             $.ajax({
                 type: "POST",
-                url: "/Tutorial?tutCheck="+tutCheck,
+                url: "/tutorial?tutCheck="+tutCheck,
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
@@ -82,10 +82,10 @@
     </script>
 
     <script>
-        function Step() {
+        function step() {
             $.ajax({
                 type: "POST",
-                url: "/Step",
+                url: "/step",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
@@ -174,7 +174,7 @@
 
     <div id="StepSubmit">
         <form action="/Step" method="POST">
-            <input type="button" value="Пошаговый Формат" onclick="Step()">
+            <input type="button" value="Пошаговый Формат" onclick="step()">
         </form>
     </div>
 
@@ -186,7 +186,7 @@
 
     <div id="TutorialSubmit">
         <form action="/Tutorial" method="POST">
-            <input type="button" value="Инструкции" onclick="Tutorial()">
+            <input type="button" value="Инструкции" onclick="tutorial()">
         </form>
     </div>
 

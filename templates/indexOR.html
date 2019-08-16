@@ -45,7 +45,7 @@
     </script>
     
     <script>
-    var fmCheck = 0
+        var fmCheck = 0
         function fullMod() {
             $.ajax({
                 type: "POST",
@@ -65,7 +65,7 @@
     </script>
 
     <script>
-    var tutCheck = 0
+        var tutCheck = 0
         function tutorial() {
             $.ajax({
                 type: "POST",
@@ -83,10 +83,11 @@
     </script>
 
     <script>
+        var stepCheck = 0
         function step() {
             $.ajax({
                 type: "POST",
-                url: "/step",
+                url: "/step?stepCheck="+stepCheck,
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)

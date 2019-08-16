@@ -65,10 +65,10 @@
 
     <script>
     var tutCheck = 0
-        function tutorial() {
+        function Tutorial() {
             $.ajax({
                 type: "POST",
-                url: "/tutorial?tutCheck="+tutCheck,
+                url: "/Tutorial?tutCheck="+tutCheck,
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
@@ -80,6 +80,26 @@
             });
         }
     </script>
+
+    <script>
+        function Step() {
+            $.ajax({
+                type: "POST",
+                url: "/Step",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#StepRoll').html(json.StepRoll)
+                    $('#StepWP').html(json.StepWP)
+                    $('#StepRR').html(json.StepRR)
+                    $('#StepSubmit').html(json.StepSubmit)
+                    console.log(response);
+                },
+                error: function(error) {console.log(error);}
+            });
+        }
+    </script>
+
 
     <div id="divLogo">
         <a href="http://www.open-gamer.ru/openroller/">
@@ -116,7 +136,11 @@
                 <tr>
                    <td><b>ПСВ:</b></td>
                    <td><input type="checkbox" id="TEXT_WillPower" name="TEXT_WillPower"></td>
-                </tr>                
+                </tr>
+                
+                <tr id='StepRoll'></tr>
+                <tr id='StepWP'></tr>
+                <tr id='StepRR'></tr>
                 
                 <tr id='fmTextPerk'></tr>
                 <tr id='fmTextPush'></tr>
@@ -148,6 +172,12 @@
 
     <br><br>
 
+    <div id="StepSubmit">
+        <form action="/Step" method="POST">
+            <input type="button" value="Пошаговый Формат" onclick="Step()">
+        </form>
+    </div>
+
     <div id="FullModSubmit">
         <form action="/fullMod" method="POST">
             <input type="button" value="Полный Формат" onclick="fullMod()">
@@ -155,8 +185,8 @@
     </div>
 
     <div id="TutorialSubmit">
-        <form action="/tutorial" method="POST">
-            <input type="button" value="Инструкции" onclick="tutorial()">
+        <form action="/Tutorial" method="POST">
+            <input type="button" value="Инструкции" onclick="Tutorial()">
         </form>
     </div>
 

@@ -21,9 +21,25 @@ def indexOR():
 def indexOC():
     return render_template("indexOC.html")
 
-@app.route('/step', methods=['GET', 'POST'])
-def step():
-        pass
+
+@app.route('/Step', methods=['GET', 'POST'])
+def Step():
+
+    StepRoll = """
+                <td><b>StepRoll:</b></td>
+                <td><input type="button" name="StepRoll" id="StepRoll" onclick="StepRoll();"/></td>
+            """
+    StepWP = """
+                <td><b>StepWP</b></td>
+                <td><input type="button" name="StepWP" id="StepWP" onclick="StepWP();"/></td>
+            """
+    StepRR = """
+                <td><b>StepRR:</b></td>
+                <td><input type="button" id="StepRR" name="StepRR" onclick="StepRR();"></td>
+            """
+    StepSubmit = ''
+    
+    return json.dumps({'StepRoll': StepRoll, 'StepWP': StepWP, 'StepRR': StepRR, 'StepSubmit': StepSubmit})
 
 @app.route('/fullmod', methods=['GET', 'POST'])
 def fullMod():
@@ -54,7 +70,7 @@ def luckDice():
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
-@app.route('/tutorial', methods=['GET', 'POST'])
+@app.route('/Tutorial', methods=['GET', 'POST'])
 def tutorial():
     tutCheck = int(request.args.get('tutCheck'))
     if tutCheck % 2 == 0:

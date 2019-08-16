@@ -24,6 +24,7 @@ def indexOC():
 
 @app.route('/step', methods=['GET', 'POST'])
 def step():
+    stepCheck = int(request.args.get('stepCheck'))
     StepRoll = """
                 <td><b>StepRoll:</b></td>
                 <td><input type="button" name="StepRoll" id="StepRoll" onclick="StepRoll();"/></td>

@@ -24,15 +24,17 @@ def indexOC():
 
 @app.route('/step', methods=['GET', 'POST'])
 def step():
-
     StepRoll = """
-                <td><input type="button" value="StepRoll" id="StepRoll" onclick="StepRoll();"/></td>
+                <td><b>StepRoll:</b></td>
+                <td><input type="button" name="StepRoll" id="StepRoll" onclick="StepRoll();"/></td>
             """
     StepWP = """
-                <td><input type="button" value="StepWP" id="StepWP" onclick="StepWP();"/></td>
+                <td><b>StepWP</b></td>
+                <td><input type="button" name="StepWP" id="StepWP" onclick="StepWP();"/></td>
             """
     StepRR = """
-                <td><input type="button" value="StepRR" id="StepRR" onclick="StepRR();"></td>
+                <td><b>StepRR:</b></td>
+                <td><input type="button" id="StepRR" name="StepRR" onclick="StepRR();"></td>
             """
     StepSubmit = ''
     

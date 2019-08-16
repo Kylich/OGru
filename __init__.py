@@ -25,8 +25,8 @@ def indexOC():
 def step():
         pass
 
-@app.route('/FullMod', methods=['GET', 'POST'])
-def indexFull():
+@app.route('/fullmod', methods=['GET', 'POST'])
+def fullmod():
     fmCheck = int(request.args.get('fmCheck'))
     
     if fmCheck % 2 == 0:
@@ -49,8 +49,8 @@ def indexFull():
         
     return json.dumps({'fmTextPerk': fmTextPerk, 'fmTextPush': fmTextPush, 'fmTextOM': fmTextOM})
 
-@app.route('/LuckDice', methods=['GET', 'POST'])
-def LuckDice():
+@app.route('/luckdice', methods=['GET', 'POST'])
+def luckdice():
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
@@ -63,8 +63,8 @@ def tutorial():
         tutText = ''
     return json.dumps({'tutText': tutText})
 
-@app.route('/RollDice', methods=['GET', 'POST'])
-def RollDice():
+@app.route('/rolldice', methods=['GET', 'POST'])
+def rolldice():
 
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Rolls = request.form['TEXT_Rolls']

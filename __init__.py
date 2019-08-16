@@ -35,7 +35,7 @@ def indexFull():
                     <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>
                 """
         fmTextPush = """
-                    <td><b><FONT color=green>Кнопка только для Пушистой, никому больше не нажимать!</font></b></td>
+                    <td><b><FONT color=green>Кнопка для Пушистой!</font></b></td>
                     <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>
                 """
         fmTextOM = """

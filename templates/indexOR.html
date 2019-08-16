@@ -8,6 +8,7 @@
 
 <body>
 <div class="block-left" style="width:33%;height:800px;overflow:auto;float:left">
+
     <script>
         function rollDice() {
             $.ajax({
@@ -96,6 +97,28 @@
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}
+            });
+        }
+    </script>
+
+    <script>
+        function StepRoll() {
+            $.ajax({
+                alert("StepRoll pushed (in progress...")
+            });
+        }
+    </script>
+    <script>
+        function StepWP() {
+            $.ajax({
+                alert("StepWP pushed (in progress...")
+            });
+        }
+    </script>
+    <script>
+        function StepRR() {
+            $.ajax({
+                alert("StepRR pushed (in progress...")
             });
         }
     </script>

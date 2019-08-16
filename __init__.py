@@ -26,13 +26,13 @@ def indexOC():
 def step():
 
     StepRoll = """
-                <td><input type="button" value="StepRoll" name="StepRoll" id="StepRoll" onclick="StepRoll();"/></td>
+                <td><input type="button" value="StepRoll" id="StepRoll" onclick="StepRoll();"/></td>
             """
     StepWP = """
-                <td><input type="button" value="StepWP" name="StepWP" id="StepWP" onclick="StepWP();"/></td>
+                <td><input type="button" value="StepWP" id="StepWP" onclick="StepWP();"/></td>
             """
     StepRR = """
-                <td><input type="button" value="StepRR" name="StepRR" id="StepRR" onclick="StepRR();"></td>
+                <td><input type="button" value="StepRR" id="StepRR" onclick="StepRR();"></td>
             """
     StepSubmit = ''
     

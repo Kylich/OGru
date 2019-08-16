@@ -32,7 +32,7 @@ def step():
                 <td><input type="button" value="StepWP" name="StepWP" id="StepWP" onclick="StepWP();"/></td>
             """
     StepRR = """
-                <td><input type="button" id="StepRR" value="StepRR" name="StepRR" onclick="StepRR();"></td>
+                <td><input type="button" value="StepRR" name="StepRR" id="StepRR" onclick="StepRR();"></td>
             """
     StepSubmit = ''
     

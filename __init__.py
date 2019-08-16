@@ -26,7 +26,7 @@ def step():
         pass
 
 @app.route('/fullmod', methods=['GET', 'POST'])
-def fullmod():
+def fullMod():
     fmCheck = int(request.args.get('fmCheck'))
     
     if fmCheck % 2 == 0:
@@ -50,7 +50,7 @@ def fullmod():
     return json.dumps({'fmTextPerk': fmTextPerk, 'fmTextPush': fmTextPush, 'fmTextOM': fmTextOM})
 
 @app.route('/luckdice', methods=['GET', 'POST'])
-def luckdice():
+def luckDice():
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
@@ -64,7 +64,7 @@ def tutorial():
     return json.dumps({'tutText': tutText})
 
 @app.route('/rolldice', methods=['GET', 'POST'])
-def rolldice():
+def rollDice():
 
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Rolls = request.form['TEXT_Rolls']

@@ -85,10 +85,18 @@
     <script>
         function step() {
             $.ajax({
-                $('#StepRoll').html('<td><input type="button" value="StepRoll" id="StepRoll" onclick="StepRoll();"/></td>');
-                $('#StepWP').html('<td><input type="button" value="StepWP" id="StepWP" onclick="StepWP();"/></td>');
-                $('#StepRR').html('<td><input type="button" value="StepRR" id="StepRR" onclick="StepRR();"></td>');
-                $('#StepSubmit').html('');
+                type: "POST",
+                url: "/step",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#StepRoll').html(json.StepRoll)
+                    $('#StepWP').html(json.StepWP)
+                    $('#StepRR').html(json.StepRR)
+                    $('#StepSubmit').html(json.StepSubmit)
+                    console.log(response);
+                },
+                error: function(error) {console.log(error);}
             });
         }
     </script>

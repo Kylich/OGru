@@ -1,3 +1,2 @@
 # opengamer
-repository for Heroku
-no need
+branch for step rolling

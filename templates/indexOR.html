@@ -83,19 +83,18 @@
     </script>
 
     <script>
-        var stepCheck = 0
         function stepMod() {
             $.ajax({
                 type: "POST",
-                url: "/stepmod?stepCheck="+stepCheck,
+                url: "/stepmod",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#stepRoll').html(json.stepRoll)
                     $('#stepWP').html(json.stepWP)
                     $('#stepRR').html(json.stepRR)
+                    $('#StepModSubmit').html(json.StepModSubmit)
                     console.log(response);
-                    stepCheck++;
                 },
                 error: function(error) {console.log(error);}
             });
@@ -105,21 +104,21 @@
     <script>
         function StepRoll() {
             $.ajax({
-                alert("StepRoll pushed (in progress...")
+                alert('StepRoll pushed (in progress...')
             });
         }
     </script>
     <script>
         function StepWP() {
             $.ajax({
-                alert("StepWP pushed (in progress...")
+                alert('StepWP pushed (in progress...')
             });
         }
     </script>
     <script>
         function StepRR() {
             $.ajax({
-                alert("StepRR pushed (in progress...")
+                alert('StepRR pushed (in progress...')
             });
         }
     </script>

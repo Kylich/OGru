@@ -12,8 +12,8 @@
     <script>
         function rollDice() {
             $.ajax({
-                type: "GET",
-                url: "https://ogrutest.herokuapp.com/rolldice/",
+                type: "POST",
+                url: "https://ogrutest.herokuapp.com/rolldice",
                 data: $('form').serialize(),
                 type: 'POST',
                 success: function(response) {

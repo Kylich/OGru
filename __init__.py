@@ -24,16 +24,19 @@ def indexOC():
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
     stepRoll = """
-                <td><input value="stepRoll" id="stepRoll" type="button"/></td>
+                <input value="stepRoll" id="stepRoll" type="button"/>
             """
     stepWP = """
-                <td><input value="stepWP" id="stepWP" type="button"/></td>
+                <input value="stepWP" id="stepWP" type="button"/>
             """
     stepRR = """
-                <td><input value="stepRR" id="stepRR" type="button"/></td>
+                <input value="stepRR" id="stepRR" type="button"/>
             """
-    StepModSubmit = ''
-    return json.dumps({'stepRoll': stepRoll, 'stepWP': stepWP, 'stepRR': stepRR, 'StepModSubmit': StepModSubmit})
+    RDS = ''
+    LDS = ''
+    SMS = ''
+
+    return json.dumps({'LDS': LDS, 'RDS': RDS,'stepRoll': stepRoll, 'stepWP': stepWP, 'stepRR': stepRR, 'SMS': SMS})
 
 @app.route('/fullmod', methods=['GET', 'POST'])
 def fullMod():

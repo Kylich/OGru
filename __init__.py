@@ -23,15 +23,9 @@ def indexOC():
 
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
-    stepRoll = """
-                <input value="stepRoll" id="stepRoll" type="button"/>
-            """
-    stepWP = """
-                <input value="stepWP" id="stepWP" type="button"/>
-            """
-    stepRR = """
-                <input value="stepRR" id="stepRR" type="button"/>
-            """
+    stepRoll = '<input value="stepRoll" id="stepRoll" type="button"/>'
+    stepWP = '<input value="stepWP" id="stepWP" type="button"/>'
+    stepRR = '<input value="stepRR" id="stepRR" type="button"/>'
     RDS = ''
     LDS = ''
     SMS = ''
@@ -43,18 +37,12 @@ def fullMod():
     fmCheck = int(request.args.get('fmCheck'))
     
     if fmCheck % 2 == 0:
-        fmTextPerk = """
-                    <td><b>Перк:</b></td>
-                    <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>
-                """
-        fmTextPush = """
-                    <td><b><FONT color=green>Кнопка для Пушистой!</font></b></td>
-                    <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>
-                """
-        fmTextOM = """
-                    <td><h4><b>Автоуспех:</b></h4></td>
-                    <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>
-                """
+        fmTextPerk = """<td><b>Перк:</b></td>
+                        <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>"""
+        fmTextPush = """<td><b><FONT color=green>Кнопка для Пушистой!</font></b></td>
+                        <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>"""
+        fmTextOM = """<td><h4><b>Автоуспех:</b></h4></td>
+                      <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>"""
     else:
         fmTextPerk = ''
         fmTextPush = ''

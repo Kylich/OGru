@@ -13,9 +13,8 @@
         function rollDice() {
             $.ajax({
                 type: "POST",
-                url: "https://ogrutest.herokuapp.com/rolldice",
+                url: "/rolldice",
                 data: $('form').serialize(),
-                type: 'POST',
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
@@ -31,7 +30,7 @@
         function luckDice() {
             $.ajax({
                 type: "POST",
-                url: "/luckdice/",
+                url: "/luckdice",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
@@ -86,7 +85,7 @@
         function stepMod() {
             $.ajax({
                 type: "POST",
-                url: "/stepmod/",
+                url: "/stepmod",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)

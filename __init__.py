@@ -21,7 +21,7 @@ def indexOR():
 def indexOC():
     return render_template("indexOC.html")
 
-@app.route('/stepmod', methods=['GET', 'POST'])
+@app.route('/stepmod/', methods=['GET', 'POST'])
 def stepMod():
     stepRoll = """
                 <input value="stepRoll" id="stepRoll" type="button"/>
@@ -38,7 +38,7 @@ def stepMod():
 
     return json.dumps({'LDS': LDS, 'RDS': RDS,'stepRoll': stepRoll, 'stepWP': stepWP, 'stepRR': stepRR, 'SMS': SMS})
 
-@app.route('/fullmod', methods=['GET', 'POST'])
+@app.route('/fullmod/', methods=['GET', 'POST'])
 def fullMod():
     fmCheck = int(request.args.get('fmCheck'))
     
@@ -62,12 +62,12 @@ def fullMod():
         
     return json.dumps({'fmTextPerk': fmTextPerk, 'fmTextPush': fmTextPush, 'fmTextOM': fmTextOM})
 
-@app.route('/luckdice', methods=['GET', 'POST'])
+@app.route('/luckdice/', methods=['GET', 'POST'])
 def luckDice():
     JoinText = "<h2>" + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
-@app.route('/tutorial', methods=['GET', 'POST'])
+@app.route('/tutorial/', methods=['GET', 'POST'])
 def tutorial():
     tutCheck = int(request.args.get('tutCheck'))
     if tutCheck % 2 == 0:
@@ -76,7 +76,7 @@ def tutorial():
         tutText = ''
     return json.dumps({'tutText': tutText})
 
-@app.route('/rolldice', methods=['GET', 'POST'])
+@app.route('/rolldice/', methods=['GET', 'POST'])
 def rollDice():
 
     TEXT_Dices = request.form['TEXT_Dices']

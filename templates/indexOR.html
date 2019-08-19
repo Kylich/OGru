@@ -13,7 +13,7 @@
         function rollDice() {
             $.ajax({
                 type: "POST",
-                url: "/rolldice",
+                url: "/rolldice/",
                 data: $('form').serialize(),
                 type: 'POST',
                 success: function(response) {
@@ -31,7 +31,7 @@
         function luckDice() {
             $.ajax({
                 type: "POST",
-                url: "/luckdice",
+                url: "/luckdice/",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
@@ -86,7 +86,7 @@
         function stepMod() {
             $.ajax({
                 type: "POST",
-                url: "/stepmod",
+                url: "/stepmod/",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)

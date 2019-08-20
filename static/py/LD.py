@@ -5,7 +5,7 @@ def chooseLD():
     Q = 0
     LuckR = (8, 9)
     LuckRR = (0,)
-    LuckDel = False
+    #LuckDel = False
     
     if dice == 0:
             y = 1

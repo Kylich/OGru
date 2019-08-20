@@ -104,8 +104,8 @@ def rollDice():
     except:
         TEXT_EText = ''
 
-    JoinText, DetalText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
-                                    TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText)
+    JoinText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
+                                    TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText) #, DetalText
 
     if TEXT_EText and not TEXT_EText.isspace():
         if TEXT_EText.isdigit() == False:
@@ -114,7 +114,7 @@ def rollDice():
     if TEXT_PUSH:
         rc = ['s', 'd']
         dicepush = []
-        JT=JoinText[:]
+        JT = JoinText[:]
         
         for jt in JT:
             if jt[0] not in ('~', 'К'): 

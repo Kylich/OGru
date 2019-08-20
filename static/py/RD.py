@@ -150,4 +150,4 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
 #
         JoinText.append('Итого: ' + str(LuckGlobal))
 
-        return JoinText, DetalText
+        return JoinText#, DetalText

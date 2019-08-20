@@ -25,7 +25,7 @@ def indexOC():
 def stepMod():
     stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
     stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-    stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
+    stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
     RDS = ''
     LDS = ''
     SMS = ''

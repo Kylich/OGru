@@ -1,9 +1,4 @@
 
 # Default ignored files
 .idea
-LD.py
-RD.py
-report.py
-tutorialpy.py
-ChoosingQ.py
-Choosing.py
+.vscode

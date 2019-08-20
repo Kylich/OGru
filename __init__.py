@@ -117,6 +117,7 @@ def rollDice():
         JT = JoinText[:]
         
         for jt in JT:
+            jt = str(jt)
             if jt[0] not in ('~', 'К'): 
                 if jt.find(']') > 0:
                     jt = jt[jt.find(']')+1:]

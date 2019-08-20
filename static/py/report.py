@@ -2,11 +2,12 @@ def sending(EText, JT):
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
     import smtplib
+
     msg = MIMEMultipart()
     
     message = '%s' % '\n '.join(JT)
     
-    password = "Gorod4Narodov"
+    password = 'Gorod4Narodov'
     msg['From'] = "opengamerroller@gmail.com"
     msg['To'] = "opengamerreport@gmail.com"
     msg['Subject'] = EText

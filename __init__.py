@@ -13,45 +13,36 @@ app = Flask(__name__)
 def indexMain():
     return render_template("indexMain.html")
     
-@app.route('/openroller/')
+@app.route('/openroller')
 def indexOR():
     return render_template("indexOR.html")
 
-@app.route('/opencrafter/')
+@app.route('/opencrafter')
 def indexOC():
     return render_template("indexOC.html")
 
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
-    stepRoll = """
-                <td><input value="stepRoll" id="stepRoll" type="button"/></td>
-            """
-    stepWP = """
-                <td><input value="stepWP" id="stepWP" type="button"/></td>
-            """
-    stepRR = """
-                <td><input value="stepRR" id="stepRR" type="button"/></td>
-            """
-    StepModSubmit = ''
-    return json.dumps({'stepRoll': stepRoll, 'stepWP': stepWP, 'stepRR': stepRR, 'StepModSubmit': StepModSubmit})
+    stepRoll = '<input value="stepRoll" id="stepRoll" type="button"/>'
+    stepWP = '<input value="stepWP" id="stepWP" type="button"/>'
+    stepRR = '<input value="stepRR" id="stepRR" type="button"/>'
+    RDS = ''
+    LDS = ''
+    SMS = ''
+
+    return json.dumps({'LDS': LDS, 'RDS': RDS, 'stepRoll': stepRoll, 'stepWP': stepWP, 'stepRR': stepRR, 'SMS': SMS})
 
 @app.route('/fullmod', methods=['GET', 'POST'])
 def fullMod():
     fmCheck = int(request.args.get('fmCheck'))
     
     if fmCheck % 2 == 0:
-        fmTextPerk = """
-                    <td><b>Перк:</b></td>
-                    <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>
-                """
-        fmTextPush = """
-                    <td><b><FONT color=green>Кнопка для Пушистой!</font></b></td>
-                    <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>
-                """
-        fmTextOM = """
-                    <td><h4><b>Автоуспех:</b></h4></td>
-                    <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>
-                """
+        fmTextPerk = """<td><b>Перк:</b></td>
+                        <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>"""
+        fmTextPush = """<td><b><FONT color=green>Кнопка для Пушистой!</font></b></td>
+                        <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>"""
+        fmTextOM = """<td><h4><b>Автоуспех:</b></h4></td>
+                      <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>"""
     else:
         fmTextPerk = ''
         fmTextPush = ''
@@ -115,6 +106,7 @@ def rollDice():
         rc = ['s', 'd']
         dicePush = []
         JT = JoinText[:]
+
         
         for jt_ in JT:
             jt = str(jt_)
@@ -141,7 +133,7 @@ def rollDice():
             finalPush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
         
     else: finalPush = ''
-    print(finalPush)
+
     JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
     return json.dumps({'JoinText': JoinText, 'finalPush': finalPush})
         

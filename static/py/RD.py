@@ -1,8 +1,6 @@
 def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
 
-        import os
-        import sys
-        import random
+        import os, sys, random
 
         import Choosing
         import ChoosingQ
@@ -43,8 +41,6 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
         LuckGlobal = y = z = r = 0
         DetalText = []
         RandList = []
-        
-        
 
         Pp = 2 if RR else 1			
         z_all = NumRoll * DicePull * Pp * 5
@@ -54,7 +50,6 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
                 while z <= z_all:
                         RandList.append(random.randint(0, 9))
                         z += 1
-        
         
 #
 # Rolls start
@@ -148,6 +143,7 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
 #
 # Rolls end
 #
+
         JoinText.append('Итого: ' + str(LuckGlobal))
 
         return JoinText#, DetalText

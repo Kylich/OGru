@@ -15,7 +15,6 @@
                 type: "POST",
                 url: "/rolldice",
                 data: $('form').serialize(),
-                type: 'POST',
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
@@ -93,11 +92,30 @@
                     $('#stepRoll').html(json.stepRoll)
                     $('#stepWP').html(json.stepWP)
                     $('#stepRR').html(json.stepRR)
-                    $('#StepModSubmit').html(json.StepModSubmit)
+                    $('#SMS').html(json.SMS)
+                    $('#RDS').html(json.RDS)
+                    $('#LDS').html(json.LDS)                    
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}
             });
+        }
+    </script>
+
+
+    <script>
+        function StepRoll() {
+            alert("StepRoll! (working...)");
+        }
+    </script>
+    <script>
+        function StepWP() {
+            alert("StepWP! (working...)");
+        }
+    </script>
+    <script>
+        function StepRR() {
+            alert("StepRR! (working...)");
         }
     </script>
 
@@ -137,11 +155,6 @@
                    <td><b>ПСВ:</b></td>
                    <td><input type="checkbox" id="TEXT_WillPower" name="TEXT_WillPower"></td>
                 </tr>
-                
-                <tr id='stepRoll'></tr>
-                <tr id='stepWP'></tr>
-                <tr id='stepRR'></tr>
-                
                 <tr id='fmTextPerk'></tr>
                 <tr id='fmTextPush'></tr>
                 <tr id='fmTextOM'></tr>
@@ -154,7 +167,10 @@
                         <div align="right"><sup>(персонаж, мастер и/или заявка)</sup></div>
                 </td></tr>
 
-                <tr><td colspan="2">
+                <tr><td id='stepRoll'></td><td id='stepRR'></td></tr>
+                <tr><td id='stepWP' colspan="2"></td></tr>
+
+                <tr><td colspan="2" id="RDS">
                     <input type="button" value="Бросай" onclick="rollDice();" style="width:100%;height:150%">
                 </td></tr>
 
@@ -164,7 +180,7 @@
     
     <br>
 
-    <div id="LuckDiceSubmit">
+    <div id="LDS">
         <form action="/luckdice" method="POST">
             <input type="button" value="Куб Удачи" onclick="luckDice()">
         </form>
@@ -172,7 +188,7 @@
 
     <br><br>
 
-    <div id="StepModSubmit">
+    <div id="SMS">
         <form action="/stepmod" method="POST">
             <input type="button" value="Пошаговый Формат" onclick="stepMod()">
         </form>

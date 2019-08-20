@@ -103,6 +103,30 @@
         }
     </script>
 
+    <script>
+
+        $(function() {
+            $('.stepRl').on('click', stepRl);
+        })
+
+        function stepRl(){
+            alert ('stepRl! (working...)');
+        }
+
+
+        $(function stepRl() {
+            alert ('stepRl! (working...)');
+        });
+
+        $(function stepWP() {
+            alert ('stepWP! (working...)');
+        });
+        
+        $(function stepRR() {
+            alert ('stepRR! (working...)');
+        });
+    </script>
+
     <div id="divLogo">
         <a href="http://www.open-gamer.ru/openroller/">
            <img align='right' width="30%" src="/static/images/iconOR.png" alt="OpenRoller"/>
@@ -204,20 +228,6 @@
     <div id="finalPush"></div>
     <div id="tutorial"></div>
 </div>
-
-    <script>
-        $(function stepRl() {
-            alert ('stepRl! (working...)');
-        });
-
-        $(function stepWP() {
-            alert ('stepWP! (working...)');
-        });
-        
-        $(function stepRR() {
-            alert ('stepRR! (working...)');
-        });
-    </script>
 
 </body>
 </html>

@@ -18,7 +18,7 @@
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalpush').html(json.finalpush)
+                    $('#finalPush').html(json.finalPush)
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}
@@ -35,7 +35,7 @@
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalpush').html('')
+                    $('#finalPush').html('')
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}

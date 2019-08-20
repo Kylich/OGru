@@ -23,7 +23,7 @@ def indexOC():
 
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
-    stepRoll = '<input value="stepRoll" id="stepRoll" type="button" onclick="stepRoll();"/>'
+    stepRoll = '<input value="stepRoll" id="stepRoll" type="button" onclick="alert("StepRoll! (working...)");"/>'
     stepWP = '<input value="stepWP" id="stepWP" type="button" onclick="stepWP();"/>'
     stepRR = '<input value="stepRR" id="stepRR" type="button" onclick="stepRR();"/>'
     RDS = ''

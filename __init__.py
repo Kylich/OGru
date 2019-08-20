@@ -113,7 +113,7 @@ def rollDice():
             
     if TEXT_PUSH:
         rc = ['s', 'd']
-        dicepush = []
+        dicePush = []
         JT = JoinText[:]
         
         for jt_ in JT:
@@ -134,10 +134,10 @@ def rollDice():
                 for j in jt:
                     if j.isdigit():
                         rc = random.choice(['s', 'd'])
-                        dicepush.append(j+rc)
+                        dicePush.append(j+rc)
         
         finalPush = []
-        for dice in dicepush:
+        for dice in dicePush:
             finalPush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
         
     else: finalPush = ''

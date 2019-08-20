@@ -3,7 +3,8 @@
 <head>
     <title>OpenGamer : OpenRoller</title>
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
-    <script type=text/javascript src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type='text/javascript' src='js/jquery-1.8.2.min.js'></script>
 </head>
 
 <body>
@@ -103,16 +104,17 @@
     </script>
 
     <script>
-        function stepRl() {
-            alert("Это сообщение");
-            alert("stepRl! (working...)");
-        }
-        function stepWP() {
-            alert("stepWP! (working...)");
-        }
-        function stepRR() {
-            alert("stepRR! (working...)");
-        }
+        $(function stepRl() {
+            alert ('stepRl! (working...)');
+        });
+
+        $(function stepWP() {
+            alert ('stepWP! (working...)');
+        });
+        
+        $(function stepRR() {
+            alert ('stepRR! (working...)');
+        });
     </script>
 
     <div id="divLogo">

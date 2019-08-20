@@ -13,11 +13,11 @@ app = Flask(__name__)
 def indexMain():
     return render_template("indexMain.html")
     
-@app.route('/openroller')
+@app.route('/openroller/')
 def indexOR():
     return render_template("indexOR.html")
 
-@app.route('/opencrafter')
+@app.route('/opencrafter/')
 def indexOC():
     return render_template("indexOC.html")
 

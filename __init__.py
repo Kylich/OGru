@@ -23,14 +23,21 @@ def indexOC():
 
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
-    stepRl = '<input value="stepRl" id="stepRl" type="button" onclick="stepRl();"/>'
-    stepWP = '<input value="stepWP" id="stepWP" type="button" onclick="stepWP();"/>'
-    stepRR = '<input value="stepRR" id="stepRR" type="button" onclick="stepRR();"/>'
+    stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
+    stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
+    stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
     RDS = ''
     LDS = ''
     SMS = ''
 
-    return json.dumps({'LDS': LDS, 'RDS': RDS, 'stepRl': stepRl, 'stepWP': stepWP, 'stepRR': stepRR, 'SMS': SMS})
+    return json.dumps({
+        'LDS': LDS,
+        'RDS': RDS,
+        'stepRl': stepRl,
+        'stepWP': stepWP,
+        'stepRR': stepRR,
+        'SMS': SMS,
+    })
 
 @app.route('/fullmod', methods=['GET', 'POST'])
 def fullMod():
@@ -48,7 +55,11 @@ def fullMod():
         fmTextPush = ''
         fmTextOM   = ''
         
-    return json.dumps({'fmTextPerk': fmTextPerk, 'fmTextPush': fmTextPush, 'fmTextOM': fmTextOM})
+    return json.dumps({
+        'fmTextPerk': fmTextPerk,
+        'fmTextPush': fmTextPush,
+        'fmTextOM': fmTextOM,
+    })
 
 @app.route('/luckdice', methods=['GET', 'POST'])
 def luckDice():
@@ -135,7 +146,10 @@ def rollDice():
     else: finalPush = ''
 
     JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
-    return json.dumps({'JoinText': JoinText, 'finalPush': finalPush})
+    return json.dumps({
+        'JoinText': JoinText,
+        'finalPush': finalPush,
+    })
         
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

@@ -105,7 +105,8 @@ def rollDice():
     if TEXT_PUSH:
         rc = ['s', 'd']
         dicePush = []
-        JT=JoinText[:]
+        JT = JoinText[:]
+
         
         for jt_ in JT:
             jt = str(jt_)
@@ -132,7 +133,7 @@ def rollDice():
             finalPush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
         
     else: finalPush = ''
-    
+
     JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
     return json.dumps({'JoinText': JoinText, 'finalPush': finalPush})
         

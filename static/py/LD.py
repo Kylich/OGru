@@ -2,7 +2,7 @@ def chooseLD():
     import random
     
     dice = random.randint(0, 9)
-    Q = 0
+    #Q = 0
     LuckR = (8, 9)
     LuckRR = (0,)
     #LuckDel = False

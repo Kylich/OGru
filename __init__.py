@@ -136,14 +136,14 @@ def rollDice():
                         rc = random.choice(['s', 'd'])
                         dicepush.append(j+rc)
         
-        finalpush = []
+        finalPush = []
         for dice in dicepush:
-            finalpush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
+            finalPush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
         
-    else: finalpush = ''
+    else: finalPush = ''
     
     JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
-    return json.dumps({'JoinText': JoinText, 'finalpush': finalpush})
+    return json.dumps({'JoinText': JoinText, 'finalPush': finalPush})
         
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

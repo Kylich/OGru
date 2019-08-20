@@ -3,7 +3,6 @@ def sending(EText, JT):
     from email.mime.text import MIMEText
     import smtplib
 
-
     msg = MIMEMultipart()
     
     message = '%s' % '\n '.join(JT)

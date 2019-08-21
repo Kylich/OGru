@@ -5,7 +5,6 @@ Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
 import LD, RD, report
 from tutorialpy import tutorialText
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -62,7 +61,6 @@ def fullMod():
 
 @app.route('/luckdice', methods=['GET', 'POST'])
 def luckDice():
-
     LDcount = 'x'
     JoinText = "<h2>["+ LDcount + "] " + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
@@ -119,7 +117,6 @@ def rollDice():
         dicePush = []
         JT = JoinText[:]
 
-        
         for jt_ in JT:
             jt = str(jt_)
             if jt[0] not in ('~', 'К'): 
@@ -143,7 +140,6 @@ def rollDice():
         finalPush = []
         for dice in dicePush:
             finalPush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
-        
     else: finalPush = ''
 
     JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
@@ -152,8 +148,6 @@ def rollDice():
         'finalPush': finalPush,
     })
 
-
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
-    

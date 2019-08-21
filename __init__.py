@@ -1,12 +1,15 @@
 ﻿from flask import Flask, render_template, request, json
-import sys, os, random
+import sys
+import os
+import random
+
+from .static.py import LD
+from .static.py import RD
+from .static.py import report
+from .static.py.tutorialpy import tutorialText
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
-
-import LD, RD, report
-from tutorialpy import tutorialText
-
 
 app = Flask(__name__)
 
@@ -32,12 +35,12 @@ def stepMod():
     SMS = ''
 
     return json.dumps({
-        'LDS': LDS,
-        'RDS': RDS,
         'stepRl': stepRl,
         'stepWP': stepWP,
         'stepRR': stepRR,
         'SMS': SMS,
+        'LDS': LDS,
+        'RDS': RDS,
     })
 
 @app.route('/fullmod', methods=['GET', 'POST'])
@@ -65,7 +68,7 @@ def fullMod():
 @app.route('/luckdice', methods=['GET', 'POST'])
 def luckDice():
 
-    LDcount += 1
+    LDcount = 'x'
     JoinText = "<h2>["+ LDcount + "] " + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
@@ -153,10 +156,9 @@ def rollDice():
         'JoinText': JoinText,
         'finalPush': finalPush,
     })
-        
+
+
 if __name__ == '__main__':
-    global LDcount
-    LDcount = 0
     #port = int(os.environ.get("PORT", 5000))
-    #app.run(host='0.0.0.0', port=port, debug=True)
-    app.run(host='0.0.0.0', port=4567, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+    

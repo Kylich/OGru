@@ -7,6 +7,7 @@ sys.path.insert(0, Path + '/static/py')
 import LD, RD, report
 from tutorialpy import tutorialText
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -63,7 +64,9 @@ def fullMod():
 
 @app.route('/luckdice', methods=['GET', 'POST'])
 def luckDice():
-    JoinText = "<h2>" + LD.chooseLD() + "</h2>"
+
+    LDcount += 1
+    JoinText = "<h2>["+ LDcount + "] " + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
 @app.route('/tutorial', methods=['GET', 'POST'])
@@ -152,5 +155,8 @@ def rollDice():
     })
         
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    global LDcount
+    LDcount = 0
+    #port = int(os.environ.get("PORT", 5000))
+    #app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=4567, debug=True)

@@ -1,11 +1,9 @@
-from flask import Flask, render_template, request, json
+﻿from flask import Flask, render_template, request, json
 import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
-import LD
-import RD
-import report
+import LD, RD, report
 from tutorialpy import tutorialText
 
 app = Flask(__name__)

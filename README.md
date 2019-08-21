@@ -1,2 +1,4 @@
 # opengamer
-branch for step rolling
+backup 21-08-19
+after local run
+before step mod

@@ -1,7 +1,6 @@
 def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
 
-        import os, sys, random
-
+        import random
         import Choosing
         import ChoosingQ
         
@@ -76,10 +75,10 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
                         Roll.append(RandList[r])
                         
                         (ShortText, LongText, LuckCount,
-                                DramCount, DicePullQ, DicePullTMP) = (Choosing.main(x, Roll[x], Luck,
+                                DramCount, DicePullQ, DicePullTMP) = Choosing.main(x, Roll[x], Luck,
                                                                                 LuckRR, LuckR, WillPower, DicePullTMP,
                                                                                 DicePullQ, LuckCount, RR, DramCount,
-                                                                                Space, RandList, r))
+                                                                                Space, RandList, r)
                          
                         DetalText.append(LongText)
                         JoinTextTMP += ShortText

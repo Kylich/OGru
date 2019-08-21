@@ -1,15 +1,12 @@
-﻿from flask import Flask, render_template, request, json
-import sys
-import os
-import random
-
-from .static.py import LD
-from .static.py import RD
-from .static.py import report
-from .static.py.tutorialpy import tutorialText
+from flask import Flask, render_template, request, json
+import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
+import LD
+import RD
+import report
+from tutorialpy import tutorialText
 
 app = Flask(__name__)
 

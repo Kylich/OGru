@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div class="block-left" style="width:33%;overflow:auto;float:left"><!--height:800px;-->
+<div class="block-left" style="width:35%;overflow:auto;float:left"><!--height:800px;-->
 
     <script>ы
         function rollDice() {
@@ -105,13 +105,51 @@
 
     <script>
         function stepRl(){
-            alert ('stepRl! (working...)');
+            $.ajax({
+                /*type: "POST",
+                url: "/stepRl",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#Resultat').html(json.JoinText)
+                    $('#finalPush').html('')*/
+                    $('#stepRR').attr('disabled', false);
+                /*    console.log(response);
+                },
+                error: function(error) {console.log(error);}*/
+            });
         }
         function stepWP(){
-            alert ('stepWP! (working...)');
-        } 
+            $.ajax({
+                /*type: "POST",
+                url: "/stepWP",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#Resultat').html(json.JoinText)
+                    $('#finalPush').html('')*/
+                    $('#stepRR').attr('disabled', true);
+                    $('#stepRl').attr('disabled', false);
+                /*    
+                    console.log(response);
+                },
+                error: function(error) {console.log(error);}*/
+            });
+        }
         function stepRR(){
-            alert ('stepRR! (working...)');
+            $.ajax({
+                /*type: "POST",
+                url: "/stepRR",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#Resultat').html(json.JoinText)
+                    $('#finalPush').html('')*/
+                    $('#stepRR').attr('disabled', true);
+                /*    console.log(response);
+                },
+                error: function(error) {console.log(error);}*/
+            });
         }
     </script>
 
@@ -211,7 +249,7 @@
     </div>
 </div>
 
-<div class="block-right" style="width:70%;overflow:auto;"><!--height:800px;-->
+<div class="block-right" style="overflow:auto;"><!--width:70%;height:800px;-->
     <div id="Resultat"></div>
     <div id="finalPush"></div>
     <div id="tutorial"></div>

@@ -116,40 +116,22 @@
     </script>
 
     <div id="divLogo">
-
+        <a href="/openroller/">
+           <img align='right' width="30%" src="/static/images/iconOR.png" alt="OpenRoller"/>
+        </a>
     </div>
     
     <div id="formRD">
         <form action="/rolldice" method="post" name="form">
-            <table border="1">
+            <table>
                 <tr>
-                    <td><p><b>Кол-во Кубов:</b></p></td>
-
-                    <td>
-                        <table border="1">
-                            <tr>
-                                <td>
-                                    <input type="number" min='1' max='50' value=5 id="TEXT_Dices" name="TEXT_Dices">
-                                </td>
-                            
-                                <td rowspan="2">
-                                    <a href="/openroller/">
-                                        <img width="30%" src="/static/images/iconOR.png" alt="OpenRoller"/>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="number" min='1' max='50' value=1 id="TEXT_Rolls" name="TEXT_Rolls">
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
+                   <td><p><b>Кол-во Кубов:</b></p></td>
+                   <td><input type="number" min='1' max='50' value=5 id="TEXT_Dices" name="TEXT_Dices"></td>
                 </tr>
 
                 <tr>
                    <td><p><b>Кол-во Бросков:</b></td>
-                   
+                   <td><input type="number" min='1' max='50' value=1 id="TEXT_Rolls" name="TEXT_Rolls"></td>
                 </tr>
 
                 <tr>

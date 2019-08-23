@@ -106,51 +106,50 @@
     <script>
         function stepRl(){
             $.ajax({
-                /*type: "POST",
+                type: "POST",
                 url: "/stepRl",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalPush').html('')*/
-                    $('#stepRR').attr('disabled', false);
-                /*    console.log(response);
+                    $('#finalPush').html('')
+                    console.log(response);
                 },
-                error: function(error) {console.log(error);}*/
+                error: function(error) {console.log(error);}
             });
         }
-        function stepWP(){
+        /*function stepWP(){
             $.ajax({
-                /*type: "POST",
+                type: "POST",
                 url: "/stepWP",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalPush').html('')*/
+                    $('#finalPush').html('')
                     $('#stepRR').attr('disabled', true);
                     $('#stepRl').attr('disabled', false);
-                /*    
+                    
                     console.log(response);
                 },
-                error: function(error) {console.log(error);}*/
+                error: function(error) {console.log(error);}
             });
         }
         function stepRR(){
             $.ajax({
-                /*type: "POST",
+                type: "POST",
                 url: "/stepRR",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalPush').html('')*/
+                    $('#finalPush').html('')
                     $('#stepRR').attr('disabled', true);
-                /*    console.log(response);
+                    console.log(response);
                 },
-                error: function(error) {console.log(error);}*/
+                error: function(error) {console.log(error);}
             });
-        }
+        }*/
     </script>
 
     <div id="divLogo">
@@ -164,12 +163,12 @@
             <table>
                 <tr>
                    <td><p><b>Кол-во Кубов:</b></p></td>
-                   <td><input type="number" min='1' max='50' value=5 id="TEXT_Dices" name="TEXT_Dices"></td>
+                   <td><input type="number" min='1' max='100' value=5 id="TEXT_Dices" name="TEXT_Dices"></td>
                 </tr>
 
                 <tr>
                    <td><p><b>Кол-во Бросков:</b></td>
-                   <td><input type="number" min='1' max='50' value=1 id="TEXT_Rolls" name="TEXT_Rolls"></td>
+                   <td><input type="number" min='1' max='100' value=1 id="TEXT_Rolls" name="TEXT_Rolls"></td>
                 </tr>
 
                 <tr>
@@ -249,7 +248,7 @@
     </div>
 </div>
 
-<div class="block-right" style="overflow:auto;"><!--width:70%;height:800px;-->
+<div class="block-right" style="overflow:auto;height:800px;"><!--width:70%;-->
     <div id="Resultat"></div>
     <div id="finalPush"></div>
     <div id="tutorial"></div>

@@ -38,7 +38,6 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
         
         WP3 = True if WillPower and not RR else False
         LuckGlobal = y = z = r = 0
-        DetalText = []
         RandList = []
 
         Pp = 2 if RR else 1			
@@ -54,9 +53,6 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
 # Rolls start
 #
         while y < NumRoll:
-
-                DetalText.append('---> Rolls #' + str(y+1) + ' <---')
-
                 DicePullTMP = DicePull + 3 if WP3 else DicePull
                 DPch = DicePullTMP
 
@@ -70,21 +66,16 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
                 LuckCount = DramCount = DicePullQ = x = 0
                 
                 while x < DicePullTMP + DicePullQ:
-                        Space = 7 if (x+1) // 10 else 8
-
                         Roll.append(RandList[r])
                         
-                        (ShortText, LongText, LuckCount,
+                        (ShortText, LuckCount,
                                 DramCount, DicePullQ, DicePullTMP) = Choosing.main(x, Roll[x], Luck,
                                                                                 LuckRR, LuckR, WillPower, DicePullTMP,
                                                                                 DicePullQ, LuckCount, RR, DramCount,
-                                                                                Space, RandList, r)
-                         
-                        DetalText.append(LongText)
+                                                                                RandList, r)
                         JoinTextTMP += ShortText
                         
                         if x == DPch-1:
-                                DetalText.append('--------------')
                                 JoinTextTMP = JoinTextTMP[:-2] + ': '
                         
                         r += 1
@@ -96,48 +87,32 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
                         JoinTextTMP = JoinTextTMP[:-2] + '---> '
                 else:
                         JoinTextTMP += '---> '
-                
-                DetalText.append('Lucks = ' + str(LuckCount) +
-                                         '     Ones = ' + str(DramCount))
 
                 if LuckDel and LuckCount > 0:
-                        DetalText.append(' > > Terrible Q < <    -1 luck')
-                        LuckCount -= 1
+                        LuckCount -= DramCount
                         if LuckCount < 0: LuckCount = 0
                 
                 if OM and LuckCount > 0:
-                        DetalText.append('        > > OM < <    ' + str(OM) + ' luck')
                         LuckCount += OM
                         if LuckCount < 0: LuckCount = 0
 
                 if DramCount > LuckCount:
                         LuckCount = -DramCount
-                        DetalText.append('      > > Dramat < <')
                 #elif LuckCount == 0 and y != NumRoll:
-                #        DetalText.append(' > > No Lucks < <    -1 dice')
                 #        DicePull -= 1
                 elif LuckCount >= 5:
                         if NumRoll > 1:
                                 Except = LuckCount - 4
-                                DetalText.append('      > > Except < <    ' + str(LuckCount) + ' it ' + str(LuckCount + Except))
                                 LuckCount += Except
                         else:
                                 Except = LuckCount - 4
-                                DetalText.append('      > > Except < <     (if long Rolls: ' + str(LuckCount) + ' it ' + str(LuckCount + Except) + ')')
                         
                 LuckGlobal += LuckCount
                 JoinTextTMP += str(LuckCount)
                 JoinText.append(JoinTextTMP)
                 Spam, SpamG = (5, 18) if LuckGlobal//10 else (6, 19)
-                
-                if y == NumRoll or DicePull == 0:
-                        DetalText.append('+'*SpamG)
-                DetalText.append('+'*Spam + ' Luck = ' + str(LuckGlobal) + ' ' + '+'*Spam)
-                if y == NumRoll or DicePull == 0:
-                        DetalText.append('+'*SpamG)
-                
+
                 if DicePull == 0:
-                        DetalText.append('No Dices')
                         break
 #
 # Rolls end
@@ -145,4 +120,4 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
 
         JoinText.append('Итого: ' + str(LuckGlobal))
 
-        return JoinText#, DetalText
+        return JoinText

@@ -3,7 +3,7 @@ import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
-import LD, RD, report
+import LD, RD, report#, RDstep
 from tutorialpy import tutorialText
 app = Flask(__name__)
 
@@ -147,6 +147,51 @@ def rollDice():
         'JoinText': JoinText,
         'finalPush': finalPush,
     })
+
+
+###
+
+@app.route('/stepRl', methods=['GET', 'POST'])
+def stepRl():
+
+    TEXT_Dices = request.form['TEXT_Dices']
+    TEXT_Dices = int(TEXT_Dices)
+    TEXT_Rolls = request.form['TEXT_Rolls']
+    TEXT_Rolls = int(TEXT_Rolls)
+    TEXT_Q     = request.form['TEXT_Quality']
+    TEXT_Q     = int(TEXT_Q)
+
+    try: TEXT_WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
+    except: TEXT_WP = 0
+
+    try:
+        TEXT_OM = request.form['TEXT_OM']
+        TEXT_OM = int(TEXT_OM)
+    except: TEXT_OM = 0
+    
+    try: TEXT_RR = 1 if request.form['TEXT_ReRoll'] == 'on' else 0
+    except: TEXT_RR = 0
+    
+    try:
+        TEXT_EText = request.form['TEXT_EText']
+        TEXT_EText = str(TEXT_EText)
+    except:
+        TEXT_EText = ''
+
+    JoinText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
+                                    TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText)
+
+            
+    finalPush = ''
+
+    JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
+    return json.dumps({
+        'JoinText': JoinText,
+        'finalPush': finalPush,
+    })   
+
+
+###
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

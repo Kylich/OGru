@@ -1,6 +1,5 @@
 
 # Default ignored files
-.idea
 .vscode
-__pycache__
-static/py/__pycache__
+__pycache__/
+static/py/__pycache__/

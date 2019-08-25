@@ -156,9 +156,9 @@
 	if DramCount > LuckCount:
 		LuckCount = -DramCount
 
-	elif LuckCount == 0 and y != NumRoll:
-		_DicePullQt.setValue(DicePull-1)
-		DicePull -= 1
+	# elif LuckCount == 0 and y != NumRoll:
+	# 	_DicePullQt.setValue(DicePull-1)
+	# 	DicePull -= 1
 
 	elif LuckCount >= 5:
 		if NumRoll > 1:

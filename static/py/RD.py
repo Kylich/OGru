@@ -97,8 +97,8 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
 
                 if DramCount > LuckCount:
                         LuckCount = -DramCount
-                elif LuckCount == 0 and y != NumRoll:
-                       DicePull -= 1
+                # elif LuckCount == 0 and y != NumRoll:
+                #        DicePull -= 1
                 elif LuckCount >= 5:
                         if NumRoll > 1:
                                 Except = LuckCount - 4

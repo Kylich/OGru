@@ -19,24 +19,6 @@ def indexOR():
 def indexOC():
     return render_template("indexOC.html")
 
-@app.route('/stepmod', methods=['GET', 'POST'])
-def stepMod():
-    stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
-    stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-    stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
-    RDS = ''
-    LDS = ''
-    SMS = ''
-
-    return json.dumps({
-        'stepRl': stepRl,
-        'stepWP': stepWP,
-        'stepRR': stepRR,
-        'SMS': SMS,
-        'LDS': LDS,
-        'RDS': RDS,
-    })
-
 @app.route('/fullmod', methods=['GET', 'POST'])
 def fullMod():
     fmCheck = int(request.args.get('fmCheck'))
@@ -148,18 +130,28 @@ def rollDice():
         'finalPush': finalPush,
     })
 
-
 ###
 
-@app.route('/stepRl', methods=['GET', 'POST'])
-def stepRl():
+@app.route('/stepmod', methods=['GET', 'POST'])
+def stepMod():
+    stepModDiv = '''
+<tr><td id="stepRl"><input value="stepRl" type="button" onclick="stepRl();"/></td>
+<td id="stepRR"><input value="stepWP" type="button" onclick="stepWP();"/></td></tr>
+<tr><td id="stepWP" colspan="2"><input value="stepRR" type="button" onclick="stepRR();" disabled/></td></tr>
+'''
+    return json.dumps({'stepModDiv': stepModDiv})
 
+@app.route('/step', methods=['GET', 'POST'])
+def step():
+    sCheck = request.args.get('sCheck')
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Dices = int(TEXT_Dices)
     TEXT_Rolls = request.form['TEXT_Rolls']
     TEXT_Rolls = int(TEXT_Rolls)
     TEXT_Q     = request.form['TEXT_Quality']
     TEXT_Q     = int(TEXT_Q)
+
+
 
     try: TEXT_WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
     except: TEXT_WP = 0
@@ -178,16 +170,16 @@ def stepRl():
     except:
         TEXT_EText = ''
 
-    JoinText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
-                                    TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText)
+    JoinText = "lol" #RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
+                        #TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText,
+                        #sCheck, LuckGlobalRR, yRR, zRR, rRR,
+                        #RandListRR,	LuckGlobal, y, z, r,
+                        #RandList, JoinText_, JoinTextRR)
 
-            
-    finalPush = ''
-
-    JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
+    #JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
     return json.dumps({
         'JoinText': JoinText,
-        'finalPush': finalPush,
+        'finalPush': sCheck,
     })   
 
 

@@ -90,12 +90,10 @@
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
-                    $('#stepRl').html(json.stepRl)
-                    $('#stepWP').html(json.stepWP)
-                    $('#stepRR').html(json.stepRR)
-                    $('#SMS').html(json.SMS)
-                    $('#RDS').html(json.RDS)
-                    $('#LDS').html(json.LDS)                    
+                    $('#stepModDiv').html(json.stepModDiv)
+                    $('#SMS').html('')
+                    $('#RDS').html('')
+                    $('#LDS').html('')                    
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}
@@ -107,29 +105,26 @@
         function stepRl(){
             $.ajax({
                 type: "POST",
-                url: "/stepRl",
+                url: "/step?sCheck=Rl",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalPush').html('')
+                    $('#finalPush').html(json.finalPush)
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}
             });
         }
-        /*function stepWP(){
+        function stepWP(){
             $.ajax({
                 type: "POST",
-                url: "/stepWP",
+                url: "/step?sCheck=WP",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalPush').html('')
-                    $('#stepRR').attr('disabled', true);
-                    $('#stepRl').attr('disabled', false);
-                    
+                    $('#finalPush').html(json.finalPush)
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}
@@ -138,18 +133,17 @@
         function stepRR(){
             $.ajax({
                 type: "POST",
-                url: "/stepRR",
+                url: "/step?sCheck=RR",
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#Resultat').html(json.JoinText)
-                    $('#finalPush').html('')
-                    $('#stepRR').attr('disabled', true);
+                    $('#finalPush').html(json.finalPush)
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}
             });
-        }*/
+        }
     </script>
 
     <div id="divLogo">
@@ -199,9 +193,8 @@
                 <tr><td colspan="2">
                         <div align="right"><sup>(персонаж, мастер и/или заявка)</sup></div>
                 </td></tr>
-
-                <tr><td id='stepRl'></td><td id='stepRR'></td></tr>
-                <tr><td id='stepWP' colspan="2"></td></tr>
+                
+                <div id='stepModDiv'></div>
 
                 <tr><td colspan="2" id="RDS">
                     <input type="button" value="Бросай" onclick="rollDice();" style="width:100%;height:150%">

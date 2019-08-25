@@ -149,7 +149,7 @@ def stepMod():
 
 
     stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
-    stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();"/>'
+    stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();"/>'
     stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();" disabled/>'
     stepDl = '<input value="Сброс" type="button" onclick="stepDl();"/>'
     
@@ -202,11 +202,11 @@ def step():
 
     if sCheck=="Rl":
         stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
-        stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();"/>'
+        stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();"/>'
         stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();"/>'
     else:
         stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
-        stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();"/>'
+        stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();"/>'
         stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();" disabled/>'
     
     (JoinText, LuckGlobalRR, yRR, zRR, rRR, RandListRR,
@@ -227,7 +227,7 @@ def step():
         RandListRR = RandList = JoinText_ = JoinTextRR = []
     elif y == TEXT_Rolls and sCheck == "Rl":
         stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();" disabled/>'
-        stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();" disabled/>'
+        stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();" disabled/>'
         stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();"/>'
     
     #if not TEXT_RR: stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'

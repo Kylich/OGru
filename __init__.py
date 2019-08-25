@@ -7,20 +7,9 @@ import LD, RD, report, RDstep
 from tutorialpy import tutorialText
 app = Flask(__name__)
 
-LuckGlobalRR = 0
-yRR = 0
-zRR = 0
-rRR = 0
-RandListRR = []
-LuckGlobal  = 0
-y = 0
-z = 0
-r = 0
-RandList = []
-JoinText_ = []
-JoinTextRR = []
-
-LDcount = 0
+LuckGlobalRR = yRR = zRR = rRR = 0
+LuckGlobal = y = z = r = LDcount = 0
+RandListRR = RandList = JoinText_ = JoinTextRR = []
 
 @app.route('/')
 def indexMain():
@@ -151,56 +140,39 @@ def rollDice():
 
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
-    global LuckGlobalRR
-    global yRR
-    global zRR
-    global rRR
-    global RandListRR
-    global LuckGlobal
-    global y
-    global z
-    global r
-    global RandList
-    global JoinText_
-    global JoinTextRR
-    LuckGlobalRR = 0
-    yRR = 0
-    zRR = 0
-    rRR = 0
-    RandListRR = []
-    LuckGlobal  = 0
-    y = 0
-    z = 0
-    r = 0
-    RandList = []
-    JoinText_ = []
-    JoinTextRR = []
+    global LuckGlobalRR, RandListRR, LuckGlobal
+    global yRR, zRR, rRR, y, z, r, RandList
+    global JoinText_, JoinTextRR
+    LuckGlobalRR = yRR = zRR = rRR = 0
+    LuckGlobal = y = z = r = 0
+    RandListRR = RandList = JoinText_ = JoinTextRR = []
 
 
-    stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
-    stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-    stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
+    stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
+    stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();"/>'
+    stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();" disabled/>'
+    stepDl = '<input value="Сброс" type="button" onclick="stepDl();"/>'
+    
     return json.dumps({
         'stepRl': stepRl,
         'stepWP': stepWP,
         'stepRR': stepRR,
+        'stepDl': stepDl,
     })
 
 @app.route('/step', methods=['GET', 'POST'])
 def step():
-    global LuckGlobalRR
-    global yRR
-    global zRR
-    global rRR
-    global RandListRR
-    global LuckGlobal
-    global y
-    global z
-    global r
-    global RandList
-    global JoinText_
-    global JoinTextRR
+    global LuckGlobalRR, RandListRR, LuckGlobal
+    global yRR, zRR, rRR, y, z, r, RandList
+    global JoinText_, JoinTextRR
+
     sCheck = request.args.get('sCheck')
+
+    if sCheck == 'Dl':
+        LuckGlobalRR = yRR = zRR = rRR = 0
+        LuckGlobal = y = z = r = 0
+        RandListRR = RandList = JoinText_ = JoinTextRR = []
+        return
 
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Dices = int(TEXT_Dices)
@@ -210,8 +182,10 @@ def step():
     TEXT_Q     = request.form['TEXT_Quality']
     TEXT_Q     = int(TEXT_Q)
 
-    TEXT_WP = 1 if sCheck=="WP" else 0
+    try: TEXT_PUSH = 1 if request.form['TEXT_PUSH'] == 'on' else 0
+    except: TEXT_PUSH = 0
 
+    TEXT_WP = 1 if sCheck=="WP" else 0
 
     try:
         TEXT_OM = request.form['TEXT_OM']
@@ -227,19 +201,14 @@ def step():
         TEXT_EText = ''
 
     if sCheck=="Rl":
-        stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
-        stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-        stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
-    elif sCheck=="WP":
-        stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
-        stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-        stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
-    elif sCheck=="RR":
-        stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
-        stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-        stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
+        stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
+        stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();"/>'
+        stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();"/>'
+    else:
+        stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
+        stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();"/>'
+        stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();" disabled/>'
     
-
     (JoinText, LuckGlobalRR, yRR, zRR, rRR, RandListRR,
 			JoinTextRR, LuckGlobal, y, z, r,
             RandList, JoinText_) = RDstep.rollStep(TEXT_Dices, TEXT_Rolls, TEXT_OM,
@@ -247,34 +216,54 @@ def step():
                         sCheck, LuckGlobalRR, yRR, zRR, rRR,
                         RandListRR,	LuckGlobal, y, z, r,
                         RandList, JoinText_, JoinTextRR)
+    JT = JoinText[:]
 
-    JoinText = JoinText.split('\n')
-    JoinText = "<h2>" + '<br>'.join(JoinText) + "</h2>"
+    JoinText = "<h2>" + '<br>'.join(JoinText.split('\n')) + "</h2>"
 
     if y >= TEXT_Rolls and sCheck != "Rl":
         JoinText += "<br>END"
-        LuckGlobalRR = 0
-        yRR = 0
-        zRR = 0
-        rRR = 0
-        RandListRR = []
-        LuckGlobal  = 0
-        y = 0
-        z = 0
-        r = 0
-        RandList = []
-        JoinText_ = []
-        JoinTextRR = []
+        LuckGlobalRR = yRR = zRR = rRR = 0
+        LuckGlobal = y = z = r = 0
+        RandListRR = RandList = JoinText_ = JoinTextRR = []
     elif y == TEXT_Rolls and sCheck == "Rl":
-        stepRl = '<input value="stepRl" type="button" onclick="stepRl();" disabled/>'
-        stepWP = '<input value="stepWP" type="button" onclick="stepWP();" disabled/>'
-        stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
+        stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();" disabled/>'
+        stepWP = '<input value="Бросок с ПСВ" type="button" onclick="stepWP();" disabled/>'
+        stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();"/>'
     
     #if not TEXT_RR: stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
 
+    if TEXT_PUSH:
+        rc = ['s', 'd']
+        dicePush = []
+
+        for jt_ in JT:
+            jt = str(jt_)
+            if jt[0] != 'К': 
+                if jt.find(']') > 0:
+                    jt = jt[jt.find(']')+1:]
+                    
+                while jt.find('(') > 0:
+                    jt = jt.split(' ')
+                    for j in jt:
+                        if j.find('(') >= 0:
+                            del jt[jt.index(j)]
+                    jt = ' '.join(jt)
+        
+                jt = jt[:jt.find('>')]
+        
+                for j in jt:
+                    if j.isdigit():
+                        rc = random.choice(['s', 'd'])
+                        dicePush.append(j+rc)
+        
+        finalPush = []
+        for dice in dicePush:
+            finalPush.append('<img src="/static/images/dicepush/%s.gif"/>' % dice)
+    else: finalPush = ''
+
     return json.dumps({
         'JoinText': JoinText,
-        'finalPush': '',
+        'finalPush': finalPush,
         'stepRl': stepRl,
         'stepWP': stepWP,
         'stepRR': stepRR,

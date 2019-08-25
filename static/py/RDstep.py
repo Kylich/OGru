@@ -182,7 +182,7 @@
 	_RandList = RandList
 	_JoinText = JoinText
 
-	JoinText += '> > ' + str(LuckGlobal) + ' < <\r\n\n'
+	JoinText += 'Итого: ' + str(LuckGlobal)
 
 	return (JoinText, _LuckGlobalRR, _yRR, _zRR, _rRR, _RandListRR,
 			_JoinTextRR, _LuckGlobal, _y, _z, _r, _RandList, _JoinText)

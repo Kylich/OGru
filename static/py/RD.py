@@ -9,8 +9,8 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
         
         JoinText = []
 
-        JTWP = "+" if WP==1 else "-"
-        JTRR = "+" if RR==1 else "-"
+        JTWP = '+' if WP==1 else '-'
+        JTRR = '+' if RR==1 else '-'
         EText = '+' if EText else '-'
 
         if Q==0: JTQ = "(0)"
@@ -20,18 +20,18 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
         elif Q==-2: JTQ = "(-)"
         else: JTQ = "(упс)"
         
-        if JTRR=="-" and OM==0:
-            JoinText.append ('Кубов:' + str(DicePull) +
-                            ' Бросков:' + str(NumRoll) +
-                            ' Переброс:' + JTQ +
+        if JTRR=='-' and OM==0:
+            JoinText.append ('Кубы:' + str(DicePull) +
+                            ' Броски:' + str(NumRoll) +
+                            ' Доброс:' + JTQ +
                             ' ПСВ:' + JTWP +
                             ' Отчет:' + EText)
         else:
-            JoinText.append ('Кубов:' + str(DicePull) +
-                            ' Бросков:' + str(NumRoll) +
-                            ' Переброс:' + JTQ +
+            JoinText.append ('Кубы:' + str(DicePull) +
+                            ' Броски:' + str(NumRoll) +
+                            ' Доброс:' + JTQ +
                             ' ПСВ:' + JTWP +
-                            ' Перк:' + JTRR +
+                            ' Переброс:' + JTRR +
                             ' OM:' + str(OM) +
                             ' Отчет:' + EText)
         

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div class="block-left" style="width:35%;overflow:auto;float:left"><!--height:800px;-->
+<div class="block-left" style="width:40%;overflow:auto;float:left"><!--height:800px;-->
 
     <script>ы
         function rollDice() {
@@ -93,6 +93,7 @@
                     $('#stepRl').html(json.stepRl)
                     $('#stepWP').html(json.stepWP)
                     $('#stepRR').html(json.stepRR)
+                    $('#stepDl').html(json.stepDl)
                     $('#SMS').html('')
                     $('#RDS').html('')
                     $('#LDS').html('')
@@ -155,6 +156,23 @@
                 error: function(error) {console.log(error);}
             });
         }
+        function stepDl(){
+            $.ajax({
+                type: "POST",
+                url: "/step?sCheck=Dl",
+                data: $('form').serialize(),
+                success: function(response) {
+                    var json = jQuery.parseJSON(response)
+                    $('#Resultat').html(json.JoinText)
+                    $('#finalPush').html(json.finalPush)
+                    $('#stepRl').html(json.stepRl)
+                    $('#stepWP').html(json.stepWP)
+                    $('#stepRR').html(json.stepRR)
+                    console.log(response);
+                },
+                error: function(error) {console.log(error);}
+            });
+        }
     </script>
 
     <div id="divLogo">
@@ -177,14 +195,14 @@
                 </tr>
 
                 <tr>
-                    <td><p><b>Переброс:</b></td>
+                    <td><p><b>Доброс:</b></td>
                     <td>
                         <p><select size="5" id="TEXT_Quality" name="TEXT_Quality">
-                        <option type="number" value="2">2: переброс 8, 9, 0</option>
-                        <option type="number" value="1">1: переброс 9 и 0</option>
-                        <option type="number" selected value="0">0: переброс 0</option>
-                        <option type="number" value="-1">-1: без переброса</option>
-                        <option type="number" value="-2">-2: -успех из броска</option>
+                        <option type="number" value="2">2: доброс 8, 9, 0</option>
+                        <option type="number" value="1">1: доброс 9 и 0</option>
+                        <option type="number" selected value="0">0: доброс 0</option>
+                        <option type="number" value="-1">-1: без доброса</option>
+                        <option type="number" value="-2">-2: -успехи из броска</option>
                         </select></p>
                     </td>
                 </tr>
@@ -206,7 +224,7 @@
                 </td></tr>
                 
                 <tr><td id='stepRl'></td><td id='stepRR'></td></tr>
-                <tr><td id='stepWP' colspan="2"></td></tr>
+                <tr><td id='stepWP'></td><td id='stepDl'></td></tr>
 
                 <tr><td colspan="2" id="RDS">
                     <input type="button" value="Бросай" onclick="rollDice();" style="width:100%;height:150%">
@@ -215,23 +233,24 @@
             </table>
         </form>
     </div>
-
     <br>
-
     <div id="LDS">
         <form action="/luckdice" method="POST">
             <input type="button" value="Куб Удачи" onclick="luckDice()">
         </form>
     </div>
-
     <br><br>
-
+    <div id="SMS">
+        <form action="/stepmod" method="POST">
+            <input type="button" value="Пошаговый Формат" onclick="stepMod()">
+        </form>
+    </div>
     <div id="FMS">
         <form action="/fullmod" method="POST">
             <input type="button" value="Полный Формат" onclick="fullMod()">
         </form>
     </div>
-
+    <br><br>    
     <div id="TutorialSubmit">
         <form action="/tutorial" method="POST">
             <input type="button" value="Инструкции" onclick="tutorial()">
@@ -246,11 +265,7 @@
      </div>
      <br><br>
 
-     <div id="SMS">
-        <form action="/stepmod" method="POST">
-            <input type="button" value="Пошаговый Формат (в разработке)" onclick="stepMod()">
-        </form>
-    </div>
+
 </div>
 
 <div class="block-right" style="overflow:auto;height:800px;"><!--width:70%;-->

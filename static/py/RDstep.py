@@ -1,11 +1,9 @@
 ﻿def rollStep(DicePull, NumRoll, OM, Q,
-				WillPower, RR, EText, sCheck,
+				WP, RR, EText, sCheck,
 				_LuckGlobalRR, _yRR, _zRR, _rRR, _RandListRR,
 				_LuckGlobal,   _y,   _z,   _r,   _RandList,
 				_JoinText, _JoinTextRR):
 
-	import os
-	import sys
 	import random
 	import Choosing
 	import ChoosingQ
@@ -14,6 +12,16 @@
 		
 	LuckR, LuckRR, LuckDel = ChoosingQ.select(Q)
 	Luck = LuckRR + LuckR
+	if Q==0: JTQ = "(0)"
+	elif Q==1: JTQ = "(0/9)"
+	elif Q==2: JTQ = "(0/9/8)"
+	elif Q==-1: JTQ = "( )"
+	elif Q==-2: JTQ = "(-)"
+	else: JTQ = "(упс)"
+
+	JTWP = '+' if WP==1 else '-'
+	JTRR = '+' if RR==1 else '-'
+	EText = '+' if EText else '-'
 
 	if RR:
 		LuckGlobal = _LuckGlobalRR
@@ -21,26 +29,27 @@
 		z = _zRR
 		r = _rRR
 		RandList = _RandListRR
-		WillPower = True
+		WP = True
 		WP3 = False
 
-
-		if y == 0:
-			JoinText = ('Кубы:'  + str(DicePull) +
+		if y == 0 and sCheck != "RR":
+			JoinText = ('Кубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:'   + str(WillPower) +
-						' Доброс:'    + str(Q) +
-						' Переброс:'   + str(RR) +
-						' Автоуспехи:'   + str(OM) +
+						' ПСВ:' + JTWP +
+						' Доброс:' + JTQ +
+						' Переброс:' + JTRR +
+						' Автоуспехи:' + str(OM) +
+						' Отчет:' + EText +
 										'\r\n')
 		else:
 			JoinText = (_JoinTextRR +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:' + str(WillPower) +
-						' Доброс:' + str(Q) +
-						' Переброс:' + str(RR) +
+						' ПСВ:' + JTWP +
+						' Доброс:' + JTQ +
+						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
+						' Отчет:' + EText +
 										'\r\n')
 	else:
 		LuckGlobal = _LuckGlobal
@@ -49,29 +58,31 @@
 		r = _r
 
 		if sCheck == 'WP':
-			WillPower = True
+			WP = True
 			WP3 = True
 		else:
-			WillPower = False
+			WP = False
 			WP3 = False
 
 		if y == 0:
 			RandList = []
 			JoinText = ('Кубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:' + str(WillPower) +
-						' Доброс:' + str(Q) +
-						' Переброс:' + str(RR) +
+						' ПСВ:' + JTWP +
+						' Доброс:' + JTQ +
+						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
+						' Отчет:' + EText +
 										'\r\n')
 		else:
 			JoinText = (_JoinText +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:' + str(WillPower) +
-						' Доброс:' + str(Q) +
-						' Переброс:' + str(RR) +
+						' ПСВ:' + JTWP +
+						' Доброс:' + JTQ +
+						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
+						' Отчет:' + EText +
 										'\r\n')
 			RandList = _RandList
 
@@ -115,7 +126,7 @@
 
 		(ShortText, LuckCount,
 			DramCount, DicePullQ, DicePullTMP) = (Choosing.main(x, Roll[x], Luck,
-												LuckRR, LuckR, WillPower, DicePullTMP,
+												LuckRR, LuckR, WP, DicePullTMP,
 												DicePullQ, LuckCount, RR, DramCount,
 												RandList, r))
 

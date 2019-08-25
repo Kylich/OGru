@@ -151,9 +151,35 @@ def rollDice():
 
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
+    global LuckGlobalRR
+    global yRR
+    global zRR
+    global rRR
+    global RandListRR
+    global LuckGlobal
+    global y
+    global z
+    global r
+    global RandList
+    global JoinText_
+    global JoinTextRR
+    LuckGlobalRR = 0
+    yRR = 0
+    zRR = 0
+    rRR = 0
+    RandListRR = []
+    LuckGlobal  = 0
+    y = 0
+    z = 0
+    r = 0
+    RandList = []
+    JoinText_ = []
+    JoinTextRR = []
+
+
     stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
     stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-    stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
+    stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
     return json.dumps({
         'stepRl': stepRl,
         'stepWP': stepWP,
@@ -174,9 +200,8 @@ def step():
     global RandList
     global JoinText_
     global JoinTextRR
-
     sCheck = request.args.get('sCheck')
-    if sCheck=='Rl': globa='Rl'
+
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Dices = int(TEXT_Dices)
 
@@ -204,6 +229,20 @@ def step():
     except:
         TEXT_EText = ''
 
+    if sCheck=="Rl":
+        stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
+        stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
+        stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
+    elif sCheck=="WP":
+        stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
+        stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
+        stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
+    elif sCheck=="RR":
+        stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
+        stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
+        stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
+    
+
     (JoinText, LuckGlobalRR, yRR, zRR, rRR, RandListRR,
 			JoinTextRR, LuckGlobal, y, z, r,
             RandList, JoinText_) = RDstep.rollStep(TEXT_Dices, TEXT_Rolls, TEXT_OM,
@@ -215,7 +254,7 @@ def step():
     JoinText = JoinText.split('\n')
     JoinText = "<h2>" + '<br>'.join(JoinText) + "</h2>"
 
-    if y == TEXT_Rolls:
+    if y >= TEXT_Rolls and sCheck != "Rl":
         JoinText += "<br>END"
         LuckGlobalRR = 0
         yRR = 0
@@ -229,10 +268,19 @@ def step():
         RandList = []
         JoinText_ = []
         JoinTextRR = []
+    elif y == TEXT_Rolls and sCheck == "Rl":
+        stepRl = '<input value="stepRl" type="button" onclick="stepRl();" disabled/>'
+        stepWP = '<input value="stepWP" type="button" onclick="stepWP();" disabled/>'
+        stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
+    
+    if not TEXT_RR: stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
 
     return json.dumps({
         'JoinText': JoinText,
         'finalPush': '',
+        'stepRl': stepRl,
+        'stepWP': stepWP,
+        'stepRR': stepRR,
     })   
 
 

@@ -134,12 +134,14 @@ def rollDice():
 
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
-    stepModDiv = '''
-<tr><td id="stepRl"><input value="stepRl" type="button" onclick="stepRl();"/></td>
-<td id="stepRR"><input value="stepWP" type="button" onclick="stepWP();"/></td></tr>
-<tr><td id="stepWP" colspan="2"><input value="stepRR" type="button" onclick="stepRR();" disabled/></td></tr>
-'''
-    return json.dumps({'stepModDiv': stepModDiv})
+    stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
+    stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
+    stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
+    return json.dumps({
+        'stepRl': stepRl,
+        'stepWP': stepWP,
+        'stepRR': stepRR,
+    })
 
 @app.route('/step', methods=['GET', 'POST'])
 def step():

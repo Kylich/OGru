@@ -196,9 +196,7 @@ def step():
     try:
         TEXT_EText = request.form['TEXT_EText']
         TEXT_EText = str(TEXT_EText)
-    except:
-        TEXT_EText = ''
-
+    except: TEXT_EText = ''
     
     if sCheck == 'Rl':
         DPtmp = TEXT_Dices

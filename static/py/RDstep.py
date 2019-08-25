@@ -1,8 +1,8 @@
 ﻿def rollStep(DicePull, NumRoll, OM, Q,
-				WillPower, RR, EText, sender,
-				LuckGlobalRR, yRR, zRR, rRR, RandListRR,
-				LuckGlobal,   y,   z,   r,   RandList,
-				JoinText, JoinTextRR):
+				WillPower, RR, EText, sCheck,
+				_LuckGlobalRR, _yRR, _zRR, _rRR, _RandListRR,
+				_LuckGlobal,   _y,   _z,   _r,   _RandList,
+				_JoinText, _JoinTextRR):
 
 	import os
 	import sys
@@ -10,17 +10,17 @@
 	import Choosing
 	import ChoosingQ
 
-	RR = True if sender == 'stepRR' else False
+	RR = True if sCheck == 'RR' else False
 		
 	LuckR, LuckRR, LuckDel = ChoosingQ.select(Q)
 	Luck = LuckRR + LuckR
 
 	if RR:
-		LuckGlobal = self.LuckGlobalRR
-		y = self.yRR
-		z = self.zRR
-		r = self.rRR
-		RandList = self.RandListRR
+		LuckGlobal = _LuckGlobalRR
+		y = _yRR
+		z = _zRR
+		r = _rRR
+		RandList = _RandListRR
 		WillPower = True
 		WP3 = False
 
@@ -34,7 +34,7 @@
 						' Автоуспехи:'   + str(OM) +
 										'\r\n')
 		else:
-			JoinText = (self.JoinTextRR +
+			JoinText = (_JoinTextRR +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
 						' ПСВ:' + str(WillPower) +
@@ -43,19 +43,17 @@
 						' Автоуспехи:' + str(OM) +
 										'\r\n')
 	else:
-		LuckGlobal = self.LuckGlobal
-		y = self.y
-		z = self.z
-		r = self.r
+		LuckGlobal = _LuckGlobal
+		y = _y
+		z = _z
+		r = _r
 
-		if sender == 'stepWP':
+		if sCheck == 'WP':
 			WillPower = True
 			WP3 = True
-			self.RRstrQt.setEnabled(False)
 		else:
 			WillPower = False
 			WP3 = False
-			self.RRstrQt.setEnabled(True)
 
 		if y == 0:
 			RandList = []
@@ -67,7 +65,7 @@
 						' Автоуспехи:' + str(OM) +
 										'\r\n')
 		else:
-			JoinText = (self.JoinText +
+			JoinText = (_JoinText +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
 						' ПСВ:' + str(WillPower) +
@@ -75,7 +73,7 @@
 						' Переброс:' + str(RR) +
 						' Автоуспехи:' + str(OM) +
 										'\r\n')
-			RandList = self.RandList
+			RandList = _RandList
 
 
 	Pp = 2 if RR else 1			
@@ -87,12 +85,12 @@
 			RandList.append(random.randint(0, 9))
 			z += 1
 
-	self.LuckGlobalRR = LuckGlobal
-	self.yRR = y
-	self.zRR = z
-	self.rRR = r
-	self.RandListRR = RandList
-	self.JoinTextRR = JoinText
+	_LuckGlobalRR = LuckGlobal
+	_yRR = y
+	_zRR = z
+	_rRR = r
+	_RandListRR = RandList
+	_JoinTextRR = JoinText
 
 
 	#
@@ -148,7 +146,7 @@
 		LuckCount = -DramCount
 
 	# elif LuckCount == 0 and y != NumRoll:
-	# 	self.DicePullQt.setValue(DicePull-1)
+	# 	_DicePullQt.setValue(DicePull-1)
 	# 	DicePull -= 1
 
 	elif LuckCount >= 5:
@@ -166,11 +164,14 @@
 	# Rolls end
 	#
 
-	self.LuckGlobal = LuckGlobal
-	self.y = y
-	self.z = z
-	self.r = r
-	self.RandList = RandList
-	self.JoinText = JoinText
+	_LuckGlobal = LuckGlobal
+	_y = y
+	_z = z
+	_r = r
+	_RandList = RandList
+	_JoinText = JoinText
 
 	JoinText += '> > ' + str(LuckGlobal) + ' < <\r\n\n'
+
+	return (JoinText, _LuckGlobalRR, _yRR, _zRR, _rRR, _RandListRR,
+			_JoinTextRR, _LuckGlobal, _y, _z, _r, _RandList, _JoinText)

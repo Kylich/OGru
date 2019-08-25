@@ -3,9 +3,24 @@ import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
-import LD, RD, report#, RDstep
+import LD, RD, report, RDstep
 from tutorialpy import tutorialText
 app = Flask(__name__)
+
+LuckGlobalRR = 0
+yRR = 0
+zRR = 0
+rRR = 0
+RandListRR = []
+LuckGlobal  = 0
+y = 0
+z = 0
+r = 0
+RandList = []
+JoinText_ = []
+JoinTextRR = []
+
+LDcount = 0
 
 @app.route('/')
 def indexMain():
@@ -43,8 +58,9 @@ def fullMod():
 
 @app.route('/luckdice', methods=['GET', 'POST'])
 def luckDice():
-    LDcount = 'x'
-    JoinText = "<h2>["+ LDcount + "] " + LD.chooseLD() + "</h2>"
+    global LDcount
+    LDcount += 1
+    JoinText = "<h2>["+ str(LDcount) + "] " + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
     
 @app.route('/tutorial', methods=['GET', 'POST'])
@@ -59,6 +75,7 @@ def tutorial():
 @app.route('/rolldice', methods=['GET', 'POST'])
 def rollDice():
 
+    global globa
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Rolls = request.form['TEXT_Rolls']
     TEXT_Q     = request.form['TEXT_Quality']
@@ -88,7 +105,7 @@ def rollDice():
         TEXT_EText = ''
 
     JoinText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
-                                    TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText) #, DetalText
+                        TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText) #, DetalText
 
     if TEXT_EText and not TEXT_EText.isspace():
         if TEXT_EText.isdigit() == False:
@@ -136,7 +153,7 @@ def rollDice():
 def stepMod():
     stepRl = '<input value="stepRl" type="button" onclick="stepRl();"/>'
     stepWP = '<input value="stepWP" type="button" onclick="stepWP();"/>'
-    stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
+    stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
     return json.dumps({
         'stepRl': stepRl,
         'stepWP': stepWP,
@@ -145,9 +162,24 @@ def stepMod():
 
 @app.route('/step', methods=['GET', 'POST'])
 def step():
+    global LuckGlobalRR
+    global yRR
+    global zRR
+    global rRR
+    global RandListRR
+    global LuckGlobal
+    global y
+    global z
+    global r
+    global RandList
+    global JoinText_
+    global JoinTextRR
+
     sCheck = request.args.get('sCheck')
+    if sCheck=='Rl': globa='Rl'
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Dices = int(TEXT_Dices)
+
     TEXT_Rolls = request.form['TEXT_Rolls']
     TEXT_Rolls = int(TEXT_Rolls)
     TEXT_Q     = request.form['TEXT_Quality']
@@ -172,16 +204,35 @@ def step():
     except:
         TEXT_EText = ''
 
-    JoinText = "lol" #RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
-                        #TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText,
-                        #sCheck, LuckGlobalRR, yRR, zRR, rRR,
-                        #RandListRR,	LuckGlobal, y, z, r,
-                        #RandList, JoinText_, JoinTextRR)
+    (JoinText, LuckGlobalRR, yRR, zRR, rRR, RandListRR,
+			JoinTextRR, LuckGlobal, y, z, r,
+            RandList, JoinText_) = RDstep.rollStep(TEXT_Dices, TEXT_Rolls, TEXT_OM,
+                        TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText,
+                        sCheck, LuckGlobalRR, yRR, zRR, rRR,
+                        RandListRR,	LuckGlobal, y, z, r,
+                        RandList, JoinText_, JoinTextRR)
 
-    #JoinText = "<h2>" + "<br>".join(JoinText) + "</h2>"
+    JoinText = JoinText.split('\n')
+    JoinText = "<h2>" + '<br>'.join(JoinText) + "</h2>"
+
+    if y == TEXT_Rolls:
+        JoinText += "<br>END"
+        LuckGlobalRR = 0
+        yRR = 0
+        zRR = 0
+        rRR = 0
+        RandListRR = []
+        LuckGlobal  = 0
+        y = 0
+        z = 0
+        r = 0
+        RandList = []
+        JoinText_ = []
+        JoinTextRR = []
+
     return json.dumps({
         'JoinText': JoinText,
-        'finalPush': sCheck,
+        'finalPush': '',
     })   
 
 

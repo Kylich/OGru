@@ -8,7 +8,7 @@ def roll(DicePull, NumRoll, OM, Q, WillPower, RR, EText):
         Luck = LuckRR + LuckR
         
         JoinText = []
-        
+
         JTWP = "да" if WillPower==1 else "нет"
         JTRR = "да" if RR==1 else "нет"
         

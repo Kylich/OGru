@@ -87,14 +87,15 @@
             $.ajax({
                 type: "POST",
                 url: "/stepmod",
-                data: $('form').serialize(),
+                //data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
                     $('#stepRl').html(json.stepRl)
                     $('#stepWP').html(json.stepWP)
-                    $('#stepRR').html(json.stepRR)                    $('#SMS').html('')
+                    $('#stepRR').html(json.stepRR)
+                    $('#SMS').html('')
                     $('#RDS').html('')
-                    $('#LDS').html('')                    
+                    $('#LDS').html('')
                     console.log(response);
                 },
                 error: function(error) {console.log(error);}

@@ -3,7 +3,9 @@ import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
+
 import LD, RD, report, RDstep
+
 from tutorialpy import tutorialText
 app = Flask(__name__)
 

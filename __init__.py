@@ -7,7 +7,7 @@ import LD, RD, report, RDstep
 from tutorialpy import tutorialText
 app = Flask(__name__)
 
-LuckGlobalRR = yRR = zRR = rRR = 0
+LuckGlobalRR = yRR = zRR = rRR = DPtmp = 0
 LuckGlobal = y = z = r = LDcount = 0
 RandListRR = RandList = JoinText_ = JoinTextRR = []
 
@@ -64,7 +64,6 @@ def tutorial():
 @app.route('/rolldice', methods=['GET', 'POST'])
 def rollDice():
 
-    global globa
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Rolls = request.form['TEXT_Rolls']
     TEXT_Q     = request.form['TEXT_Quality']
@@ -142,9 +141,9 @@ def rollDice():
 def stepMod():
     global LuckGlobalRR, RandListRR, LuckGlobal
     global yRR, zRR, rRR, y, z, r, RandList
-    global JoinText_, JoinTextRR
+    global JoinText_, JoinTextRR, DPtmp
     LuckGlobalRR = yRR = zRR = rRR = 0
-    LuckGlobal = y = z = r = 0
+    LuckGlobal = y = z = r = DPtmp = 0
     RandListRR = RandList = JoinText_ = JoinTextRR = []
 
 
@@ -164,13 +163,13 @@ def stepMod():
 def step():
     global LuckGlobalRR, RandListRR, LuckGlobal
     global yRR, zRR, rRR, y, z, r, RandList
-    global JoinText_, JoinTextRR
+    global JoinText_, JoinTextRR, DPtmp
 
     sCheck = request.args.get('sCheck')
 
     if sCheck == 'Dl':
         LuckGlobalRR = yRR = zRR = rRR = 0
-        LuckGlobal = y = z = r = 0
+        LuckGlobal = y = z = r = DPtmp = 0
         RandListRR = RandList = JoinText_ = JoinTextRR = []
         return
 
@@ -179,8 +178,8 @@ def step():
 
     TEXT_Rolls = request.form['TEXT_Rolls']
     TEXT_Rolls = int(TEXT_Rolls)
-    TEXT_Q     = request.form['TEXT_Quality']
-    TEXT_Q     = int(TEXT_Q)
+    TEXT_Q = request.form['TEXT_Quality']
+    TEXT_Q = int(TEXT_Q)
 
     try: TEXT_PUSH = 1 if request.form['TEXT_PUSH'] == 'on' else 0
     except: TEXT_PUSH = 0
@@ -199,6 +198,12 @@ def step():
         TEXT_EText = str(TEXT_EText)
     except:
         TEXT_EText = ''
+
+    
+    if sCheck == 'Rl':
+        DPtmp = TEXT_Dices
+    elif sCheck == 'RR':
+        TEXT_Dices = DPtmp
 
     if sCheck=="Rl":
         stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
@@ -223,7 +228,7 @@ def step():
     if y >= TEXT_Rolls and sCheck != "Rl":
         JoinText += "<br>END"
         LuckGlobalRR = yRR = zRR = rRR = 0
-        LuckGlobal = y = z = r = 0
+        LuckGlobal = y = z = r = DPtmp = 0
         RandListRR = RandList = JoinText_ = JoinTextRR = []
     elif y == TEXT_Rolls and sCheck == "Rl":
         stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();" disabled/>'

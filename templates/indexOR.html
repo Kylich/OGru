@@ -90,8 +90,9 @@
                 data: $('form').serialize(),
                 success: function(response) {
                     var json = jQuery.parseJSON(response)
-                    $('#stepModDiv').html(json.stepModDiv)
-                    $('#SMS').html('')
+                    $('#stepRl').html(json.stepRl)
+                    $('#stepWP').html(json.stepWP)
+                    $('#stepRR').html(json.stepRR)                    $('#SMS').html('')
                     $('#RDS').html('')
                     $('#LDS').html('')                    
                     console.log(response);

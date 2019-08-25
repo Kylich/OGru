@@ -210,18 +210,15 @@ def step():
     TEXT_Q     = request.form['TEXT_Quality']
     TEXT_Q     = int(TEXT_Q)
 
+    TEXT_WP = 1 if sCheck=="WP" else 0
 
-
-    try: TEXT_WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
-    except: TEXT_WP = 0
 
     try:
         TEXT_OM = request.form['TEXT_OM']
         TEXT_OM = int(TEXT_OM)
     except: TEXT_OM = 0
     
-    try: TEXT_RR = 1 if request.form['TEXT_ReRoll'] == 'on' else 0
-    except: TEXT_RR = 0
+    TEXT_RR = 1 if sCheck=="RR" else 0
     
     try:
         TEXT_EText = request.form['TEXT_EText']
@@ -273,7 +270,7 @@ def step():
         stepWP = '<input value="stepWP" type="button" onclick="stepWP();" disabled/>'
         stepRR = '<input value="stepRR" type="button" onclick="stepRR();"/>'
     
-    if not TEXT_RR: stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
+    #if not TEXT_RR: stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
 
     return json.dumps({
         'JoinText': JoinText,

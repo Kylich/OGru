@@ -35,8 +35,8 @@
 		if y == 0 and sCheck != "RR":
 			JoinText = ('Кубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:' + JTWP +
 						' Доброс:' + JTQ +
+						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + EText +
@@ -45,8 +45,8 @@
 			JoinText = (_JoinTextRR +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:' + JTWP +
 						' Доброс:' + JTQ +
+						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + EText +
@@ -68,8 +68,8 @@
 			RandList = []
 			JoinText = ('Кубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:' + JTWP +
 						' Доброс:' + JTQ +
+						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + EText +
@@ -78,8 +78,8 @@
 			JoinText = (_JoinText +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
-						' ПСВ:' + JTWP +
 						' Доброс:' + JTQ +
+						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + EText +

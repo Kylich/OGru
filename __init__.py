@@ -30,10 +30,10 @@ def fullMod():
     fmCheck = int(request.args.get('fmCheck'))
     
     if fmCheck % 2 == 0:
-        fmTextPerk = """<td><b>Перк:</b></td>
-                        <td><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>"""
-        fmTextPush = """<td><b><FONT color=green>Кнопка для Пуш!</font></b></td>
-                        <td><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>"""
+        fmTextPerk = """<td id="RR"><b>Перк:</b></td>
+                        <td id="RRb"><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>"""
+        fmTextPush = """<td id="Push"><b><FONT color=green>Кнопка для Пуш!</font></b></td>
+                        <td id="Pushb"><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>"""
         fmTextOM = """<td><h4><b>Автоуспех:</b></h4></td>
                       <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>"""
     else:
@@ -153,12 +153,17 @@ def stepMod():
     stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();"/>'
     stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();" disabled/>'
     stepDl = '<input value="Сброс" type="button" onclick="stepDl();"/>'
+    fmTextOM = """<td><h4><b>Автоуспех:</b></h4></td>
+                      <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>"""
+    stepReload = '<br><br><a href="/openroller/">Перезагрузить страницу</a>'
     
     return json.dumps({
         'stepRl': stepRl,
         'stepWP': stepWP,
         'stepRR': stepRR,
         'stepDl': stepDl,
+        'fmTextOM': fmTextOM,
+        'stepReload': stepReload,
     })
 
 @app.route('/step', methods=['GET', 'POST'])

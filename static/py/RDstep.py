@@ -1,5 +1,5 @@
 ﻿def rollStep(DicePull, NumRoll, OM, Q,
-				WP, RR, EText, sCheck,
+				WP, RR, ETxt, sCheck,
 				_LuckGlobalRR, _yRR, _zRR, _rRR, _RandListRR,
 				_LuckGlobal,   _y,   _z,   _r,   _RandList,
 				_JoinText, _JoinTextRR):
@@ -19,9 +19,9 @@
 	elif Q==-2: JTQ = "(-)"
 	else: JTQ = "(упс)"
 
-	JTWP = '+' if WP==1 else '-'
-	JTRR = '+' if RR==1 else '-'
-	EText = '+' if EText else '-'
+	JTWP = '+' if WP else '-'
+	JTRR = '+' if RR else '-'
+	ETxt = '+' if ETxt else '-'
 
 	if RR:
 		LuckGlobal = _LuckGlobalRR
@@ -32,16 +32,20 @@
 		WP = True
 		WP3 = False
 
-		if y == 0 and sCheck != "RR":
+		if not y and sCheck != "RR":
 			JoinText = ('Кубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
 						' Доброс:' + JTQ +
 						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
-						' Отчет:' + EText +
+						' Отчет:' + ETxt +
 										'\r\n')
 		else:
+			_JT = _JoinTextRR.split('\r\n')
+			_JT.pop()
+			_JT.pop()
+			_JoinTextRR = '\r\n'.join(_JT) + '\r\n'
 			JoinText = (_JoinTextRR +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
@@ -49,7 +53,7 @@
 						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
-						' Отчет:' + EText +
+						' Отчет:' + ETxt +
 										'\r\n')
 	else:
 		LuckGlobal = _LuckGlobal
@@ -64,7 +68,7 @@
 			WP = False
 			WP3 = False
 
-		if y == 0:
+		if not y:
 			RandList = []
 			JoinText = ('Кубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
@@ -72,7 +76,7 @@
 						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
-						' Отчет:' + EText +
+						' Отчет:' + ETxt +
 										'\r\n')
 		else:
 			JoinText = (_JoinText +
@@ -82,10 +86,9 @@
 						' ПСВ:' + JTWP +
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
-						' Отчет:' + EText +
+						' Отчет:' + ETxt +
 										'\r\n')
 			RandList = _RandList
-
 
 	Pp = 2 if RR else 1			
 	z_all = NumRoll * DicePull * Pp * 5
@@ -102,12 +105,9 @@
 	_rRR = r
 	_RandListRR = RandList
 	_JoinTextRR = JoinText
-
-
 	#
 	# Rolls start
 	#
-
 	DicePullTMP = DicePull + 3 if WP3 else DicePull
 	DPch = DicePullTMP
 
@@ -117,7 +117,6 @@
 	if NumRoll > 1:
 		JoinText += '[' + str(y) + '] '
 	else: JoinText += ''
-
 
 	LuckCount = DramCount = DicePullQ = x = 0
 
@@ -169,12 +168,9 @@
 		
 	LuckGlobal += LuckCount
 	JoinText += str(LuckCount) + '\r\n'
-
-
 	#
 	# Rolls end
 	#
-
 	_LuckGlobal = LuckGlobal
 	_y = y
 	_z = z

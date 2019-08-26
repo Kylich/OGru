@@ -33,11 +33,9 @@ function Other() {
         if ( OM > 0 ) { OMoy = OM + 1 }
         else if ( OM < 0 ) { OMoy = OM - 1 }
         
-        // !TCh + !PCh + !OM+1  + !N (>TY) + !OS + !Q*2 + !OMMCh + !DM = OY
         OY = Tch + Pch + OS + 2*Q + DM + OMoy + OMMT + Noy;
         
         var Error = false;
-        
         if (OY < 1)
         {
             OYtext = '<h1>ОУ должно быть больше 0 </h1><br>';
@@ -47,44 +45,6 @@ function Other() {
             <br>Проч-ть изм. = ' + Pch + '<br>Особ. Св-ва = ' + OS + '<br>Кач-во = ' + 2*Q + '<br>Основ. Мод. = ' + OMoy + '\
             <br>ОМ ББ штраф = ' + OMMT + '<br>Назначения = ' + Noy + '<br>Доп. Мод. = ' + DM + '</h3><br><br>';
         }
-
-        /*
-        DONE
-        if self.PCRFTQt.isChecked():
-            PROFall.append('CRFT')
-        if self.PSINCQt.isChecked():
-            PROFall.append('SINC')
-        if self.PCOMPQt.isChecked():
-            PROFall.append('COMP')
-        self.MERITchQt.clear()
-        if TY <= 3:
-            self.MERITchQt.setText('CRFT')
-            self.MERITQt.setValue(CRFT)
-        elif TY == 4:
-            while True:
-                if CRFT == z:
-                    MeritList.append('CRFT')
-                    q = True
-                if SINC == z:
-                    MeritList.append('SINC')
-                    q = True 
-                if q: break
-                z += 1
-        else:
-            while True:
-                if CRFT == z:
-                    MeritList.append('CRFT')
-                    q = True
-                if SINC == z:
-                    MeritList.append('SINC')
-                    q = True
-                if COMP == z:
-                    MeritList.append('COMP')
-                    q = True
-                if q: break
-                z += 1
-        self.BuffPROFQt.show() if self.MERITchQt.text() in PROFall else self.BuffPROFQt.hide()
-        */
 
         var z = 0, q = false, Prof = false, Merit = 0;
         var MeritCraft = false, MeritSince = false, MeritComp = false;
@@ -110,13 +70,11 @@ function Other() {
                     MeritCraft = true;
                     q = true;
                 }
-                
                 if ( Since == z ) {
                     Merit = Since;
                     MeritSince = true;
                     q = true;
                 }
-                
                 if (q) {break}
                 z++;
             }
@@ -129,19 +87,16 @@ function Other() {
                     MeritCraft = true;
                     q = true;
                 }
-                
                 if ( Since == z ) {
                     Merit = Since;
                     MeritSince = true;
                     q = true;
                 }
-                
                 if ( Comp == z ) {
                     Merit = Comp;
                     MeritComp = true;
                     q = true;
                 }
-                
                 if (q) {break}
                 z++;
             }
@@ -159,36 +114,6 @@ function Other() {
             ProfText = ProfText.slice(0,-2) + '.';
         }
 
-
-        /* 
-        M    = self.MQt.value()
-        N    = self.NQt.value()
-        MERIT= self.MERITQt.value()
-        TY   = self.TYQt.value()
-        INT  = self.INTQt.value()
-        CRFT = self.CRFTQt.value()
-        Other= self.OtherQt.value()
-
-        KTYC = 1 if self.KTYCQt.isChecked() else 0
-
-        if N==1: N = 0
-        else: N -= 1
-
-        if M < TY:
-            self.DebaffMQt.show()
-        else:
-            self.DebaffMQt.hide()
-
-        if CRFT < TY:
-            self.DebaffCRFTQt.show()
-        else:
-            self.DebaffCRFTQt.hide()
-        
-        if MERIT == 0: MERIT = -3
-        DicePull = M - N + MERIT + INT + Other + KTYC - TY
-        */
-        
-
         if (
             $('#fKTYC').is(':checked')
             &&
@@ -201,25 +126,17 @@ function Other() {
         
         var DebaffM = '', DebaffCraft = '';
         
-        if ( M < TY ) {
-            DebaffM = 'Мастерская < TY => -успехи';
-        }
-        
-        if ( Craft < TY ) {
-            DebaffCraft = 'Крафт < TY => -успехи';
-        }
-        
+        if (M < TY) {DebaffM = 'Мастерская < TY => -успехи';}
+        if (Craft < TY) {DebaffCraft = 'Крафт < TY => -успехи';}
         if (Merit == 0) {Merit = -3}
         
         var DicePull = M - N + Merit + INT + Other + KTYC - TY;
-
         var Terp = 0, NumRoll = 0;
         if ($('#fTerp').is(':checked')) {Terp = 2}         
         
         NumRoll = Merit + INT + Terp;
         
         var ItogText = '';
-
         if (
             Error == false
             &&
@@ -241,7 +158,7 @@ function Other() {
         if ( Error ) { ItogText = OYtext } else {
         ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
         <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + 'Кол-во Бросков = ' + String(NumRoll) + '\
-        </h1><br><input type="button" value="Открыть в OpenRoller" onclick=";">';
+        </h1><br><input type="button" value="Открыть в OpenRoller" onclick="CtoO();">';
         }
         
         $('#Resultat').html(ItogText);

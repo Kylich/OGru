@@ -175,10 +175,17 @@ def step():
     sCheck = request.args.get('sCheck')
 
     if sCheck == 'Dl':
+        stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
+        stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();"/>'
+        stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();" disabled/>'
         LuckGlobalRR = yRR = zRR = rRR = 0
         LuckGlobal = y = z = r = DPtmp = 0
         RandListRR = RandList = JoinText_ = JoinTextRR = []
-        return
+        return json.dumps({
+            'stepRl': stepRl,
+            'stepWP': stepWP,
+            'stepRR': stepRR,
+        })   
 
     TEXT_Dices = request.form['TEXT_Dices']
     TEXT_Dices = int(TEXT_Dices)
@@ -231,16 +238,17 @@ def step():
     JoinText = "<h2>" + '<br>'.join(JoinText.split('\n')) + "</h2>"
 
     if y >= TEXT_Rolls and sCheck != "Rl":
+        stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();" disabled/>'
+        stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();" disabled/>'
+        stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();" disabled/>'        
         JoinText += "<br>END"
         LuckGlobalRR = yRR = zRR = rRR = 0
         LuckGlobal = y = z = r = DPtmp = 0
         RandListRR = RandList = JoinText_ = JoinTextRR = []
-    elif y == TEXT_Rolls and sCheck == "Rl":
+    elif y >= TEXT_Rolls and sCheck == "Rl":
         stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();" disabled/>'
         stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();" disabled/>'
         stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();"/>'
-    
-    #if not TEXT_RR: stepRR = '<input value="stepRR" type="button" onclick="stepRR();" disabled/>'
 
     if TEXT_PUSH:
         rc = ['s', 'd']

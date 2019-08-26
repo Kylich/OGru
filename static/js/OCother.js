@@ -38,7 +38,7 @@ function Other() {
         
         var Error = false;
         
-        if (OY < 1 )
+        if (OY < 1)
         {
             OYtext = '<h1>ОУ должно быть больше 0 </h1><br>';
             Error = true;
@@ -219,10 +219,29 @@ function Other() {
         NumRoll = Merit + INT + Terp;
         
         var ItogText = '';
+
+        if (
+            Error == false
+            &&
+            NumRoll <= 0
+        ) {
+            Error = true;
+            OYtext = '<h1>Кол-во Бросков меньше 1</h1><br>';
+        }
+
+        if (
+            Error == false
+            &&
+            DicePull <= 0
+        ) {
+            Error = true;
+            OYtext = '<h1>Кол-во Кубов меньше 1</h1><br>';
+        }
         
         if ( Error ) { ItogText = OYtext } else {
         ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
-        <h1>Кол-во деталей = '+ R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + 'Кол-во Бросков = ' + String(NumRoll) + '</h1>';
+        <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + 'Кол-во Бросков = ' + String(NumRoll) + '\
+        </h1><br><input type="button" value="Открыть в OpenRoller" onclick=";">';
         }
         
         $('#Resultat').html(ItogText);

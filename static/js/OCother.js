@@ -241,7 +241,7 @@ function Other() {
         if ( Error ) { ItogText = OYtext } else {
         ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
         <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + 'Кол-во Бросков = ' + String(NumRoll) + '\
-        </h1><br><input type="button" value="Открыть в OpenRoller" onclick=";">';
+        </h1><br><input type="button" value="Открыть в OpenRoller" onclick="CtoO();">';
         }
         
         $('#Resultat').html(ItogText);

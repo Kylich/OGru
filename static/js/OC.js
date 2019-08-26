@@ -1,3 +1,7 @@
+function CtoO() {
+    alert('C to O');
+}
+
 function Master() {
     if ($('#fProf').is(':checked'))
     {

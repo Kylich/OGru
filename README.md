@@ -1,6 +1,3 @@
 # opengamer
 
-backup 21-08-19
-after local run
-before step mod
-
+working step mod. next - from C to O

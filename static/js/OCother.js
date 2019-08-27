@@ -162,7 +162,7 @@ function Other() {
         if ( Error ) { ItogText = OYtext } else {
         ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
         <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + 'Кол-во Бросков = ' + String(NumRoll) + '\
-        </h1><br><a href="../openroller/">Открыть в OpenRoller</a>';
+        </h1><br><a href="../rolldice?Rolls=9&Dices=9&WP=1&Q=1&RR=1">Открыть в OpenRoller</a>';
         }
         
         $('#Resultat').html(ItogText);

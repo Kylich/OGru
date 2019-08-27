@@ -1,6 +1,7 @@
 var DicePull = 0;
 var NumRoll = 0;
 var ProfText = '';
+var Q = 0;
 
 function Other() {
     if (
@@ -27,9 +28,8 @@ function Other() {
         var Since = +(document.getElementById("fSince").value);
         var Comp = +(document.getElementById("fComp").value);
         var Other = +(document.getElementById("fOther").value);
-        var Q = +(document.getElementById("fQ").value);
+        Q = +(document.getElementById("fQ").value);
         var KTYC = 0, Noy = 0, OMoy = 0;
-        var DicePull = 0, NumRoll = 0, ProfText = '';
         
         if ( $('#fNA').is(':checked') ) { OMMT = OMMT } else { OMMT = 0 }
         
@@ -162,8 +162,8 @@ function Other() {
         if ( Error ) { ItogText = OYtext } else {
         ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
         <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + 'Кол-во Бросков = ' + String(NumRoll) + '\
-        </h1><br><a href="../rolldice?Rolls=9&Dices=9&WP=1&Q=1&RR=1">Открыть в OpenRoller</a>';
-        }
+        </h1><br><input type="button" value="Открыть в OpenRoller" onclick="CtoO();">';
+       }
         
         $('#Resultat').html(ItogText);
         $('fieldset#OtherFS').attr('class', 'quitz-card-ready');

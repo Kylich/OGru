@@ -34,22 +34,25 @@ def luckDice():
 def rollDice():
     Dices = request.form.get('TEXT_Dices', type=int)
     Rolls = request.form.get('TEXT_Rolls', type=int)
-    Q = request.form.get('TEXT_Q', type=int)
     OM = request.form.get('TEXT_OM', default=0, type=int)
-    EText = request.form.get('TEXT_EText', default='', type=str)
 
-    WP = request.form.get('TEXT_WP', type=str)
-    PUSH = 1 if request.form.get('TEXT_PUSH', type=str) == 'on' else 0
-    RR = 1 if request.form.get('TEXT_RR', type=str) == 'on' else 0
+    Q = request.form['TEXT_Quality']
+    Q = int(Q)
     
-    f = [str(Dices), str(Rolls), str(Q), str(OM), EText, str(WP), str(PUSH), str(RR)]
+    try: WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
+    except: WP = 0
+    
+    try: PUSH = 1 if request.form['TEXT_PUSH'] == 'on' else 0
+    except: PUSH = 0
 
-    JoinText = " - ".join(f)
-
-    return  json.dumps({
-        'JoinText': JoinText,
-    })
-
+    try: RR = 1 if request.form['TEXT_ReRoll'] == 'on' else 0
+    except: RR = 0
+    
+    try:
+        EText = request.form['TEXT_EText']
+        EText = str(EText)
+    except:
+        EText = ''
 
     JoinText = RD.roll(Dices, Rolls, OM,
                         Q, WP, RR, EText) #, DetalText

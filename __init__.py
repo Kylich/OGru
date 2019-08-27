@@ -3,10 +3,8 @@ import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
-
 import LD, RD, report, RDstep
 
-from tutorialpy import tutorialText
 app = Flask(__name__)
 
 LuckGlobalRR = yRR = zRR = rRR = DPtmp = 0
@@ -25,43 +23,12 @@ def indexOR():
 def indexOC():
     return render_template("indexOC.html")
 
-@app.route('/fullmod', methods=['GET', 'POST'])
-def fullMod():
-    fmCheck = int(request.args.get('fmCheck'))
-    
-    if fmCheck % 2 == 0:
-        fmTextPerk = """<td id="RR"><b>Перк:</b></td>
-                        <td id="RRb"><input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>"""
-        fmTextPush = """<td id="Push"><b><FONT color=green>Кнопка для Пуш!</font></b></td>
-                        <td id="Pushb"><input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>"""
-        fmTextOM = """<td><h4><b>Автоуспех:</b></h4></td>
-                      <td><input type="number" min='-10' max='10' value=0 id="TEXT_OM" name="TEXT_OM"></td>"""
-    else:
-        fmTextPerk = ''
-        fmTextPush = ''
-        fmTextOM   = ''
-        
-    return json.dumps({
-        'fmTextPerk': fmTextPerk,
-        'fmTextPush': fmTextPush,
-        'fmTextOM': fmTextOM,
-    })
-
 @app.route('/luckdice', methods=['GET', 'POST'])
 def luckDice():
     global LDcount
     LDcount += 1
     JoinText = "<h2>["+ str(LDcount) + "] " + LD.chooseLD() + "</h2>"
     return json.dumps({'JoinText': JoinText})
-    
-@app.route('/tutorial', methods=['GET', 'POST'])
-def tutorial():
-    tutCheck = int(request.args.get('tutCheck'))
-    if tutCheck % 2 == 0:
-        tutText = tutorialText
-    else:
-        tutText = ''
-    return json.dumps({'tutText': tutText})
 
 @app.route('/rolldice', methods=['GET', 'POST'])
 def rollDice():
@@ -137,8 +104,6 @@ def rollDice():
         'finalPush': finalPush,
     })
 
-###
-
 @app.route('/stepmod', methods=['GET', 'POST'])
 def stepMod():
     global LuckGlobalRR, RandListRR, LuckGlobal
@@ -147,7 +112,6 @@ def stepMod():
     LuckGlobalRR = yRR = zRR = rRR = 0
     LuckGlobal = y = z = r = DPtmp = 0
     RandListRR = RandList = JoinText_ = JoinTextRR = []
-
 
     stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();"/>'
     stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();"/>'
@@ -286,9 +250,6 @@ def step():
         'stepWP': stepWP,
         'stepRR': stepRR,
     })   
-
-
-###
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

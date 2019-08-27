@@ -1,3 +1,8 @@
+var DicePull = 0;
+var NumRoll = 0;
+var Q = 0;
+var ProfText = '';
+
 function Other() {
     if (
         $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'
@@ -17,7 +22,6 @@ function Other() {
         var OS = +(document.getElementById("fOS").value);
         var DM = +(document.getElementById("fDM").value);
         var N = +(document.getElementById("fN").value);
-        var Q = +(document.getElementById("fQ").value);
         var M = +(document.getElementById("fM").value);
         var INT = +(document.getElementById("fINT").value);
         var Craft = +(document.getElementById("fCraft").value);
@@ -25,7 +29,8 @@ function Other() {
         var Comp = +(document.getElementById("fComp").value);
         var Other = +(document.getElementById("fOther").value);
         var KTYC = 0, Noy = 0, OMoy = 0;
-
+        Q = +(document.getElementById("fQ").value);
+        
         if ( $('#fNA').is(':checked') ) { OMMT = OMMT } else { OMMT = 0 }
         
         if ( N > TY) { Noy = N - TY } else { Noy = 0 }
@@ -101,9 +106,8 @@ function Other() {
                 z++;
             }
         }
-        
-        var ProfText = 'Доступные профы: ';
-        
+
+        ProfText = 'Доступные профы: ';
         if ( MeritCraft && ProfCraft ) { ProfText += 'Крафт, ' }
         if ( MeritSince && ProfSince ) { ProfText += 'ТочнНауки, ' }
         if ( MeritComp && ProfComp   ) { ProfText += 'Компы, ' }
@@ -130,8 +134,8 @@ function Other() {
         if (Craft < TY) {DebaffCraft = 'Крафт < TY => -успехи';}
         if (Merit == 0) {Merit = -3}
         
-        var DicePull = M - N + Merit + INT + Other + KTYC - TY;
-        var Terp = 0, NumRoll = 0;
+        DicePull = M - N + Merit + INT + Other + KTYC - TY;
+        var Terp = 0;
         if ($('#fTerp').is(':checked')) {Terp = 2}         
         
         NumRoll = Merit + INT + Terp;

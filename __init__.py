@@ -168,8 +168,6 @@ def step():
                         sCheck, LuckGlobalRR, yRR, zRR, rRR,
                         RandListRR,	LuckGlobal, y, z, r,
                         RandList, JoinText_, JoinTextRR)
-    JT = JoinText[:]
-
     JoinText = "<h2>" + '<br>'.join(JoinText.split('\n')) + "</h2>"
 
     if y >= Rolls and sCheck != "Rl":
@@ -185,11 +183,8 @@ def step():
         stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();" disabled/>'
         stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();"/>'
 
-    finalPush = ''
-
     return json.dumps({
         'JoinText': JoinText,
-        'finalPush': finalPush,
         'stepRl': stepRl,
         'stepWP': stepWP,
         'stepRR': stepRR,

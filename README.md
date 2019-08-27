@@ -1,3 +1,3 @@
 # opengamer
 
-working step mod. next - from C to O
+curl or requests?

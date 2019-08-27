@@ -165,7 +165,7 @@ function Other() {
         ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
         <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + '\
         Кол-во Бросков = ' + String(NumRoll) + '\
-        </h1><br><a href="/openroller/' + DicePull + '/' + NumRoll + '/' + Prof + '">OpenRoller10</a>';
+        </h1><br><a href="/openroller/' + DicePull + '/' + NumRoll + '/' + Prof + '">Перенести в OpenRoller</a>';
        }
         
         $('#Resultat').html(ItogText);

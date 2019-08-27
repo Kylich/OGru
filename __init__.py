@@ -32,43 +32,33 @@ def luckDice():
 
 @app.route('/rolldice', methods=['GET', 'POST'])
 def rollDice():
+    Dices = request.form.get('TEXT_Dices', type=int)
+    Rolls = request.form.get('TEXT_Rolls', type=int)
+    Q = request.form.get('TEXT_Q', type=int)
+    OM = request.form.get('TEXT_OM', default=0, type=int)
+    EText = request.form.get('TEXT_EText', default='', type=str)
 
-    TEXT_Dices = request.form['TEXT_Dices']
-    TEXT_Rolls = request.form['TEXT_Rolls']
-    TEXT_Q     = request.form['TEXT_Quality']
+    WP = request.form.get('TEXT_WP', type=str)
+    PUSH = 1 if request.form.get('TEXT_PUSH', type=str) == 'on' else 0
+    RR = 1 if request.form.get('TEXT_RR', type=str) == 'on' else 0
     
-    try: TEXT_WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
-    except: TEXT_WP = 0
-    
-    try: TEXT_PUSH = 1 if request.form['TEXT_PUSH'] == 'on' else 0
-    except: TEXT_PUSH = 0
+    f = [str(Dices), str(Rolls), str(Q), str(OM), EText, str(WP), str(PUSH), str(RR)]
 
-    TEXT_Dices = int(TEXT_Dices)
-    TEXT_Rolls = int(TEXT_Rolls)
-    TEXT_Q     = int(TEXT_Q)
+    JoinText = " - ".join(f)
 
-    try:
-        TEXT_OM = request.form['TEXT_OM']
-        TEXT_OM = int(TEXT_OM)
-    except: TEXT_OM = 0
-    
-    try: TEXT_RR = 1 if request.form['TEXT_ReRoll'] == 'on' else 0
-    except: TEXT_RR = 0
-    
-    try:
-        TEXT_EText = request.form['TEXT_EText']
-        TEXT_EText = str(TEXT_EText)
-    except:
-        TEXT_EText = ''
+    return  json.dumps({
+        'JoinText': JoinText,
+    })
 
-    JoinText = RD.roll(TEXT_Dices, TEXT_Rolls, TEXT_OM,
-                        TEXT_Q, TEXT_WP, TEXT_RR, TEXT_EText) #, DetalText
 
-    if TEXT_EText and not TEXT_EText.isspace():
-        if TEXT_EText.isdigit() == False:
-            report.sending(TEXT_EText, JoinText)
+    JoinText = RD.roll(Dices, Rolls, OM,
+                        Q, WP, RR, EText) #, DetalText
+
+    if EText and not EText.isspace():
+        if EText.isdigit() == False:
+            report.sending(EText, JoinText)
             
-    if TEXT_PUSH:
+    if PUSH:
         rc = ['s', 'd']
         dicePush = []
         JT = JoinText[:]

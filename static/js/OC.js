@@ -1,7 +1,3 @@
-function CtoO() {
-    alert(DicePull);
-}
-
 function Master() {
     if ($('#fProf').is(':checked'))
     {

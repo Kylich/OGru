@@ -161,7 +161,6 @@ function BluePrint() {
         $('fieldset#OtherFS').attr('class', 'quitz-card-disable');
     }
 }
-    
 
 function OtherFS_Q() {
     $('fieldset#OtherFS').attr('class', 'quitz-card-question');
@@ -196,7 +195,6 @@ function Tch() {
 }
 
 function Pch() {
-    
     var P = Math.floor(+(document.getElementById("fTY").value)/2);
     var Pch = +(document.getElementById("fPch").value);
     var R = +(document.getElementById("fR").value);

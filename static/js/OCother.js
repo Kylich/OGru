@@ -1,7 +1,4 @@
-var DicePull = 0;
-var NumRoll = 0;
-var ProfText = '';
-var Q = 0;
+
 
 function Other() {
     if (
@@ -12,6 +9,9 @@ function Other() {
     {
         var OY = 0;
         var OYtext = '';
+        var DicePull = 0;
+        var NumRoll = 0;
+        var ProfText = '';
 
         var TY = +(document.getElementById("fTY").value);
         var R = +(document.getElementById("fR").value);
@@ -28,7 +28,7 @@ function Other() {
         var Since = +(document.getElementById("fSince").value);
         var Comp = +(document.getElementById("fComp").value);
         var Other = +(document.getElementById("fOther").value);
-        Q = +(document.getElementById("fQ").value);
+        var Q = +(document.getElementById("fQ").value);
         var KTYC = 0, Noy = 0, OMoy = 0;
         
         if ( $('#fNA').is(':checked') ) { OMMT = OMMT } else { OMMT = 0 }
@@ -117,6 +117,8 @@ function Other() {
         } else {
             ProfText = ProfText.slice(0,-2) + '.';
         }
+        var Prof = 0
+        if (ProfText) {Prof=1}
 
         if (
             $('#fKTYC').is(':checked')
@@ -158,11 +160,12 @@ function Other() {
             Error = true;
             OYtext = '<h1>Кол-во Кубов меньше 1</h1><br>';
         }
-        
+
         if ( Error ) { ItogText = OYtext } else {
         ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
-        <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + 'Кол-во Бросков = ' + String(NumRoll) + '\
-        </h1><br><input type="button" value="Открыть в OpenRoller" onclick="CtoO();">';
+        <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + '\
+        Кол-во Бросков = ' + String(NumRoll) + '\
+        </h1><br><a href="/openroller/' + DicePull + '/' + NumRoll + '/' + Prof + '">OpenRoller10</a>';
        }
         
         $('#Resultat').html(ItogText);

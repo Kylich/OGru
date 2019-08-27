@@ -14,10 +14,27 @@ RandListRR = RandList = JoinText_ = JoinTextRR = []
 @app.route('/')
 def indexMain():
     return render_template("indexMain.html")
-    
+
 @app.route('/openroller/')
 def indexOR():
-    return render_template("indexOR.html")
+    return render_template(
+        "indexOR.html",
+        Dices_ = 5,
+        Rolls_ = 1,
+        Q_ = 0,
+    )
+
+@app.route('/openroller/<int:d>/<int:r>/<int:q>')
+def CtoO(d, r, q):
+
+    return render_template(
+        "indexOR.html",
+        Dices_=d,
+        Rolls_=r,
+        Q_=q,
+    )
+
+
 
 @app.route('/opencrafter/')
 def indexOC():
@@ -32,13 +49,18 @@ def luckDice():
 
 @app.route('/rolldice', methods=['GET', 'POST'])
 def rollDice():
-
     Dices = request.form.get('TEXT_Dices', type=int)
     Rolls = request.form.get('TEXT_Rolls', type=int)
     OM = request.form.get('TEXT_OM', default=0, type=int)
     Q = request.form.get('TEXT_Quality', type=int)
     EText = request.form.get('TEXT_EText', type=str)
     
+    if Dices > 50 or Rolls > 50:
+        return json.dumps({
+            'JoinText': "Слишком большое число, чит0р",
+            'finalPush': '',
+        })
+
     try: WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
     except: WP = 0
     

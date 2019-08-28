@@ -46,7 +46,7 @@
     <script>
         var fmCheck = 0
         var fmTextPerk = '<td id="RR"><b>Перк:</b></td><td id="RRb">\
-                            <input name="TEXT_ReRoll" id="TEXT_ReRoll" type="checkbox"/></td>'
+                            <input name="TEXT_RR" id="TEXT_RR" type="checkbox"/></td>'
         var fmTextPush = '<td id="Push"><b><FONT color=green>Кнопка для Пуш!</font></b></td><td id="Pushb">\
                             <input name="TEXT_PUSH" id="TEXT_PUSH" type="checkbox"/></td>'
         var fmTextOM = '<td><h4><b>Автоуспех:</b></h4></td><td>\
@@ -225,18 +225,18 @@
                     <td><p><b>Доброс:</b></td>
                     <td>
                         <p><select size="5" id="TEXT_Q" name="TEXT_Q">
-                        <option type="number" value="2" {% if Q_==2 %} selected {% endif %}>2: доброс 8, 9, 0</option>
+                        <option type="number" value="2">2: доброс 8, 9, 0</option>
                         <option type="number" value="1" {% if Q_==1 %} selected {% endif %}>1: доброс 9 и 0</option>
                         <option type="number" value="0" {% if Q_==0 %} selected {% endif %}>0: доброс 0</option>
-                        <option type="number" value="-1" {% if Q_==-1 %} selected {% endif %}>-1: без доброса</option>
-                        <option type="number" value="-2" {% if Q_==-2 %} selected {% endif %}>-2: -успехи из броска</option>
+                        <option type="number" value="-1">-1: без доброса</option>
+                        <option type="number" value="-2">-2: -успехи из броска</option>
                         </select></p>
                     </td>
                 </tr>
 
                 <tr id="WP">
                    <td><b>ПСВ:</b></td>
-                   <td><input type="checkbox" id="TEXT_WillPower" name="TEXT_WillPower"></td>
+                   <td><input type="checkbox" id="TEXT_WP" name="TEXT_WP"></td>
                 </tr>
                 <tr id='fmTextPerk'></tr>
                 <tr id='fmTextPush'></tr>

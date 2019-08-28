@@ -26,7 +26,6 @@ def indexOR():
 
 @app.route('/openroller/<int:d>/<int:r>/<int:q>')
 def CtoO(d, r, q):
-
     return render_template(
         "indexOR.html",
         Dices_=d,
@@ -59,13 +58,13 @@ def rollDice():
             'finalPush': '',
         })
 
-    try: WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
+    try: WP = 1 if request.form['TEXT_WP'] == 'on' else 0
     except: WP = 0
     
     try: PUSH = 1 if request.form['TEXT_PUSH'] == 'on' else 0
     except: PUSH = 0
 
-    try: RR = 1 if request.form['TEXT_ReRoll'] == 'on' else 0
+    try: RR = 1 if request.form['TEXT_RR'] == 'on' else 0
     except: RR = 0
 
     JoinText = RD.roll(Dices, Rolls, OM,
@@ -161,7 +160,7 @@ def step():
     Dices = request.form.get('TEXT_Dices', type=int)
     Rolls = request.form.get('TEXT_Rolls', type=int)
     OM = request.form.get('TEXT_OM', type=int)
-    Q = request.form.get('TEXT_Quality', type=int)
+    Q = request.form.get('TEXT_Q', type=int)
     EText = request.form.get('TEXT_EText', type=str)
 
     WP = 1 if sCheck=="WP" else 0

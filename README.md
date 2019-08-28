@@ -1,2 +1,3 @@
 # opengamer
-local run branch
+
+curl or requests?

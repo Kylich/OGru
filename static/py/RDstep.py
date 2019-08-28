@@ -40,12 +40,12 @@
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + ETxt +
-										'\r\n')
+										'\n')
 		else:
-			_JT = _JoinTextRR.split('\r\n')
+			_JT = _JoinTextRR.split('\n')
 			_JT.pop()
 			_JT.pop()
-			_JoinTextRR = '\r\n'.join(_JT) + '\r\n'
+			_JoinTextRR = '\n'.join(_JT) + '\n'
 			JoinText = (_JoinTextRR +
 						'\nКубы:' + str(DicePull) +
 						' Броски:' + str(NumRoll) +
@@ -54,7 +54,7 @@
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + ETxt +
-										'\r\n')
+										'\n')
 	else:
 		LuckGlobal = _LuckGlobal
 		y = _y
@@ -77,7 +77,7 @@
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + ETxt +
-										'\r\n')
+										'\n')
 		else:
 			JoinText = (_JoinText +
 						'\nКубы:' + str(DicePull) +
@@ -87,7 +87,7 @@
 						' Переброс:' + JTRR +
 						' Автоуспехи:' + str(OM) +
 						' Отчет:' + ETxt +
-										'\r\n')
+										'\n')
 			RandList = _RandList
 
 	Pp = 2 if RR else 1			
@@ -115,7 +115,7 @@
 	Roll = []
 
 	if NumRoll > 1:
-		JoinText += '[' + str(y) + '] '
+		JoinText += '[%s] ' % y
 	else: JoinText += ''
 
 	LuckCount = DramCount = DicePullQ = x = 0
@@ -167,7 +167,7 @@
 			Except = LuckCount - 4
 		
 	LuckGlobal += LuckCount
-	JoinText += str(LuckCount) + '\r\n'
+	JoinText += str(LuckCount) + '\n'
 	#
 	# Rolls end
 	#

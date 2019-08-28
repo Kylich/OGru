@@ -59,7 +59,7 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
                 Roll = []
                 
                 if NumRoll > 1:
-                    JoinTextTMP = '[' + str(y) + '] '
+                    JoinTextTMP = '[%s] ' % y
                 else: JoinTextTMP = ''
                 
                 LuckCount = DramCount = DicePullQ = x = 0

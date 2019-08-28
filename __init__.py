@@ -42,7 +42,7 @@ def indexOC():
 def luckDice():
     global LDcount
     LDcount += 1
-    JoinText = "<h2>["+ str(LDcount) + "] " + LD.chooseLD() + "</h2>"
+    JoinText = "<h2>[%i] %s</h2>"  % (LDcount, LD.chooseLD())
     return json.dumps({'JoinText': JoinText})
 
 @app.route('/rolldice', methods=['GET', 'POST'])
@@ -50,7 +50,7 @@ def rollDice():
     Dices = request.form.get('TEXT_Dices', type=int)
     Rolls = request.form.get('TEXT_Rolls', type=int)
     OM = request.form.get('TEXT_OM', default=0, type=int)
-    Q = request.form.get('TEXT_Quality', type=int)
+    Q = request.form.get('TEXT_Q', type=int)
     EText = request.form.get('TEXT_EText', type=str)
     
     if Dices > 50 or Rolls > 50:

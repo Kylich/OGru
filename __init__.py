@@ -34,8 +34,6 @@ def CtoO(d, r, q):
         Q_=q,
     )
 
-
-
 @app.route('/opencrafter/')
 def indexOC():
     return render_template("indexOC.html")
@@ -84,7 +82,7 @@ def rollDice():
 
         for jt_ in JT:
             jt = str(jt_)
-            if jt[0] not in ('~', 'К'): 
+            if jt[0] not in ('И', 'К'): 
                 if jt.find(']') > 0:
                     jt = jt[jt.find(']')+1:]
                     
@@ -168,7 +166,7 @@ def step():
 
     WP = 1 if sCheck=="WP" else 0
     RR = 1 if sCheck=="RR" else 0
-    
+
     if sCheck == 'Rl':
         DPtmp = Dices
     elif sCheck == 'RR':
@@ -190,6 +188,7 @@ def step():
                         sCheck, LuckGlobalRR, yRR, zRR, rRR,
                         RandListRR,	LuckGlobal, y, z, r,
                         RandList, JoinText_, JoinTextRR)
+
     JoinText = "<h2>" + '<br>'.join(JoinText.split('\n')) + "</h2>"
 
     if y >= Rolls and sCheck != "Rl":
@@ -204,7 +203,6 @@ def step():
         stepRl = '<input value="Бросок обычный" type="button" onclick="stepRl();" disabled/>'
         stepWP = '<input value="Бросок с +3 Куба" type="button" onclick="stepWP();" disabled/>'
         stepRR = '<input value="Бросок с Перебросом" type="button" onclick="stepRR();"/>'
-
     return json.dumps({
         'JoinText': JoinText,
         'stepRl': stepRl,

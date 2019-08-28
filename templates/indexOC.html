@@ -211,6 +211,31 @@
                         <input type="number" class="raz" readonly style="width:2em" min='1' max='50' value=1 id="fR" name="fR">
                         <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); NZch (); Tch (); Pch ()">+</button>
                     </td>
+
+                    <td>
+                        <label for="fPch">Прочность изм.</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); Pch ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='-10' max='10' value=0 id="fPch" name="fPch">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); Pch ()">+</button>
+                    </td>
+                    <td>
+                        <label for="fP">Прочность</label>
+                    </td>
+                    <td>
+                        <input type="number" style="width:2em" class="razR" readonly id="fP" name="fP">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fAtt">Атрибут</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
+                        <input type="number" class="raz" readonly style="width:2em" min='1' max='10' value=1 id="fAtt" name="fAtt">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
+                    </td>
                     <td>
                         <label for="fTch">Требования изм.</label>
                     </td>
@@ -225,30 +250,6 @@
                     </td>
                     <td>
                         <input type="number" style="width:2em" class="razR" readonly id="fT" name="fT" min='1'>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="fAtt">Атрибут</label>
-                    </td>
-                    <td>
-                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q ()">-</button>
-                        <input type="number" class="raz" readonly style="width:2em" min='1' max='10' value=1 id="fAtt" name="fAtt">
-                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q ()">+</button>
-                    </td>
-                    <td>
-                        <label for="fPch">Прочность изм.</label>
-                    </td>
-                    <td>
-                        <button type="button" onclick="this.nextElementSibling.stepDown(); BluePrintFS_Q (); Pch ()">-</button>
-                        <input type="number" class="raz" readonly style="width:2em" min='-10' max='10' value=0 id="fPch" name="fPch">
-                        <button type="button" onclick="this.previousElementSibling.stepUp(); BluePrintFS_Q (); Pch ()">+</button>
-                    </td>
-                    <td>
-                        <label for="fP">Прочность</label>
-                    </td>
-                    <td>
-                        <input type="number" style="width:2em" class="razR" readonly id="fP" name="fP">
                     </td>
                 </tr>
                 </table><br><table>
@@ -336,12 +337,7 @@
                         <option type="number" value="-2">-2: -успехи из броска</option>
                         </select></p>
                     </td>
-                    <td>
-                        <label for="fKTYC">Наличие Деталей высшего ТУ:</label>
-                    </td>
-                    <td>
-                        <input type="checkbox" class="cBluePrint" id="fKTYC" name="fKTYC">
-                    </td>
+
                 </tr>
                 
                 <tr><td colspan="2">
@@ -359,16 +355,26 @@
         <fieldset id="OtherFS" class="quitz-card-disable">
         <legend><h2>Разное</h2></legend>
             <table>
-                <tr>
+                <!--<tr>
                     <td>
                         <label for="fWP">ПСВ</label>
                         <input type="checkbox" class="cOther" id="fWP" name="fWP">                        
                     </td>
                     <td>
                         <label for="fWP3">ПСВ на +3 куба</label>
-                        <input type="radio" disabled checked class="cOther" id="fWP3" name="fWPch">
+                        <input type="radio" disabled class="cOther" id="fWP3" name="fWPch">
                         <label for="fWPRR">ПСВ на Переброс</label>
                         <input type="radio" disabled class="cOther" id="fWPRR" name="fWPch">
+                    </td>
+                </tr>-->
+                <tr>
+                    <td>
+                        <label for="fKTYC">Детали высшего ТУ:</label>
+                    </td>
+                    <td>
+                        <button type="button" onclick="this.nextElementSibling.stepDown(); OtherFS_Q ()">-</button>
+                        <input style="width:2em" class="raz" readonly type="number" min='0' max='5' value=0 id="fKTYC" name="fKTYC">
+                        <button type="button" onclick="this.previousElementSibling.stepUp(); OtherFS_Q ()">+</button>
                     </td>
                 </tr>
                 <tr>
@@ -376,7 +382,6 @@
                         <label for="fM">Мастерская:</label>
                     </td>
                     <td>
-
                         <button type="button" onclick="this.nextElementSibling.stepDown(); OtherFS_Q ()">-</button>
                         <input style="width:2em" class="raz" readonly type="number" min='1' max='5' value=1 id="fM" name="fM">
                         <button type="button" onclick="this.previousElementSibling.stepUp(); OtherFS_Q ()">+</button>
@@ -440,7 +445,7 @@
             }
         });
         
-        $( "#fWP" ).change(function() {
+        /*$( "#fWP" ).change(function() {
             if ( $('#fWP').is(':checked') )
             {
                 $('#fWP3').attr('disabled', false);
@@ -468,7 +473,7 @@
                 $('#fWPRR').attr('disabled', true);
                 $('#fWP3').prop('checked', true);
             }
-        });
+        });*/
 
         $( ".cMaster" ).change(function() {
             $('fieldset#OtherFS').attr('class', 'quitz-card-disable');

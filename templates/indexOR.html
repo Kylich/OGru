@@ -215,12 +215,11 @@
                    <td><p><b>Кол-во Кубов:</b></p></td>
                    <td><input type="number" min='1' max='100' value= {{ Dices_ }} id="TEXT_Dices" name="TEXT_Dices"></td>
                 </tr>
-
                 <tr>
                    <td><p><b>Кол-во Бросков:</b></td>
                    <td><input type="number" min='1' max='100' value= {{ Rolls_ }} id="TEXT_Rolls" name="TEXT_Rolls"></td>
                 </tr>
-
+                
                 <tr>
                     <td><p><b>Доброс:</b></td>
                     <td>
@@ -233,11 +232,12 @@
                         </select></p>
                     </td>
                 </tr>
-
+                
                 <tr id="WP">
                    <td><b>ПСВ:</b></td>
                    <td><input type="checkbox" id="TEXT_WP" name="TEXT_WP"></td>
                 </tr>
+                
                 <tr id='fmTextPerk'></tr>
                 <tr id='fmTextPush'></tr>
                 <tr id='fmTextOM'></tr>
@@ -246,6 +246,7 @@
                     <td><b>Текст отчета:</b></td>
                     <td><textarea id="TEXT_EText" name="TEXT_EText"></textarea></td>
                 </tr>
+                
                 <tr><td colspan="2">
                         <div align="right"><sup>(персонаж, мастер и/или заявка)</sup></div>
                 </td></tr>
@@ -253,13 +254,13 @@
                 <tr><td id='stepRl'></td><td id='stepRR'></td></tr>
                 <tr><td id='stepWP'></td><td id='stepDl'></td></tr>
                 
-
                 <tr><td colspan="2" id="RDS">
                     <input type="button" value="Бросай" onclick="rollDice();" style="width:100%;height:150%">
                 </td></tr>
             </table>
         </form>
     </div>
+
     <div id="stepReload"></div>
     <br>
     <div id="LDS">
@@ -292,8 +293,6 @@
         Идея: <a href="http://www.roll-dice-online.com/">RollDice Online</a>
      </div>
      <br><br>
-
-
 </div>
 
 <div class="block-right" style="overflow:auto;height:800px;"><!--width:70%;-->

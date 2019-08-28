@@ -1,5 +1,3 @@
-
-
 function Other() {
     if (
         $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'
@@ -29,9 +27,11 @@ function Other() {
         var Comp = +(document.getElementById("fComp").value);
         var Other = +(document.getElementById("fOther").value);
         var Q = +(document.getElementById("fQ").value);
-        var KTYC = 0, Noy = 0, OMoy = 0;
+        var KTYC = +(document.getElementById("fKTYC").value);
+
+        Noy = 0, OMoy = 0;
         
-        if ( $('#fNA').is(':checked') ) { OMMT = OMMT } else { OMMT = 0 }
+        if ( $('#fNA').is(':checked') ) {} else { OMMT = 0 }
         
         if ( N > TY) { Noy = N - TY } else { Noy = 0 }
         
@@ -120,23 +120,23 @@ function Other() {
         var Prof = 0
         if (ProfText) {Prof=1}
 
+        /*var WP3 = 0;
         if (
-            $('#fKTYC').is(':checked')
+            $('#fWP3').is(':checked')
             &&
-            R > 1
-            &&
-            TY < 7
-            ) { KTYC = 1 }
+            $('#fWP').is(':checked')
+        ) { WP3 = 3 }*/
 
-        if ( N == 1 ) { N = 0 } else { N-- }        
+        if ( N == 1 ) { N = 0 } else { N-- }
         
         var DebaffM = '', DebaffCraft = '';
         
         if (M < TY) {DebaffM = 'Мастерская < TY => -успехи';}
         if (Craft < TY) {DebaffCraft = 'Крафт < TY => -успехи';}
-        if (Merit == 0) {Merit = -3}
+        if ( Merit == 0 ) { Merit = -3 }
         
-        DicePull = M - N + Merit + INT + Other + KTYC - TY;
+        DicePull = M - N + Merit + INT + Other + KTYC - TY; // + WP3;
+        
         var Terp = 0;
         if ($('#fTerp').is(':checked')) {Terp = 2}         
         
@@ -161,11 +161,20 @@ function Other() {
             OYtext = '<h1>Кол-во Кубов меньше 1</h1><br>';
         }
 
+        var RRtxt='';
+        if ( $('#fRR').is(':checked') ) {
+            RRtxt = 'ПСВ: Переброс или +3 куба';
+        } else {
+            RRtxt = 'ПСВ: +3 куба';
+        }
+
         if ( Error ) { ItogText = OYtext } else {
-        ItogText = OYtext + ProfText + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
+        ItogText = OYtext + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
         <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + '\
-        Кол-во Бросков = ' + String(NumRoll) + '\
-        </h1><br><a href="/openroller/' + DicePull + '/' + NumRoll + '/' + Prof + '">Перенести в OpenRoller</a>';
+
+        Кол-во Бросков = ' + String(NumRoll) + '</h1><br><h3>' + ProfText + '<br>' + RRtxt + '</h3>\
+        <br><a href="/openroller/' + DicePull + '/' + NumRoll + '/' + Prof + '">Перенести в OpenRoller</a>';
+
        }
         
         $('#Resultat').html(ItogText);

@@ -109,7 +109,6 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
                 LuckGlobal += LuckCount
                 JoinTextTMP += str(LuckCount)
                 JoinText.append(JoinTextTMP)
-                Spam, SpamG = (5, 18) if LuckGlobal//10 else (6, 19)
 
                 if DicePull == 0:
                         break

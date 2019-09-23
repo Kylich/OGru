@@ -7,7 +7,7 @@ def sending(EText, JT):
     
     message = '%s' % '\n '.join(JT)
     
-    password = 'Gorod4Narodov'
+    password = ''
     msg['From'] = "opengamerroller@gmail.com"
     msg['To'] = "opengamerreport@gmail.com"
     msg['Subject'] = EText

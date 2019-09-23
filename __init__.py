@@ -71,9 +71,9 @@ def rollDice():
     JoinText = RD.roll(Dices, Rolls, OM,
                         Q, WP, RR, EText)
 
-    if EText and not EText.isspace():
-        if EText.isdigit() == False:
-            report.sending(EText, JoinText)
+    'if EText and not EText.isspace():
+    '    if EText.isdigit() == False:
+    '        report.sending(EText, JoinText)
             
     if PUSH:
         rc = ['s', 'd']

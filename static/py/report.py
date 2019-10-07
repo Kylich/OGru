@@ -7,10 +7,8 @@ def sending(EText, JT):
     from boto.s3.connection import S3Connection
 
     msg = MIMEMultipart()
-    
     message = '%s' % '\n '.join(JT)
     
-    # password = str(S3Connection(os.environ['S3_RollerPass']))
     try:
         password = S3Connection('S3_pass')
     except:

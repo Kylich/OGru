@@ -11,7 +11,7 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
 
         JTWP = '+' if WP==1 else '-'
         JTRR = '+' if RR==1 else '-'
-        EText = '+' if EText else '-'
+        EText = 'отключен' if EText else 'отключен'
 
         if Q==0: JTQ = "(0)"
         elif Q==1: JTQ = "(0/9)"

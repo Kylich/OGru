@@ -3,7 +3,7 @@ import sys, os, random
 
 Path = str(os.getcwd())
 sys.path.insert(0, Path + '/static/py')
-import LD, RD, RDstep #, report
+import LD, RD, RDstep, report
 
 app = Flask(__name__)
 
@@ -71,9 +71,9 @@ def rollDice():
     JoinText = RD.roll(Dices, Rolls, OM,
                         Q, WP, RR, EText)
 
-    #if EText and not EText.isspace():
-    #    if EText.isdigit() == False:
-    #        report.sending(EText, JoinText)
+    if EText and not EText.isspace():
+        if EText.isdigit() == False:
+            report.sending(EText, JoinText)
             
     if PUSH:
         rc = ['s', 'd']

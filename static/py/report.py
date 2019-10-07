@@ -3,6 +3,7 @@ def sending(EText, JT):
     from email.mime.text import MIMEText
     import smtplib
     import os
+    import sys
     from boto.s3.connection import S3Connection
 
     msg = MIMEMultipart()
@@ -14,10 +15,12 @@ def sending(EText, JT):
         password = S3Connection('S3_pass')
     except:
         print('1 pass fail')
+        print(sys.exc_info())
         try:
             password = str(S3Connection(os.environ['S3_pass']))
         except:
             print('2 pass fail')
+            print(sys.exc_info())
             return
 
     msg['From'] = "opengamerroller@gmail.com"

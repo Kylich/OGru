@@ -53,11 +53,11 @@ def rollDice():
     Q = request.form.get('TEXT_Quality', type=int)
     EText = request.form.get('TEXT_EText', type=str)
     
-    if Dices > 50 or Rolls > 50:
-        return json.dumps({
-            'JoinText': "Слишком большое число, чит0р",
-            'finalPush': '',
-        })
+    # if Dices > 50 or Rolls > 50:
+    #     return json.dumps({
+    #         'JoinText': "Слишком большое число, чит0р",
+    #         'finalPush': '',
+    #     })
 
     try: WP = 1 if request.form['TEXT_WillPower'] == 'on' else 0
     except: WP = 0

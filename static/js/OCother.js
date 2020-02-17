@@ -5,6 +5,7 @@ function Other() {
         $('fieldset#BluePrintFS').attr('class') == 'quitz-card-ready'
     )
     {
+        $('#Resultat').html("...");
         var OY = 0;
         var OYtext = '';
         var DicePull = 0;

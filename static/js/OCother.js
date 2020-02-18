@@ -1,3 +1,7 @@
+function Other1() {
+   $('#Resultat').html("..."); 
+}
+
 function Other() {
     if (
         $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'

@@ -1,8 +1,3 @@
-/*
-function Other1() {
-   $('#Resultat').html("..."); 
-}
-*/
 function Other() {
     if (
         $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'
@@ -177,7 +172,6 @@ function Other() {
         if ( Error ) { ItogText = OYtext } else {
         ItogText = OYtext + '<br>' +  DebaffM + '<br>' + DebaffCraft + '<br>' + '\
         <h1>Кол-во деталей = ' + R*R + '<br>Кол-во Кубов = ' + String(DicePull) + '<br>' + '\
-
         Кол-во Бросков = ' + String(NumRoll) + '</h1><br><h3>' + ProfText + '<br>' + RRtxt + '</h3>\
         <br><a href="/openroller/' + DicePull + '/' + NumRoll + '/' + Prof + '">Перенести в OpenRoller</a>';
 

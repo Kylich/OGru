@@ -1,3 +1,8 @@
+/*
+function Other1() {
+   $('#Resultat').html("..."); 
+}
+*/
 function Other() {
     if (
         $('fieldset#MasterFS').attr('class') == 'quitz-card-ready'
@@ -5,6 +10,7 @@ function Other() {
         $('fieldset#BluePrintFS').attr('class') == 'quitz-card-ready'
     )
     {
+        $('#Resultat').html("...");
         var OY = 0;
         var OYtext = '';
         var DicePull = 0;

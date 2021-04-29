@@ -21,19 +21,23 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
         else: JTQ = "(упс)"
         
         if JTRR=='-' and OM==0:
-            JoinText.append ('Кубы:' + str(DicePull) +
-                            ' Броски:' + str(NumRoll) +
-                            ' Доброс:' + JTQ +
-                            ' ПСВ:' + JTWP +
-                            ' Отчет:' + EText)
+                JoinText.append (
+                        'Кубы:' + str(DicePull) +
+                        ' Броски:' + str(NumRoll) +
+                        ' Доброс:' + JTQ +
+                        ' ПСВ:' + JTWP +
+                        ' Отчет:' + EText
+                )
         else:
-            JoinText.append ('Кубы:' + str(DicePull) +
-                            ' Броски:' + str(NumRoll) +
-                            ' Доброс:' + JTQ +
-                            ' ПСВ:' + JTWP +
-                            ' Переброс:' + JTRR +
-                            ' OM:' + str(OM) +
-                            ' Отчет:' + EText)
+                JoinText.append (
+                        'Кубы:' + str(DicePull) +
+                        ' Броски:' + str(NumRoll) +
+                        ' Доброс:' + JTQ +
+                        ' ПСВ:' + JTWP +
+                        ' Переброс:' + JTRR +
+                        ' OM:' + str(OM) +
+                        ' Отчет:' + EText
+                )
         
         WP3 = True if WP and not RR else False
         LuckGlobal = y = z = r = 0
@@ -59,7 +63,7 @@ def roll(DicePull, NumRoll, OM, Q, WP, RR, EText):
                 Roll = []
                 
                 if NumRoll > 1:
-                    JoinTextTMP = '[' + str(y) + '] '
+                        JoinTextTMP = '[' + str(y) + '] '
                 else: JoinTextTMP = ''
                 
                 LuckCount = DramCount = DicePullQ = x = 0
